@@ -41,6 +41,10 @@ The following are available gRPC methods for general product endpoints.
 #### `Create()`
 > Creates a product.
 
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/product/`
+
 ##### Accepted Request Arguments
 - `product` _(Product object)_
 
@@ -172,6 +176,10 @@ curl -X POST /api/product \
 #### `Get()`
 > Retrieve a product by **SKU**.
 
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/product/:sku`
+
 ##### Accepted Request Arguments
 - `sku` _(string)_
 
@@ -299,6 +307,10 @@ curl -X GET /api/product/BK05536F \
 #### `Update()`
 > Update product information.
 
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/product/:sku`
+
 ##### Accepted Request Arguments
 - `sku` _(string)_
 - `product` _(Product object)_
@@ -360,6 +372,10 @@ curl -X PUT /api/product/BK05536F \
 #### `Delete()`
 > Delete a product by **SKU**.
 
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `/api/product/:sku`
+
 ##### Accepted Request Arguments
 - `sku` _(string)_
 
@@ -410,6 +426,10 @@ curl -X DELETE /api/product/BK05536F \
 
 #### `List()`
 > Retrieve all Product entities/rows.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/product/`
 
 ##### Accepted Request Arguments
 - _N/A_

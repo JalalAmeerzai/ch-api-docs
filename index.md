@@ -15,6 +15,10 @@ In the **Ports Used** sections, `port` is the standard port used for the API ser
 
 The object models for the services can be found on the left menu under "Object Models". They are also linked within their respective documentation pages.
 
+## Testing Environment
+
+- **Base URL:** http://rest-api.staging-soundstruehub.com
+
 ## [ch-access-service](ch-access-service.md)
 - [GitHub Link](https://github.com/stdev/ch-access-service)
 

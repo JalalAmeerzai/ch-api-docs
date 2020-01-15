@@ -35,12 +35,16 @@ Unit tests are included for this service. Current packages that include them are
 
 The following contains details for the `Create`, `Read`, `Update`, `Delete`, and `List` functionality of the UserProduct Service.
 
-### USERS
+### USERPRODUCT
 
-The following are available gRPC methods for general user endpoints.
+The following are available gRPC methods for general UserProduct endpoints.
 
 #### `Create()`
 > Initial creation of a user entry w/ products (new users only)
+
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/userproduct/`
 
 ##### Accepted Request Arguments
 - `user_email` _(string)_
@@ -107,6 +111,10 @@ curl -X POST /api/userproduct \
 
 #### `AddProducts()`
 > Add purchased product(s) to existing user
+
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/userproduct/add`
 
 ##### Accepted Request Arguments
 - `user_email` _(string)_
@@ -231,6 +239,10 @@ curl -X POST /api/userproduct/add \
 
 #### `Get()`
 > Retrieve a single purchased product for a user.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/userproduct/:user_email/`
 
 ##### Accepted Request Arguments
 - `user_email` _(string)_
@@ -378,6 +390,10 @@ curl -X GET /api/userproduct/johndoe@example.com \
 #### `GetProduct()`
 > Retrieve a single purchased product for a user.
 
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/userproduct/:user_email/sku/:sku/`
+
 ##### Accepted Request Arguments
 - `user_email` _(string)_
 - `sku` _(string)_
@@ -443,6 +459,10 @@ curl -X GET /api/userproduct/johndoe@example.com/sku/CE05948 \
 #### `Update()`
 > Update [flat] data for a UserProduct entity/row
 
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/userproduct/:user_email/`
+
 ##### Accepted Request Arguments
 - `user_email` _(string)_
 - `user_product` _(object)_
@@ -505,6 +525,10 @@ _**NOTES:**_
 
 - Be aware that the `authors` attribute will be _overwritten_ if you try to modify it. For instance, if you need to append an author to the list, you must pass **all** authors in the list.
 - You cannot remove **all** others via this gRPC method (i.e. you will only be able to get down to one author in the list).
+
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/userproduct/:user_email/product/`
 
 ##### Accepted Request Arguments
 - `user_email` _(string)_
@@ -578,6 +602,10 @@ _ALWAYS_ use this functionality with care and through the User Service unless a 
 
 **NOTE:** This gRPC method receives a call when `User:UpdateEmail()` gets called because `UserProduct.UserEmail` is a dependency (FK) of `User.Email`.
 
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/userproduct/:user_email/email/`
+
 ##### Accepted Request Arguments
 - `user_email` _(string)_
 - `new_user_email` _(string)_
@@ -634,6 +662,10 @@ curl -X PUT /api/userproduct/email/johndoe@example.com \
 #### `DeleteEntity()`
 > Delete a UserProduct entity/row
 
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `/api/userproduct/:user_email/`
+
 ##### Accepted Request Arguments
 - `user_email` _(string)_
 
@@ -684,6 +716,10 @@ curl -X DELETE /api/userproduct/johndoe@example.com \
 
 #### `Delete()`
 > Remove a SKU from a user's purchased products
+
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `/api/userproduct/:user_email/sku/:sku/`
 
 ##### Accepted Request Arguments
 - `user_email` _(string)_
@@ -740,6 +776,10 @@ curl -X DELETE /api/userproduct/johndoe@example.com/sku/VID123D \
 
 **NOTE:** Use this for the reset functionality required by the Digital Library.
 
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `/api/userproduct/:user_email/media/:sku/`
+
 ##### Accepted Request Arguments
 - `user_email` _(string)_
 - `sku` _(string)_
@@ -792,6 +832,10 @@ curl -X DELETE /api/userproduct/johndoe@example.com/sku/VID123D \
 
 #### `ListUserProducts()`
 > Retrieve all UserProduct entities/rows.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/userproduct/`
 
 ##### Accepted Request Arguments
 - _N/A_

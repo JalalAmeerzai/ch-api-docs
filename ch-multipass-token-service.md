@@ -36,6 +36,10 @@ The following are available gRPC methods for general user endpoints.
 #### `GenerateToken()`
 > Generates a Shopify MultiPass Token
 
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/multipass/`
+
 ##### Accepted Request Arguments
 - `user` _(object)_
 	- email _(string)_

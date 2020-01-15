@@ -39,6 +39,10 @@ The following are available gRPC methods for admin user endpoints.
 #### `Create()`
 > Creates an organization.
 
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/organization/`
+
 ##### Accepted Request Arguments
 - `organization` _(Organization object)_
 
@@ -73,6 +77,10 @@ client.Create(payload, metadata, (err, result) => {
 #### `GetByID()`
 > Retrieve an organization by **id**.
 
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/organization/:id`
+
 ##### Accepted Request Arguments
 - `organization_id` _(int64)_
 
@@ -104,8 +112,16 @@ client.GetByID(payload, metadata, (err, result) => {
 
 ---
 
+TODO - add GetByDomain()
+
+---
+
 #### `Update()`
 > Update Organization information.
+
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/organization/`
 
 ##### Accepted Request Arguments
 - `organization_id` _(int64)_
@@ -140,6 +156,10 @@ client.Update(payload, metadata, (err, result) => {
 
 #### `Delete()`
 > Remove an organization by ID.
+
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `/api/organization/:id`
 
 ##### Accepted Request Arguments
 - `organization_id` _(int64)_
@@ -177,6 +197,10 @@ client.Delete(payload, metadata, (err, result) => {
 #### `ListOrganizations()`
 > Intended for **Admin UI ONLY**.
 > Retrieve _ALL_ organizations from the DB.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/organization/`
 
 ##### Accepted Request Arguments
 - _N/A_

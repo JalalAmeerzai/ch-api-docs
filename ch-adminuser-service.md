@@ -40,6 +40,10 @@ The following are available gRPC methods for general product endpoints.
 #### `Create()`
 > Creates an administrator.
 
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/administrator/`
+
 ##### Accepted Request Arguments
 - `administrator` _(Admin object)_
 
@@ -107,6 +111,10 @@ curl -X POST /api/administrator/ \
 
 #### `Get()`
 > Retrieves an administrator.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/administrator/:email`
 
 ##### Accepted Request Arguments
 - `email` _(string)_
@@ -186,6 +194,10 @@ curl -X GET /api/administrator/st.admin@adminexample.com \
 #### `Update()`
 > Updates an administrator.
 
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/administrator/:email`
+
 ##### Accepted Request Arguments
 - `email` _(string)_
 - `administrator` _(AdminUpdate object)_
@@ -246,6 +258,10 @@ curl -X PUT /api/administrator/st.admin@adminexample.com \
 
 #### `Delete()`
 > Deletes an administrator.
+
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `/api/administrator/:email`
 
 ##### Accepted Request Arguments
 - `email` _(string)_

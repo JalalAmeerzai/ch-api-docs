@@ -44,6 +44,10 @@ The following are available gRPC methods for general user endpoints.
 #### `Create()`
 > Creates a non-admin user.
 
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/user/`
+
 ##### Accepted Request Arguments
 - `user` _(User object)_
 
@@ -158,6 +162,10 @@ curl -X POST /api/user \
 #### `Get()`
 > Retrieve a user by **email**.
 
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/user/:user_id`
+
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 
@@ -268,6 +276,10 @@ curl -X GET /api/user/johndoe@example.com \
 #### `Update()`
 > Update user information.
 
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/user/:user_id`
+
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 - `user` _(User object)_
@@ -337,6 +349,10 @@ curl -X PUT /api/user/johndoe@example.com \
 
 **NOTE:** This gRPC method makes a call to `UserProduct:UpdateEmail()` because `UserProduct.UserEmail` is a dependency (FK) of `User.Email`.
 
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/user/email/:user_id`
+
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 - `new_user_id` _(string)_
@@ -393,6 +409,10 @@ curl -X PUT /api/user/email/johndoe@example.com \
 #### `Delete()`
 > Remove a user by email.
 
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `/api/user/:user_id`
+
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 
@@ -445,6 +465,10 @@ curl -X DELETE /api/user/johndoe99@example.com \
 #### `ListUsers()`
 > Intended for **Admin UI ONLY**.
 > Retrieve _ALL_ users from the DB.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/user/`
 
 ##### Accepted Request Arguments
 - _N/A_
@@ -581,6 +605,10 @@ The following are available gRPC methods for user address endpoints.
 #### `AddAddress()`
 > Creates an address entry for a non-admin user.
 
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/user/:user_id/address/`
+
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 - `address_id` _(string)_
@@ -652,6 +680,10 @@ curl -X POST /api/user/johndoe@example.com/address \
 #### `GetDefaultAddress()`
 > Retrieve the user address with the `default` attribute set to `true`.
 
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/user/:user_id/address/default/`
+
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 
@@ -713,6 +745,10 @@ curl -X GET /api/user/johndoe@example.com/address/default \
 #### `UpdateAddress()`
 > Update a user's address by an address ID.
 
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/user/:user_id/address/:address_id/`
+
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 - `address_id` _(string)_
@@ -772,6 +808,10 @@ curl -X PUT /api/user/johndoe@example.com/address/1234567890 \
 #### `DeleteAddress()`
 > Remove a user's address by ID.
 
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `/api/user/:user_id/address/:address_id/`
+
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 - `address_id` _(string)_
@@ -825,6 +865,10 @@ curl -X DELETE /api/user/johndoe@example.com/address/1234567890 \
 
 #### `ListAddresses()`
 > Retrieve all of user's addresses.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/user/:user_id/address/`
 
 ##### Accepted Request Arguments
 - `user_id` _(string)_
@@ -1004,6 +1048,10 @@ The following are available gRPC methods for user platform endpoints.
 #### `AddPlatform()`
 > Creates a platform entry for a non-admin user.
 
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/user/:user_id/platform/`
+
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 - `platform_name` _(string|PlatformName)_
@@ -1068,6 +1116,10 @@ curl -X POST /api/user/johndoe@example.com/platform \
 #### `GetPlatform()`
 > Retrieve a user's platform by **name**.
 
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/user/:user_id/platform/:platform_name`
+
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 - `platform_name` _(string|PlatformName)_
@@ -1124,6 +1176,10 @@ curl -X GET /api/user/johndoe@example.com/platform/PLATFORM_OCEP \
 
 #### `UpdatePlatform()`
 > Update a user's platform by platform name.
+
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/user/:user_id/platform/:platform_name`
 
 ##### Accepted Request Arguments
 - `user_id` _(string)_
@@ -1186,6 +1242,10 @@ curl -X PUT /api/user/johndoe@example.com/platform/PLATFORM_OCEP \
 #### `DeletePlatformByName()`
 > Remove a user's platform by name.
 
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `/api/user/:user_id/platform/:platform_name`
+
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 - `platform_name` _(string|PlatformName)_
@@ -1239,6 +1299,10 @@ curl -X DELETE /api/user/johndoe@example.com/platform/PLATFORM_OCEP \
 
 #### `ListPlatforms()`
 > Retrieve all of a user's platforms.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/user/:user_id/platform/`
 
 ##### Accepted Request Arguments
 - `user_id` _(string)_
@@ -1309,6 +1373,10 @@ The following are available gRPC methods for user organizations endpoints.
 #### `AddOrganization()`
 > Creates an organization entry for a non-admin user.
 
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/user/:user_id/organization/`
+
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 - `organization` _(map`<string, string>`)_
@@ -1368,6 +1436,10 @@ curl -X POST /api/user/johndoe@example.com/organization \
 #### `DeleteOrganization()`
 > Remove a user's organization by ID.
 
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `/api/user/:user_id/organization/:organization_id/`
+
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 - `organization_id` _(string)_
@@ -1421,6 +1493,10 @@ curl -X DELETE /api/user/johndoe@example.com/organization/101 \
 
 #### `ListOrganizations()`
 - Retrieve all of a user's organizations.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/user/:user_id/organization/`
 
 ##### Accepted Request Arguments
 - `user_id` _(string)_

@@ -34,6 +34,10 @@ The following are available gRPC methods for general product endpoints.
 #### `Authenticate()`
 > Authenticates a user within AWS Cognito. Authenticated users receive a set of tokens back for accessing the Customer Hub.
 
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/authenticate/`
+
 ##### Accepted Request Arguments
 - `email` _(string)_ 
 	- required for the [Standard Auth Flow](/Microservices/ch-auth-service/#standard-auth-flow) and [Refresh Auth Flow](/Microservices/ch-auth-service/#refresh-auth-flow)
@@ -94,7 +98,7 @@ client.Authenticate(payload, (err, result) => {
 curl -X POST /api/authenticate \
   -H 'Content-Type: application/json' \
   -d '{
-	"email": "geoffs@soundstrue.com",
+	"email": "test@example.com",
 	"password": "VGVzdGluZzEyMzQhIQ=="
 }'
 ```
@@ -105,7 +109,7 @@ curl -X POST /api/authenticate \
 curl -X POST /api/authenticate \
   -H 'Content-Type: application/json' \
   -d '{
-	"email": "geoffs@soundstrue.com",
+	"email": "test@example.com",
 	"refresh_flow": true,
 	"refresh_token": "eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.Fx3um7icHLe3-jwoTmLb0pcwIDVM-6yGQSjN9o-hqtUgN49_DSpwtEf-lst6zjpNmwTn7NKhNTs8tAuzOFvqvbfZ1NxXg68qB-efi4O-SlXuf_keT1bHCKu1DZKgWKHo_m8cXqCTLW_3qSPQQGY4cVfG8LbVPBqlmZEsAXhL34iWMpmkYQmh0al8m1TDw4xBTVYkEwVwaC008OFAN8JNUtTRYr-818HW2uE1B496PDa62QJ1uO-Umsqpm1WtaPLtv8mvPMClPdPqFt2VE2GkD-PzxEFHp2hpin6ER9rrhm-zO9WtwmaL6z8g8uaU6drZSlEkp06asqNJGT8SYAOsxg.iMMfx6NLsAKvc7qy.ZqohHX9nFrKxX2271bHf8SA0s6y1oqo4tCnqbTU3drWr4IXG6X3ZphrOowSj7JQ6ij9osPWPecT1SgtZiKAskTVr_mcw0lL37bqcKT19KCOUcvsb36m2KVWhBhG6vvC2FtD2KomFOLVQwh9FBsXKFTlmhcDr_lFBosBEqv6apCZJbvYkkMKq0xTpsoORaSyP0-YmE_xgnEFxybsyR2qXEloDqj7m1bn62S50KNtTEbUVnpvUTfTs-QHpNOMICJS3w9I0_PFNQ6ZBEsLd7dMvuskmbmY0GoYjgVYCCR_KwjzkKZEjpaVswbALdDtXgyMnZqi9Pv1q6e0z9_vlFqeGkDF-QBfOkv6rDAQsAnZ9T_d6FN4MyyjgtJxpVNYgRMh3aRJAjR1Wiq4DUwp2y0CQe5fsrIl4dWDgk7Iq1kucMZtflg07ZKmdJbgrNG8N5elEMPeoN8VAxCS-jhzSfNNpfjFc2h4qlmNWWP2xon18ZBJ0ApHm2AB-AQVCZo0SwjaJbjzPRhSQG_ep4VU-h--oJEv34s6o8EvL77amYO1Qzp-3E0n-foybmzXy9BqEfIma0DUmergS8xtG-Lyir3pGQgTNWVWDQnR6T01gYycs9jIRO9O_u9OCE7-goSJKKyjv8buklAxkVwkgPRvYg9yJaUa-vesW3TjZVFMu5RRplBoD64vZuKKHi6s3pQUXxV-jM8DHCCvm69Kb4xaLOnzltcWYrxqrhBPnYg3A2wGYZKQc7fUABjdlznb-bDjD8gzxD534jG-QSKo8vwdRdKlnoQtY9h5Pu6qDWpCNld_kKXqQeWu50CG0Wu7nHuBE3sUmZVH-Z2odf4cU29eOpbv6EHNykBtpvFmb59evtZfur6GPPvX9kt_gdL_cUTFiBW34T1clWyZ0KUgGJuEi-gMUIGQAgJkX9DxWZAO7_aNkcaknJXapz42dH0VDo8ptQFRVadabsNnxee_MvACpx1PjUB2GebKL1zhsJ2EW8t-CZFLCYyGmYQDIhO9vewb26Lx6QTBJwuVD7R2-Yq5eqLLIvWBV6L78ZlHP1VO6xrjlEi9IyRPwVLJhQmki28FqQXb6CkI1i6HYizn9nUTGiYmRU0YvzehDrWeCUsF3seVvoSWck4O21BuiUFlUOHm6aBeXjclE8v1X39e4CyjaOJhYKgFPBNPk_hpSCXMMWOkS-tjbz2x-XNl_CNsEG1e3k4POkc1HxjR-ugdheCLiwEl0n-fnPuWE96rtYnOEiTrSrRVA57ODapCEZs1-XrSBa5lo1NKfeR0eGwhsqZs4FQOPC8-tEukTwxnWm5MGSTeN9kAsgbMjqMYPkZ8pf5V4OTjb.0o-Ht_1eFjnTddX_8GmuPw"
 }'
@@ -132,6 +136,10 @@ curl -X POST /api/authenticate \
 > Invalidates all refresh tokens issued to a user. The user's current access and Id tokens remain valid until their expiry.
 
 **NOTE:** This is the "best" we can do with AWS Cognito. As a client caller, make sure to delete the user's JWT Access Token for _immediate_ "logout".
+
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/authenticate/logout/`
 
 ##### Accepted Request Arguments
 - `aws_jwt_access_token` _(string)_
@@ -226,6 +234,10 @@ The following are available gRPC methods for general product endpoints.
 #### `CreateUser()`
 > Creates a user within AWS Cognito and then authenticates them (returning a JWT Access token).
 
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/authenticate/create/`
+
 ##### Accepted Request Arguments
 - `user` _(AWSCognitoUser object)_
 	- `email` _(string)_
@@ -286,7 +298,6 @@ curl -X POST /api/authenticate/create \
 ---
 
 #### `UpdateUser()`
-
 > Update user attributes w/in AWS Cognito
 
 - Updated attributes:
@@ -296,6 +307,10 @@ curl -X POST /api/authenticate/create \
 
 - **NOTE:** from [AWS Cognito docs](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html#user-pool-settings-usernames):
 > "A username is always required to register a user, and it cannot be changed after a user is created."
+
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/authenticate/update/`
 
 ##### Accepted Request Arguments
 
@@ -585,6 +600,10 @@ curl -X PUT /api/authenticate/admin/disable \
 #### `InitiateResetPassword()`
 > Sends a code to the user's email so that they can reset their password
 
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/authenticate/forgotpassword/:email`
+
 ##### Accepted Request Arguments
 - `email` _(string)_
 
@@ -627,6 +646,10 @@ curl -X GET /api/authenticate/forgotpassword/test@example.com \
 
 **NOTE:** requires the verification code sent to user's email, from `InitiateResetPassword()`
 
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/authenticate/forgotpassword/confirm`
+
 ##### Accepted Request Arguments
 - `email` _(string)_
 - `new_password` _(string)_ - _**this must be base64 encoded!**_
@@ -642,7 +665,7 @@ If successful, this service sends back a success response with an empty body.
 let payload = req.body;
 
 // make gRPC call
-client.AdminDisableUser(payload, (err, result) => {
+client.ConfirmResetPassword(payload, (err, result) => {
 	if (err) {
 		// handle error
 	} else {
@@ -654,10 +677,12 @@ client.AdminDisableUser(payload, (err, result) => {
 ##### cURL Request Example
 
 ```bash
-curl -X PUT /api/authenticate/admin/disable \
+curl -X PUT /api/authenticate/forgotpassword/confirm \
   -H 'Content-Type: application/json' \
   -d '{
-	"email": "test@example.com"
+	"email": "test@example.com",
+	"new_password": "VGVzdGluZyMjIzEyMzQhIQ==",
+	"confirmation_code": "122660"
 }'
 ```
 

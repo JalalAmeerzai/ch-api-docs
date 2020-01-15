@@ -42,6 +42,10 @@ The following are available gRPC methods for general user endpoints.
 #### `Create()`
 > Creates a Media Metadata entity (row)
 
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/mediametadata/`
+
 ##### Accepted Request Arguments
 - `media_metadata` _(object)_
 
@@ -125,6 +129,10 @@ curl -X POST /api/mediametadata \
 
 #### `AddFiles()`
 > Append file metadata objects to an existing product's file_data list
+
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/mediametadata/:sku`
 
 ##### Accepted Request Arguments
 - `product_sku` _(string)_
@@ -210,6 +218,10 @@ curl -X PUT /api/mediametadata/ABC123 \
 
 #### `Get()`
 > Retrieve a single Media Metadata object (by SKU).
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/mediametadata/:sku`
 
 ##### Accepted Request Arguments
 - `sku` _(string)_
@@ -322,6 +334,10 @@ curl -X GET /api/mediametadata/AF04734W \
 #### `UpdateFileData()`
 > Modifies a single file object data for a product (SKU, S3 Bucket, and S3 Key are required)
 
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/mediametadata/:sku/file`
+
 ##### Accepted Request Arguments
 - `sku` _(string)_
 - `media_s3_bucket` _(string)_
@@ -384,6 +400,10 @@ curl -X PUT /api/mediametadata/ABC123/file \
 #### `Delete()`
 > Deletes an entire row/entity given a SKU
 
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `/api/mediametadata/:sku`
+
 ##### Accepted Request Arguments
 - `product_sku` _(string)_
 
@@ -430,6 +450,10 @@ curl -X DELETE /api/mediametadata/ABC123 \
 ```
 
 ---
+
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/mediametadata/:sku/file`
 
 #### `DeleteFileData()`
 > Removes an object within `file_data` based on filter (filter: `media_s3_bucket` & `media_s3_key`)
@@ -491,6 +515,10 @@ curl -X DELETE /api/mediametadata/ABC123/file \
 
 #### `List()`
 > Retrieve all Media Metadata entities/rows.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/mediametadata/`
 
 ##### Accepted Request Arguments
 - _N/A_
