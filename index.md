@@ -13,7 +13,7 @@ In the **Ports Used** sections, `port` is the standard port used for the API ser
 
 ## Object Models
 
-The object models for the services can be found [here](ObjectModels/). They are also linked within their respective documentation pages.
+The object models for the services can be found [here](ObjectModels/) _(this link only works in the actual repo)_. They are also linked within their respective documentation pages.
 
 ## Testing Environment
 
