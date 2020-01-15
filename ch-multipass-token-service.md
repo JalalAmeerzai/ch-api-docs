@@ -31,10 +31,11 @@ The following contains details for the `GenerateToken` functionality of the Mult
 
 ### MULTIPASS TOKENS
 
-The following are available gRPC methods for general user endpoints.
+The following are available gRPC methods for multipass token endpoints.
 
 #### `GenerateToken()`
-> Generates a Shopify MultiPass Token
+> 1. Authenticate user with AWS Cognito
+> 2. Generate Shopify MultiPass Token to allow user to sign into Shopify
 
 ##### REST Endpoint
 - **METHOD:** `POST`
@@ -42,9 +43,9 @@ The following are available gRPC methods for general user endpoints.
 
 ##### Accepted Request Arguments
 - `user` _(object)_
-	- email _(string)_
-	- first_name _(string)_
-	- last_name _(string)_
+	- `email` _(string)_
+	- `first_name` _(string)_
+	- `last_name` _(string)_
 
 ##### Response
 - `multipass_token` _(string)_

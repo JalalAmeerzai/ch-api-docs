@@ -96,6 +96,17 @@ The object models for the services can be found [here](ObjectModels/) _(this lin
 
 ---
 
+## [ch-shopify-helper-service](ch-shopify-helper-service.md)
+- [GitHub Link](https://github.com/stdev/ch-shopify-helper-service)
+
+### Ports Used
+- **port:** `50060`
+- **hport:** `5687`
+
+→ [**Go to service details**](ch-shopify-helper-service.md)
+
+---
+
 ## [ch-user-service](ch-user-service.md)
 - [GitHub Link](https://github.com/stdev/ch-user-service)
 

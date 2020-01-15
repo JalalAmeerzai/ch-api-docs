@@ -42,6 +42,7 @@ The following are available gRPC methods for general product endpoints.
 - `email` _(string)_ 
 	- required for the [Standard Auth Flow](/Microservices/ch-auth-service/#standard-auth-flow) and [Refresh Auth Flow](/Microservices/ch-auth-service/#refresh-auth-flow)
 - `password` _(string)_
+	- _**This must be base64 encoded!**_
 	- required for the [Standard Auth Flow](/Microservices/ch-auth-service/#standard-auth-flow)
 - `refresh_flow` _(bool)_
 	- required for the [Refresh Auth Flow](/Microservices/ch-auth-service/#refresh-auth-flow)
