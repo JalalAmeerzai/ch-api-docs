@@ -13,7 +13,7 @@ In the **Ports Used** sections, `port` is the standard port used for the API ser
 
 ## Object Models
 
-The object models for the services can be found on the left menu under "Object Models". They are also linked within their respective documentation pages.
+The object models for the services can be found [here](ObjectModels/). They are also linked within their respective documentation pages.
 
 ## Testing Environment
 
@@ -49,39 +49,6 @@ The object models for the services can be found on the left menu under "Object M
 - **hport:** `5685`
 
 → [**Go to service details**](ch-auth-service.md)
-
----
-
-## [ch-flat-earth-vue](ch-flat-earth-vue.md)
-- [GitHub Link](https://github.com/stdev/ch-flat-earth-vue)
-
-### Ports Used
-- **port:** 
-- **hport:**
-
-→ [**Go to service details**](ch-flat-earth-vue.md)
-
----
-
-## [ch-golang-service-prototype](ch-golang-service-prototype.md)
-- [GitHub Link](https://github.com/stdev/ch-golang-service-prototype)
-
-### Ports Used
-- **port:** 
-- **hport:**
-
-→ [**Go to service details**](ch-golang-service-prototype.md)
-
----
-
-## [ch-js-service-prototype](ch-js-service-prototype.md)
-- [GitHub Link](https://github.com/stdev/ch-js-service-prototype)
-
-### Ports Used
-- **port:** `3000`
-- **hport:** `3000`
-
-→ [**Go to service details**](ch-js-service-prototype.md)
 
 ---
 
@@ -150,37 +117,3 @@ The object models for the services can be found on the left menu under "Object M
 → [**Go to service details**](ch-userproduct-service.md)
 
 ---
-
-## [ch-wiki](ch-wiki.md)
-- [GitHub Link](https://github.com/stdev/ch-wiki)
-
-### Ports Used
-- **port:** `8000`
-- **hport:**
-
-→ [**Go to service details**](ch-wiki.md)
-
----
-
-## [environment-flatearth-production](environment-flatearth-production.md)
-- [GitHub Link](https://github.com/stdev/environment-flatearth-production)
-
-### Ports Used
-- **port:** 
-- **hport:**
-
-→ [**Go to service details**](environment-flatearth-production.md)
-
----
-
-## [environment-flatearth-staging](environment-flatearth-staging.md)
-- [GitHub Link](https://github.com/stdev/environment-flatearth-staging)
-
-### Ports Used
-- **port:** 
-- **hport:**
-
-→ [**Go to service details**](environment-flatearth-staging.md)
-
----
-
