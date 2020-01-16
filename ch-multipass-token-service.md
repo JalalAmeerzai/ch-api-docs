@@ -45,6 +45,7 @@ The following are available gRPC methods for multipass token endpoints.
 	- `email` _(string)_
 	- `first_name` _(string)_
 	- `last_name` _(string)_
+	- `return_to` _(string)_
 
 ##### Response
 - `multipass_token` _(string)_
@@ -73,7 +74,8 @@ curl -X POST /api/multipass \
 	"user": {
 		"email": "johndoe@example.com",
 		"first_name": "John",
-		"last_name": "Doe"
+		"last_name": "Doe",
+		"return_to": "http://store.com/some_specific_location"
 	}
 }'
 ```
