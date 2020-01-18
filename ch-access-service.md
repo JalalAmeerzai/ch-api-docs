@@ -98,16 +98,14 @@ curl -X POST /api/access \
         "marketing_opt_in_level": "MARKETING_UNKNOWN"
     },
     "password": "VGVzdGluZyMjIzEyMzQhIQ==",
-    "userproduct":{
-		    "purchased_products": {
-	        "CE05948": {
-	            "title": "The Untethered Soul at Work: CE Credits",
-	            "subtitle": "",
-	            "purchase_date": "2019-06-10 00:00:00",
-	            "thumbnail_link": "somelocation/thumbnail.jpg",
-	            "product_format": "CE Credits"
-	        }
-	    }
+    "purchased_products": {
+		"CE05948": {
+			"title": "The Untethered Soul at Work: CE Credits",
+			"subtitle": "",
+			"purchase_date": "2019-06-10 00:00:00",
+			"thumbnail_link": "somelocation/thumbnail.jpg",
+			"product_format": "CE Credits"
+		}
     }
 }'
 ```
