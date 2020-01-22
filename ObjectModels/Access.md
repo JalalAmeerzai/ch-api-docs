@@ -2,10 +2,11 @@
 
 ## Overview
 
-**Current version:** 0.0.1
+**Current version:** 0.0.2
 
 **Logs:**
 
+- 2020-01-21: **Added** `password` and updated the JSON example.
 - 2019-10-04: Created.
 
 ## Purpose
@@ -15,6 +16,7 @@ The Access Object Model is a representation of a call to register a user, with o
 ## Definitions
 
 - `user` _(object)_: This is the same data that is available per the [User Object Model](User.md).
+- `password` _(string)_: This is the user's password; **base64 encoded** (e.g. `VGVzdGluZzEyMzQhIQ==`)
 - `purchased_products` _(array of objects)_: This is the same data that is available per the [Product Object Model](Product.md).
 	- **NOTE:** Product data is subject to change.
 
@@ -31,12 +33,12 @@ _**NOTE:** The following is a representation of a **single** registration object
         "email": "johndoe@example.com",
         "first_name": "John",
         "last_name": "Doe",
-        "name": "John Doe",  // normalize (add in)
+        "name": "John Doe",  // normalize (add in - Access)
         "verified_email": "true",
         "phone": "111-111-1111",
         "addresses": [
             "207119551": {
-                "input_from": "PLATFORM_SHOPIFY",  // normalize (add in)
+                "input_from": "PLATFORM_SHOPIFY",  // normalize (add in - Access)
                 "company": "Sounds True",
                 "address1": "413 S Arthur Ave",
                 "city": "Louisville",
@@ -48,7 +50,7 @@ _**NOTE:** The following is a representation of a **single** registration object
                 "default": "false"
             },
             "207119552": {
-                "input_from": "PLATFORM_SHOPIFY",   // normalize (add in)
+                "input_from": "PLATFORM_SHOPIFY",   // normalize (add in - Webhook listener for Shopify)
                 "company": "",
                 "address1": "123 Main St",
                 "address2": "Apt. 4",
@@ -61,10 +63,10 @@ _**NOTE:** The following is a representation of a **single** registration object
                 "default": "true"
             }
         ],
-        "state": "USER_ENABLED",  // normalize (if from Shopify, normalize to gRPC equivalent; otherwise add)
+        "state": "USER_ENABLED",  // normalize (if from Shopify, normalize to gRPC equivalent; otherwise add - Access sets this)
         "note": "This customer is loyal",
-		"registered_from": "REGISTRATION_SHOPIFY",  // normalize (add in)
-		// normalize `platforms` (add in)
+		"registered_from": "REGISTRATION_SHOPIFY",  // normalize (add in - Webhook listener for Shopify)
+		// normalize `platforms` (add in - Webhook listener for Shopify)
         "platforms": {
             "PLATFORM_SHOPIFY": {
                 "platform_user_id": "9876543210",
@@ -84,22 +86,17 @@ _**NOTE:** The following is a representation of a **single** registration object
         "accepts_marketing": "false",
         "accepts_marketing_updated_at": "2019-06-10 00:00:00",
         "marketing_opt_in_level": "MARKETING_UNKNOWN",  // normalize (if from Shopify, normalize to gRPC equivalent; otherwise add)
-        "created_at": "2019-06-10 00:00:00",
         "last_modified": "2019-06-10 00:00:00"  // normalize (if from Shopify, change `updated_at` to `last_modified`)
     },
-	"products": [
-		{
-			"id": 808950810,  // maps to info["line_items"][i]["variant_id"] (assuming webhook data) - UNSURE
-			"product_id": 632910392,  // maps to info["line_items"][i]["product_id"] (assuming webhook data) - we NEED the actual product (child/parent)
-			"sku": "AF05649W", // maps to info["line_items"][i]["sku"] (assuming webhook data)
-			"title": "The Yoga Sutras: Audio Download",  // maps to info["line_items"][i]["title"] (assuming webhook data) - unsure
-			"subtitle": "",  // not exactly sure what this maps to in Shopify
-			"purchase_date": "2019-10-03 16:11:15", // maps to info["created_at"] (assuming webhook data) (NEEDED???)
-			"thumbnail_link": "somelocation/thumbnail.jpg",  // Shopify to send the image src (link) data???
-			"product_type": "TYPE_AUDIO",  // normalize (add in) UserProduct:ProductType
-			"can_access": "true",  // normalize (add in)
-			"registration_promo_item": true,  // Can we know if this is a promo item or not???? i.e. Is this info in Shopify?
+	"password": "VGVzdGluZyMjIzEyMzQhIQ==",
+    "purchased_products": {
+		"CE05948": {
+			"title": "The Untethered Soul at Work: CE Credits",
+			"subtitle": "",
+			"purchase_date": "2019-06-10 00:00:00",
+			"thumbnail_link": "somelocation/thumbnail.jpg",
+			"product_format": "CE Credits"
 		}
-	]
+    }
 }
 ```
