@@ -17,7 +17,7 @@ The object models for the services can be found [here](ObjectModels/) _(this lin
 
 ## Testing Environment
 
-- **Base URL:** http://rest-api.staging-soundstruehub.com
+- **Base URL:** https://staging-ch-js-service-prototype.staging-soundstruehub.com
 
 ## [ch-access-service](ch-access-service.md)
 - [GitHub Link](https://github.com/stdev/ch-access-service)
