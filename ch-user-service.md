@@ -142,7 +142,7 @@ curl -X POST /api/user \
         },
         "multipass_token": "sVSwcIWAz_DKCEKWVqtzUxn5ZO3tj_DsORtNKG56soNs5mk5tIStJqIBwobSd6DQzBBj7Q9pZWDmiVHLBwWbPq8d3bcfrMF8uk_rapZGlMUF4Hhed-Iwq2d5y2i1Vl5VU3lHKmVtZJro52yXEboYxjTCZoBnM5d959k_A4LeWS6G6xHLmMzMNTnuN1v8QSU8z-V7QDY8AL6WYGLT_n8Pyg==",
         "accepts_marketing": "true",
-        "accepts_marketing_updated_at": "2019-06-10 00:00:00",
+        "accepts_marketing_updated_at": "2019-06-10T00:00:00Z",
         "marketing_opt_in_level": "MARKETING_UNKNOWN"
     }
 }'
@@ -261,10 +261,10 @@ curl -X GET /api/user/johndoe@example.com \
         "note": "This customer is loyal",
         "registered_from": "REGISTRATION_SHOPIFY",
         "accepts_marketing": "false",
-        "accepts_marketing_updated_at": "2019-07-26 00:00:00",
+        "accepts_marketing_updated_at": "2019-07-26T00:00:00Z",
         "marketing_opt_in_level": "MARKETING_UNKNOWN",
-        "created_at": "2019-09-12 17:00:06",
-        "last_modified": "2019-09-12 17:00:45",
+        "created_at": "2019-09-12T17:00:06Z",
+        "last_modified": "2019-09-12T17:00:45Z",
         "multipass_token": "sVSwcIWAz_DKCEKWVqtzUxn5ZO3tj_DsORtNKG56soNs5mk5tIStJqIBwobSd6DQzBBj7Q9pZWDmiVHLBwWbPq8d3bcfrMF8uk_rapZGlMUF4Hhed-Iwq2d5y2i1Vl5VU3lHKmVtZJro52yXEboYxjTCZoBnM5d959k_A4LeWS6G6xHLmMzMNTnuN1v8QSU8z-V7QDY8AL6WYGLT_n8Pyg=="
     }
 }
@@ -327,7 +327,7 @@ curl -X PUT /api/user/johndoe@example.com \
     "first_name": "JohnnyBoy",
     "name": "JohnnyBoy Doe",
     "accepts_marketing": "false",
-    "accepts_marketing_updated_at": "2019-07-26 00:00:00",
+    "accepts_marketing_updated_at": "2019-07-26T00:00:00Z",
     "verified_email": true,
     "multipass_token": "sVSwcIWAz_DKCEKWVqtzUxn5ZO3tj_DsORtNKG56soNs5mk5tIStJqIBwobSd6DQzBBj7Q9pZWDmiVHLBwWbPq8d3bcfrMF8uk_rapZGlMUF4Hhed-Iwq2d5y2i1Vl5VU3lHKmVtZJro52yXEboYxjTCZoBnM5d959k_A4LeWS6G6xHLmMzMNTnuN1v8QSU8z-V7QDY8AL6WYGLT_n8Pyg=="
 }'
@@ -524,8 +524,8 @@ curl -X GET /api/user \
             "accepts_marketing": "",
             "accepts_marketing_updated_at": "",
             "marketing_opt_in_level": "MARKETING_UNKNOWN",
-            "created_at": "2019-09-13 20:41:18",
-            "last_modified": "2019-09-13 20:41:18"
+            "created_at": "2019-09-13T20:41:18Z",
+            "last_modified": "2019-09-13T20:41:18Z"
         },
         {
             "previous_emails": [
@@ -586,8 +586,8 @@ curl -X GET /api/user \
             "accepts_marketing": "false",
             "accepts_marketing_updated_at": "",
             "marketing_opt_in_level": "MARKETING_UNKNOWN",
-            "created_at": "2019-09-13 20:36:51",
-            "last_modified": "2019-09-13 20:36:51",
+            "created_at": "2019-09-13T20:36:51Z",
+            "last_modified": "2019-09-13T20:36:51Z",
             "multipass_token": "sVSwcIWAz_DKCEKWVqtzUxn5ZO3tj_DsORtNKG56soNs5mk5tIStJqIBwobSd6DQzBBj7Q9pZWDmiVHLBwWbPq8d3bcfrMF8uk_rapZGlMUF4Hhed-Iwq2d5y2i1Vl5VU3lHKmVtZJro52yXEboYxjTCZoBnM5d959k_A4LeWS6G6xHLmMzMNTnuN1v8QSU8z-V7QDY8AL6WYGLT_n8Pyg=="
         }
     ],
@@ -966,10 +966,10 @@ curl -X GET /api/user/johndoe@example.com/address \
             "note": "This customer is loyal",
             "registered_from": "REGISTRATION_SHOPIFY",
             "accepts_marketing": "true",
-            "accepts_marketing_updated_at": "2019-06-10 00:00:00",
+            "accepts_marketing_updated_at": "2019-06-10T00:00:00Z",
             "marketing_opt_in_level": "MARKETING_UNKNOWN",
-            "created_at": "2019-09-16 14:58:27",
-            "last_modified": "2019-09-16 14:58:27"
+            "created_at": "2019-09-16T14:58:27Z",
+            "last_modified": "2019-09-16T14:58:27Z"
         },
         {
             "previous_emails": [
@@ -1030,8 +1030,8 @@ curl -X GET /api/user/johndoe@example.com/address \
             "accepts_marketing": "false",
             "accepts_marketing_updated_at": "",
             "marketing_opt_in_level": "MARKETING_UNKNOWN",
-            "created_at": "2019-09-13 21:13:31",
-            "last_modified": "2019-09-13 21:13:31"
+            "created_at": "2019-09-13T21:13:31Z",
+            "last_modified": "2019-09-13T21:13:31Z"
         }
     ],
     "count": "2"

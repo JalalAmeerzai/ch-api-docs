@@ -2,10 +2,11 @@
 
 ## Overview
 
-**Current version:** 0.0.2
+**Current version:** 0.0.3
 
 **Logs:**
 
+- 2020-03-13: **Added** `return_to` parameter for the Shopify Multipass token.
 - 2020-01-21: **Added** `password` and updated the JSON example.
 - 2019-10-04: Created.
 
@@ -17,6 +18,7 @@ The Access Object Model is a representation of a call to register a user, with o
 
 - `user` _(object)_: This is the same data that is available per the [User Object Model](User.md).
 - `password` _(string)_: This is the user's password; **base64 encoded** (e.g. `VGVzdGluZzEyMzQhIQ==`)
+- `return_to` _(string)_: _[For Shopify Only]_ The location of where a user is redirected to after being logged into Shopify (added to the Multipass token) (e.g. `https://soundstrue.com/checkout`)
 - `purchased_products` _(array of objects)_: This is the same data that is available per the [Product Object Model](Product.md).
 	- **NOTE:** Product data is subject to change.
 

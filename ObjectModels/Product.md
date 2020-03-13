@@ -2,10 +2,13 @@
 
 ## Overview
 
-**Current version:** 0.0.5
+**Current version:** 0.0.8
 
 **Logs:**
 
+- 2020-02-26: **Updated** `platform` to be a map and **changed** `product_id` to be `external_id` to cover all possible platform ID options (e.g. Product ID, Course ID, User ID (RCassidy)).
+- 2020-02-12: **Updated** the timestamp format to a standard format [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339). **Updated** the `format_type` options. **Added** DB mappings for option names.
+- 2020-02-11: **Changed** the type for the product price fields and the weight field from `float` to `string`.
 - 2019-11-14: **Updated** the structure of options within the platform key to allow for "custom" options (`option1`, `option2`, `option3`).
 - 2019-11-06: [Major Change!] Modified the entire structure to be favorable for CH. Added an initial mapping of CH --> Trellis' Shopify doc.
 - 2019-10-22: **Removed** the product `id` as no longer needed. **Changed** `SKU` to be the primary key.
@@ -21,21 +24,30 @@ The Product Object Model is the representation of the products within the ecomme
 ## Definitions
 
 - `sku` _(string)_ - The unique identifier for the product (e.g. "BK05536F").
-- `parent_sku` _(string)_ - The unique identifier for the parent product for the product, if applicable (e.g. "GP006057").
+- `group_id` _(string)_ - The unique identifier (ID or SKU) for the parent product for the product, if applicable (e.g. "123456789" or SKU).
 
 - `title` _(string)_ - The title of the product (e.g. "Alphabreaths")
 - `subtitle` _(string)_ - The subtitle of the product (e.g. "The ABCs of Mindful Breathing")
 - `body_html` _(string)_ - A description of the product. Supports HTML formatting.
 - `format_type` _(string)_ - The format type for the product. Options are:
-	- `FORMAT_BOOKS`
-	- `FORMAT_VIDEO`
-	- `FORMAT_AUDIO`
-	- `FORMAT_MUSIC`
+	- `FORMAT_UNKNOWN` (DB: `0`)
+	- `FORMAT_HARD_BOOK` (DB: `1`) - _hard-cover book_
+	- `FORMAT_EBOOK` (DB: `2`)
+	- `FORMAT_VIDEO` (DB: `3`)
+	- `FORMAT_AUDIO` (DB: `4`)
+	- `FORMAT_MUSIC` (DB: `5`)
+	- `FORMAT_CE_CREDITS` (DB: `6`)
+	- `FORMAT_COURSE` (DB: `7`)
+	- `FORMAT_SOFT_BOOK` (DB: `8`) - _paperback book_
+	- `FORMAT_CD` (DB: `9`)
+	- `FORMAT_DVD` (DB: `10`)
+	- `FORMAT_CARD_DECK` (DB: `11`)
+	- `FORMAT_ENHANCED_EBOOK` (DB: `12`)
 - `published` _(string)_ - String representation of whether this product has been published (e.g. "true")
 - `published_at` _(string)_ -  The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was published. Can be set to null to unpublish the product from the Online Store channel (e.g. "2019-05-28T0:00:00-05:00").
 
-- `discount_price` _(float)_ - The discounted price of the product (e.g. "10.77"),
-- `price` _(float)_ - The full price of the product (e.g. "17.95"),
+- `discount_price` _(string)_ - The discounted price of the product (e.g. "10.77"),
+- `price` _(string)_ - The full price of the product (e.g. "17.95"),
 - `inventory_qty` _(int)_ - The available quanity for the product (e.g. `0`),
 
 - `images` _(array of objects)_ - The image(s) for the product. A single image object ontains the following:
@@ -49,19 +61,22 @@ The Product Object Model is the representation of the products within the ecomme
 - `parent_category` _(string)_ - The category for the product (e.g. "Meditation).
 - `sub_category` _(string)_ - The subcategory for the product (e.g. "Mindfulness Meditation")
 - `level` _(string)_ - The targeted consumer level of the product. Options are:
-	- `LEVEL_BEGINNER`
-	- `LEVEL_INTERMEDIATE`
-	- `LEVEL_ADVANCED`
+	- `LEVEL_UNKNOWN` (DB: `0`)
+	- `LEVEL_BEGINNER` (DB: `1`)
+	- `LEVEL_INTERMEDIATE` (DB: `2`)
+	- `LEVEL_ADVANCED` (DB: `3`)
 - `audience` _(string)_ - The targeted consumer audience for the product. Options are:
-	`AUDIENCE_CHILD`
-	`AUDIENCE_PROFESSIONAL`
-	`AUDIENCE_NON_PROFESSIONAL`
+	- `AUDIENCE_UNKNOWN` (DB: `0`)
+	- `AUDIENCE_CHILD` (DB: `1`)
+	- `AUDIENCE_PROFESSIONAL` (DB: `2`)
+	- `AUDIENCE_NON_PROFESSIONAL` (DB: `3`)
 - `duration` _(string)_ - The general duration of the product. Options are:
-	- `DURATION_HOURS`
-	- `DURATION_DAYS`
-	- `DURATION_WEEKS`
-	- `DURATION_MONTHS`
-	- `DURATION_YEARS`
+	- `DURATION_UNKNOWN` (DB: `0`)
+	- `DURATION_HOURS` (DB: `1`)
+	- `DURATION_DAYS` (DB: `2`)
+	- `DURATION_WEEKS` (DB: `3`)
+	- `DURATION_MONTHS` (DB: `4`)
+	- `DURATION_YEARS` (DB: `5`)
 
 - `authors` _(array of objects)_ - Authors listed (with URLs) for the product. An author object consists of:
 	- `name` _(string)_ - The name of the author (e.g. "Christopher Willard"").
@@ -74,11 +89,8 @@ The Product Object Model is the representation of the products within the ecomme
 - `isbn_13` _(string)_ - The [ISBN-13](https://en.wikipedia.org/wiki/International_Standard_Book_Number) for the product.
 
 - `requires_shipping` _(bool)_ - Whether or not the product requires shipping (e.g. a physical product would be `true`)
-- `weight` _(float)_ - The numeric weight measurement for the product (e.g. `12.7`).
-- `weight_unit` _(string)_ - The unit for the weight measurement. Options are:
-	- `WEIGHT_GRAM`
-	- `WEIGHT_KILOGRAM`
-	- `WEIGHT_POUND`
+- `weight` _(string)_ - The numeric weight measurement for the product (e.g. "12.7").
+- `weight_unit` _(string)_ - The unit for the weight measurement.
 
 - `taxable` _(string)_ - Whether or not the product subject to taxes.
 - `tax_code` _(string)_ - If `taxable`, this is the tax code for which the product is taxable as (e.g. `DB031013`).
@@ -89,25 +101,25 @@ The Product Object Model is the representation of the products within the ecomme
 
 - `sort_order` _(int)_ - The sort/display order for child products, if applicable (e.g. 10).
 
-- `platform` _(object)_ - Specific platform attributes that are needed, or helpful, for the product. This consists of the following (not an exhaustive list):
+- `platform` _(object of embedded objects|map of maps)_ - Specific platform attributes that are needed, or helpful, for the product. Includes the `external_type` and `external_id` options. This key consists of the following:
 	- `name` _(string)_: The name of the platform. Options are:
-		- `PLATFORM_UNKNOWN`
 		- `PLATFORM_SHOPIFY`
-		- `PLATFORM_DIGITAL_LIBRARY`
 		- `PLATFORM_THINKIFIC`
-	- `product_id` _(string)_: The platform's identifier of the product on its system (e.g. ).
-	- `options` _(map)_: Custom platform options for SoundsTrue (e.g. `option1`, `option2`, `option3`). Each option consists of:
-		- `name` _(string)_ - The name of the option.
-		- `value` _(string)_ - The value of the the option.
-	- `product_created_at` _(string)_: The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was created in Shopify (e.g. "2012-02-15T15:12:21-05:00",).
-	- `product_updated_at` _(string)_: The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was last modified in Shopify (e.g. "2012-08-24T14:01:47-04:00").
+		- `PLATFORM_RCASSIDY`
+	- The map values consists of the following:
+		- `external_id` _(string)_: The platform's identifier of the product, course, user (cecredit_rcassidy) on its system (e.g. `45678902132`).
+		- `product_created_at` _(string)_: The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was created in Shopify (e.g. "2012-02-15T15:12:21-05:00",).
+		- `product_updated_at` _(string)_: The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was last modified in Shopify (e.g. "2012-08-24T14:01:47-04:00").
+		- `options` _(map)_: Custom platform options for SoundsTrue (e.g. `option1`, `option2`, `option3`). Each option consists of:
+			- `name` _(string)_: The name of the option.
+			- `value` _(string)_: The value of the the option.
 
-- `created_at` _(string)_ - string representation of the initial product entry (creation) UTC datetime (e.g. "2019-06-10 00:00:00"). "2019-06-10 00:00:00",
-- `last_modified` _(string)_ - string representation of when the product entry is updated UTC datetime (e.g. "2019-06-10 00:00:00"). "2019-06-10 00:00:00"
+- `created_at` _(string)_ - string representation of the initial product entry (creation) [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339) datetime (e.g. "2019-06-10T00:00:00Z").
+- `last_modified` _(string)_ - string representation of when the product entry is updated [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339) datetime (e.g. "2019-06-10T00:00:00Z").
 
 ## Mapping of Datapoints (CH --> Shopify)
 
-Mapping of CH datapoints to [Trellis' Shopify doc](https://docs.google.com/spreadsheets/d/1K0gtopSasF_5EJ5-VAq0Cc3DdZIX3GQgVfLaEfS1grU/edit?usp=sharing)
+Mapping of CH datapoints to [Trellis' Shopify doc](https://docs.google.com/spreadsheets/d/1K0gtopSasF_5EJ5-VAq0Cc3DdZIX3GQgVfLaEfS1grU/edit?usp=sharing).
 
 | Top-level datapoint (CH) | Sub-level datapoint (CH) | Shopify Name (Sheets column) |
 |:----------|:-------------|:-------------|
@@ -116,7 +128,7 @@ Mapping of CH datapoints to [Trellis' Shopify doc](https://docs.google.com/sprea
 | `title` | | Title (C) |
 | `subtitle` | | Metafield (AN) |
 | `body_html` | | Body (HTML) (D) |
-| `format_type` | | Metafield (AR) <br>* _can we get more exact formats (single - Option1 Value won't work)?_ |
+| `format_type` | | Option1 |
 | `published` | | Published (J) |
 | `published_at` | | Published At (K) |
 | `discount_price` | | Variant Price (AA) |
@@ -196,7 +208,7 @@ Mapping of CH datapoints to [Trellis' Shopify doc](https://docs.google.com/sprea
 
 ## Notes / TODOs
 
-- _This data model is subject to heavy changes depending on what is provided by Trellis._
+- Change the mapping to actual data fields (not Google Sheets).
 - The product object model represents our ideal product dataset _within_ the CH ecosystem, not the Shopify system (although, and of course, there is a lot of overlap).
 
 ## JSON Representation (with example values) (minus comments)
@@ -205,7 +217,7 @@ _**NOTE:** The following is a representation of a **single** Product object._
 ```jsonc
 {
 	"sku": "BK05536F",  // primary key
-	"parent_sku": "GP006057",
+	"group_id": "1234567890",
 	
 	// general product info
 	"title": "Alphabreaths",
@@ -266,7 +278,7 @@ _**NOTE:** The following is a representation of a **single** Product object._
 
 	// shipping info
 	"requires_shipping": "",
-	"weight": 0,
+	"weight": "0",
 	"weight_unit": "",
 	
 	// tax
@@ -294,20 +306,27 @@ _**NOTE:** The following is a representation of a **single** Product object._
 
 	// platform-specific info
 	"platform": {
-		"name": "PLATFORM_SHOPIFY",
-		"product_id": "",
-		"product_created_at": "2012-02-15T15:12:21-05:00",
-		"product_updated_at": "2012-08-24T14:01:47-04:00",
-		"options": {
-			"option1": {
-				"name": "Format",
-				"value": "eBook"
+		"PLATFORM_SHOPIFY": {
+			"external_id": "156302615654",
+			"product_created_at": "2012-02-15T15:12:21-05:00",
+			"product_updated_at": "2012-08-24T14:01:47-04:00",
+			"options": {
+				"option1": {
+					"name": "Format",
+					"value": "eBook"
+				}
 			}
+		},
+		"PLATFORM_THINKIFIC": {
+			"external_id": "2345678"
+		},
+		"PLATFORM_RCASSIDY": {
+			"external_id": "80415780952"
 		}
 	},
 
 	// CH datetimes
-	"created_at": "2019-06-10 00:00:00",
-	"last_modified": "2019-06-10 00:00:00"
+	"created_at": "2019-06-10T00:00:00Z",
+	"last_modified": "2019-06-10T00:00:00Z"
 }
 ```

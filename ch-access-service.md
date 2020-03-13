@@ -24,7 +24,13 @@ Please see [_Architecture Diagrams_](https://drive.google.com/file/d/1cyy6wLrcHL
 
 ## Access Tokens (JWT)
 
-Currently, no Access Tokens are required.
+No Access Token is required for `RegisterUser()`. However, most other endpoints require the AWS JWT.
+
+_MOST_ API endpoints **require** an [AWS Cognito Access Token](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html) (JWT format). All _applicable_ calls need to include this Access Token in an `Authorization` header (with a `Bearer` token) like the following:
+
+```
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8
+```
 
 ## Functionality
 
@@ -96,15 +102,16 @@ curl -X POST /api/access \
             }
         },
         "accepts_marketing": "true",
-        "accepts_marketing_updated_at": "2019-06-10 00:00:00",
+        "accepts_marketing_updated_at": "2019-06-10T00:00:00Z",
         "marketing_opt_in_level": "MARKETING_UNKNOWN"
     },
     "password": "VGVzdGluZyMjIzEyMzQhIQ==",
+    "return_to": "https://www.soundstrue.com/example",
     "purchased_products": {
 		"CE05948": {
 			"title": "The Untethered Soul at Work: CE Credits",
 			"subtitle": "",
-			"purchase_date": "2019-06-10 00:00:00",
+			"purchase_date": "2019-06-10T00:00:00Z",
 			"thumbnail_link": "somelocation/thumbnail.jpg",
 			"product_format": "CE Credits"
 		}
@@ -128,4 +135,858 @@ curl -X POST /api/access \
 }
 ```
 
+### PROMOTIONAL PRODUCTS
+
+The following are available gRPC methods for admin user endpoints.
+
+#### `CreateGiftProduct()`
+> Creates a gift product.
+
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/access/gift/`
+
+##### Accepted Request Arguments
+- `sku`_(string)_
+- `product` _(Product object)_
+
+##### Response
+- `created` _(bool)_
+- `message` _(string)_
+	- "Product with (sku: `<sku>`) has been created"
+
+##### gRPC Request Example (JS)
+```js
+// set payload
+let payload = req.body;
+
+// set auth header
+let metadata = new grpc.Metadata();
+metadata.set("authorization", auth);
+
+// make gRPC call
+client.CreateGiftProduct(payload, metadata, (err, result) => {
+	if (err) {
+		// handle error
+	} else {
+		res.json(result);
+	}
+});
+```
+##### cURL Request Example
+
+```bash
+curl -X POST /api/access/gift/ \
+  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "sku": "N123",
+	"product": {
+        "title": "An ebook",
+        "subtitle": "Subtitle",
+        "thumbnail_link": "somewhere/something2.jpg",
+        "product_format": "FORMAT_EBOOK",
+        "registration_promo_item": "true",
+        "authors": ["Jane Doe", "Carrol"]
+	}
+}'
+```
+##### JSON Response Example
+
+```json
+{
+    "created": true,
+    "message": "Product with (SKU: N123) has been created""
+}
+```
+
+---
+
+#### `CreateOrgProduct()`
+> Creates an organization's product.
+
+##### REST Endpoint
+- **METHOD:** `POST`
+- **Endpoint:** `/api/access/org/`
+
+##### Accepted Request Arguments
+- `org_id`_(string)_
+- `products` _(map`<string, Product>`)_
+
+##### Response
+- `created` _(bool)_
+- `message` _(string)_
+	- "Product with (orgID: `<org_id>`) has been created"
+
+##### gRPC Request Example (JS)
+```js
+// set payload
+let payload = req.body;
+
+// set auth header
+let metadata = new grpc.Metadata();
+metadata.set("authorization", auth);
+
+// make gRPC call
+client.CreateOrgProduct(payload, metadata, (err, result) => {
+	if (err) {
+		// handle error
+	} else {
+		res.json(result);
+	}
+});
+```
+##### cURL Request Example
+
+```bash
+curl -X POST /api/access/gift/ \
+  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"org_id":121,
+	"products":{
+		"S987": {
+		"title": "An ebook",
+		"subtitle": "Subtitle",
+		"thumbnail_link": "somewhere/something2.jpg",
+		"product_format": "FORMAT_EBOOK",
+		"registration_promo_item": "true",
+		"authors": ["Jane Doe", "Carrol"]
+		},
+		"S123":{
+		"title": "An ebook",
+		"subtitle": "Subtitle",
+		"thumbnail_link": "somewhere/something2.jpg",
+		"product_format": "FORMAT_EBOOK",
+		"registration_promo_item": "true",
+		"authors": ["Jane Doe", "Carrol"]
+		}
+	}
+}'
+```
+##### JSON Response Example
+
+```json
+{
+    "created": true,
+    "message": "Product with (orgID: 121) has been created""
+}
+```
+
+---
+
+#### `GetGiftProduct()`
+> Retrieve a gift product.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/access/gift/sku/:sku`
+
+##### Accepted Request Arguments
+- `sku`_(string)_
+
+##### Response
+- `product` _(GiftProduct object)_
+
+##### gRPC Request Example (JS)
+```js
+// set payload
+let payload = {
+	sku: req.params.sku
+};
+
+// set auth header
+let metadata = new grpc.Metadata();
+metadata.set("authorization", auth);
+
+// make gRPC call
+client.GetGiftProduct(payload, metadata, (err, result) => {
+	if (err) {
+		// handle error
+	} else {
+		res.json(result);
+	}
+});
+```
+##### cURL Request Example
+
+```bash
+
+curl -X GET /api/access/gift/sku/N123 \
+  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
+  -H 'Content-Type: application/json'
+```
+##### JSON Response Example
+
+```json
+{
+    "product": {
+        "sku": "N123",
+        "product": {
+            "authors": [
+                "Jane Doe",
+                "Carrol"
+            ],
+            "title": "New Title",
+            "subtitle": "Subtitle",
+            "thumbnail_link": "somewhere/something2.jpg",
+            "product_format": "FORMAT_EBOOK",
+            "registration_promo_item": "true"
+        }
+    }
+}
+```
+
+---
+
+#### `GetOrgProduct()`
+> Retrieve an organization's product.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/access/org/id/:org_id'`
+
+##### Accepted Request Arguments
+- `org_id`_(string)_
+
+##### Response 
+- `org_product` _(OrganizationProduct object)_
+
+##### gRPC Request Example (JS)
+```js
+// set payload
+let payload = {
+	org_product: req.params.id
+};
+
+// set auth header
+let metadata = new grpc.Metadata();
+metadata.set("authorization", auth);
+
+// make gRPC call
+client.GetOrgProduct(payload, metadata, (err, result) => {
+	if (err) {
+		// handle error
+	} else {
+		res.json(result);
+	}
+});
+```
+##### cURL Request Example
+
+```bash
+
+curl -X GET /api/access/org/id/111 \
+  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
+  -H 'Content-Type: application/json'
+```
+##### JSON Response Example
+
+```json
+{
+    "org_product": {
+        "products": {
+            "ABC123": {
+                "authors": [
+                    "Jane Doe"
+                ],
+                "title": "An ebook",
+                "subtitle": "Subtitle",
+                "thumbnail_link": "somewhere/something2.jpg",
+                "product_format": "FORMAT_VIDEO",
+                "registration_promo_item": "true"
+            }
+        },
+        "org_id": "111"
+    }
+}
+```
+
+---
+#### `UpdateGiftProduct()`
+> Update data for a GiftProduct
+
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/access/api/gift/`
+
+##### Accepted Request Arguments
+- `sku` _(string)_
+- `product` _(object)_
+
+##### Response
+- `updated` _(bool)_
+- `message` _(string)_
+	- "Product (SKU: `<sku>`) has been updated"
+
+##### gRPC Request Example (JS)
+```js
+// set payload
+let payload = {
+	sku: req.body.sku,
+	product: req.body.product
+};
+
+// set auth header
+let metadata = new grpc.Metadata();
+metadata.set("authorization", auth);
+
+// make gRPC call
+client.UpdateGiftProduct(payload, metadata, (err, result) => {
+	if (err) {
+		// handle error
+	} else {
+		res.json(result);
+	}
+});
+```
+
+##### cURL Request Example
+
+```bash
+curl -X PUT /api/access/gift/ \
+  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"sku": "N123",
+	"product": {
+	"title": "An ebook",
+	"subtitle": "Subtitle",
+	"thumbnail_link": "somewhere/something2.jpg"
+	}
+}'
+```
+
+##### JSON Response Example
+
+```json
+{
+    "updated": true,
+    "message": "Product (SKU: N123) has been updated"
+}
+```
+
+---
+#### `UpdateOrgProduct()`
+> Update a product (SKU) within a OrgProduct map
+
+_**NOTES:**_
+
+- Be aware that the `authors` attribute will be _overwritten_ if you try to modify it. For instance, if you need to append an author to the list, you must pass **all** authors in the list.
+- You cannot remove **all** others via this gRPC method (i.e. you will only be able to get down to one author in the list).
+
+##### REST Endpoint
+- **METHOD:** `PUT`
+- **Endpoint:** `/api/access/org/`
+
+##### Accepted Request Arguments
+- `org_id` _(string)_
+- `sku` _(string)_
+- `product` _(object)_
+
+##### Response
+- `updated` _(bool)_
+- `message` _(string)_
+	- "Product (orgID: `org_id`) has been updated"
+
+##### gRPC Request Example (JS)
+```js
+// set payload
+let payload = {
+	org_id: req.body.org_id,
+	sku: req.body.sku,
+	product: req.body.product
+};
+
+// set auth header
+let metadata = new grpc.Metadata();
+metadata.set("authorization", auth);
+
+// make gRPC call
+client.UpdateOrgProduct(payload, metadata, (err, result) => {
+	if (err) {
+		// handle error
+	} else {
+		res.json(result);
+	}
+});
+```
+
+##### cURL Request Example
+
+```bash
+curl -X PUT /api/access/org/ \
+  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"org_id":345,
+	"sku": "S987",
+	"product":{
+		"subtitle": "New Subtitle"
+	}
+}'
+```
+
+##### JSON Response Example
+
+```json
+{
+    "updated": true,
+    "message": "Product (orgID: 345) has been updated"
+}
+```
+
+---
+#### `DeleteGiftEntity()`
+> Delete a Product entity/row from the access_gifts table
+
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `/api/access/sku/:sku'`
+
+##### Accepted Request Arguments
+- `sku` _(string)_
+
+##### Response
+- `deleted` _(bool)_
+- `message` _(string)_
+	- "Product (SKU: `<sku>`) has been deleted
+
+##### gRPC Request Example (JS)
+```js
+// set payload
+let payload = {
+	sku: req.params.sku,
+};
+
+// set auth header
+let metadata = new grpc.Metadata();
+metadata.set("authorization", auth);
+
+// make gRPC call
+client.DeleteGiftEntity(payload, metadata, (err, result) => {
+	if (err) {
+		// handle error
+	} else {
+		res.json(result);
+	}
+});
+```
+
+##### cURL Request Example
+
+```bash
+curl -X DELETE /api/access/sku/N26 \
+  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
+  -H 'Content-Type: application/json'
+```
+
+##### JSON Response Example
+
+```json
+{
+    "deleted": true,
+    "message": "Product (SKU: N26) has been deleted"
+}
+```
+
+---
+#### `DeleteOrganizationEntity()`
+> Delete a Product entity/row from the access_organization table
+
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `api/access/org_id/:org_id'`
+
+##### Accepted Request Arguments
+- `org_id` _(string)_
+
+##### Response
+- `deleted` _(bool)_
+- `message` _(string)_
+	- "Product (orgID: `<org_id>`) has been deleted
+
+##### gRPC Request Example (JS)
+```js
+// set payload
+let payload = {
+	org_id: req.params.org_id,
+};
+
+// set auth header
+let metadata = new grpc.Metadata();
+metadata.set("authorization", auth);
+
+// make gRPC call
+client.DeleteOrganizationEntity(payload, metadata, (err, result) => {
+	if (err) {
+		// handle error
+	} else {
+		res.json(result);
+	}
+});
+```
+
+##### cURL Request Example
+
+```bash
+curl -X DELETE /api/access/org_id/7890 \
+  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
+  -H 'Content-Type: application/json'
+```
+
+##### JSON Response Example
+
+```json
+{
+    "deleted": true,
+    "message": "Product (orgID: 7890) has been deleted"
+}
+```
+
+---
+#### `Delete()`
+> Remove a SKU from a organization's free products
+
+##### REST Endpoint
+- **METHOD:** `DELETE`
+- **Endpoint:** `api/access/org_id/:org_id/sku/:sku'`
+
+##### Accepted Request Arguments
+- `org_id` _(string)_
+- `sku` _(string)_
+
+##### Response
+- `deleted` _(bool)_
+- `message` _(string)_
+	- "Product (SKU: `<sku>`) has been deleted
+
+##### gRPC Request Example (JS)
+```js
+// set payload
+let payload = {
+	org_id: req.params.org_id,
+	sku: req.params.sku,
+};
+
+// set auth header
+let metadata = new grpc.Metadata();
+metadata.set("authorization", auth);
+
+// make gRPC call
+client.Delete(payload, metadata, (err, result) => {
+	if (err) {
+		// handle error
+	} else {
+		res.json(result);
+	}
+});
+```
+
+##### cURL Request Example
+
+```bash
+curl -X DELETE /api/access/org_id/7890/sku/S123 \
+  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
+  -H 'Content-Type: application/json'
+```
+
+##### JSON Response Example
+
+```json
+{
+    "deleted": true,
+    "message": "Product (SKU: S123) has been deleted"
+}
+```
+
+---
+#### `ListGiftProducts()`
+> Retrieve all GiftProduct entities/rows from.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/gift/`
+
+##### Accepted Request Arguments
+- _N/A_
+
+##### Response
+- `count` _(int64)_
+- **repeated** `product` _(GiftProduct objects)_
+
+##### gRPC Request Example (JS)
+```js
+// set auth header
+let metadata = new grpc.Metadata();
+metadata.set("authorization", auth);
+
+// make gRPC call
+client.ListGiftProducts({}, metadata, (err, result) => {
+	if (err) {
+		// handle error
+	} else {
+		res.json(result);
+	}
+});
+```
+
+##### cURL Request Example
+
+```bash
+curl -X GET /api/gift/ \
+  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
+  -H 'Content-Type: application/json'
+```
+
+##### JSON Response Example
+
+```json
+{
+    "product": [
+        {
+            "sku": "ABC123",
+            "product": {
+                "authors": [
+                    "Jane Doe"
+                ],
+                "title": "An ebook",
+                "subtitle": "Subtitle",
+                "thumbnail_link": "somewhere/something2.jpg",
+                "product_format": "FORMAT_VIDEO",
+                "registration_promo_item": "true"
+            }
+        },
+		{
+            "sku": "N123",
+            "product": {
+                "authors": [
+                    "Jane Doe",
+                    "Carrol"
+                ],
+                "title": "New Title",
+                "subtitle": "Subtitle",
+                "thumbnail_link": "somewhere/something2.jpg",
+                "product_format": "FORMAT_EBOOK",
+                "registration_promo_item": "true"
+            }
+        },
+		{
+            "sku": "N23",
+            "product": {
+                "authors": [
+                    "Jane Doe",
+                    "Carrol"
+                ],
+                "title": "An ebook",
+                "subtitle": "Subtitle",
+                "thumbnail_link": "somewhere/something2.jpg",
+                "product_format": "FORMAT_EBOOK",
+                "registration_promo_item": "true"
+            }
+        }
+	],
+	"count": "3"
+}
+```
+
+---
+
+#### `ListOrgProducts()`
+> Retrieve all GiftProduct entities/rows from.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/org/`
+
+##### Accepted Request Arguments
+- _N/A_
+
+##### Response
+- `count` _(int64)_
+- **repeated** `product` _(OrganizationProduct objects)_
+
+##### gRPC Request Example (JS)
+```js
+// set auth header
+let metadata = new grpc.Metadata();
+metadata.set("authorization", auth);
+
+// make gRPC call
+client.ListOrgProducts({}, metadata, (err, result) => {
+	if (err) {
+		// handle error
+	} else {
+		res.json(result);
+	}
+});
+```
+
+##### cURL Request Example
+
+```bash
+curl -X GET /api/org/ \
+  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
+  -H 'Content-Type: application/json'
+```
+
+##### JSON Response Example
+
+```json
+{
+    "product": [
+        {
+             "products": {
+                "S123": {
+                    "authors": [
+                        "Jane Doe",
+                        "Carrol"
+                    ],
+                    "title": "An ebook",
+                    "subtitle": "Subtitle",
+                    "thumbnail_link": "somewhere/something2.jpg",
+                    "product_format": "FORMAT_EBOOK",
+                    "registration_promo_item": "true"
+                },
+                "S987": {
+                    "authors": [
+                        "Jane Doe",
+                        "Carrol"
+                    ],
+                    "title": "An ebook",
+                    "subtitle": "Subtitle",
+                    "thumbnail_link": "somewhere/something2.jpg",
+                    "product_format": "FORMAT_EBOOK",
+                    "registration_promo_item": "true"
+                }
+            },
+            "org_id": "121"
+        }
+	],
+	"count": "1"
+}
+```
+
+---
+
+#### `ListAllProducts()`
+> Retrieve all GiftProduct entities/rows from.
+
+##### REST Endpoint
+- **METHOD:** `GET`
+- **Endpoint:** `/api/`
+
+##### Accepted Request Arguments
+- _N/A_
+
+##### Response
+- `org_count` _(int64)_
+- `gift_count` _(int64)_
+- **repeated** `promo_product` _(PromoProduct objects)_
+
+##### gRPC Request Example (JS)
+```js
+// set auth header
+let metadata = new grpc.Metadata();
+metadata.set("authorization", auth);
+
+// make gRPC call
+client.ListAllProducts({}, metadata, (err, result) => {
+	if (err) {
+		// handle error
+	} else {
+		res.json(result);
+	}
+});
+```
+
+##### cURL Request Example
+
+```bash
+curl -X GET /api/ \
+  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
+  -H 'Content-Type: application/json'
+```
+
+##### JSON Response Example
+
+```json
+{
+    "promo_product": [
+        {
+            "authors": [
+                "Jane Doe"
+            ],
+            "promo_type": "Gift",
+            "sku": "ABC123",
+            "org_id": "",
+            "title": "An ebook",
+            "subtitle": "Subtitle",
+            "thumbnail_link": "somewhere/something2.jpg",
+            "product_format": "FORMAT_VIDEO",
+            "registration_promo_item": "true"
+        },
+		        {
+            "authors": [
+                "Jane Doe",
+                "Carrol"
+            ],
+            "promo_type": "Gift",
+            "sku": "N24",
+            "org_id": "",
+            "title": "An ebook test",
+            "subtitle": "Subtitle",
+            "thumbnail_link": "somewhere/something2.jpg",
+            "product_format": "FORMAT_EBOOK",
+            "registration_promo_item": "true"
+        },
+        {
+            "authors": [
+                "Jane Doe",
+                "Carrol"
+            ],
+            "promo_type": "Gift",
+            "sku": "N236",
+            "org_id": "",
+            "title": "An ebook",
+            "subtitle": "Subtitle",
+            "thumbnail_link": "somewhere/something2.jpg",
+            "product_format": "FORMAT_EBOOK",
+            "registration_promo_item": "true"
+        },
+		{
+            "authors": [
+                "Jane Doe",
+                "Carrol"
+            ],
+            "promo_type": "Org",
+            "sku": "S987",
+            "org_id": "121",
+            "title": "An ebook",
+            "subtitle": "Subtitle",
+            "thumbnail_link": "somewhere/something2.jpg",
+            "product_format": "FORMAT_EBOOK",
+            "registration_promo_item": ""
+        },
+        {
+            "authors": [
+                "Jane Doe",
+                "Carrol"
+            ],
+            "promo_type": "Org",
+            "sku": "S123",
+            "org_id": "121",
+            "title": "An ebook",
+            "subtitle": "Subtitle",
+            "thumbnail_link": "somewhere/something2.jpg",
+            "product_format": "FORMAT_EBOOK",
+            "registration_promo_item": ""
+        },
+	    ],
+    "org_count": "2",
+    "gift_count": "3"
+}
+```
+
+---
 ---

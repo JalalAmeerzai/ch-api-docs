@@ -86,7 +86,7 @@ curl -X POST /api/userproduct \
         "CE05948": {
             "title": "The Untethered Soul at Work: CE Credits",
             "subtitle": "",
-            "purchase_date": "2019-06-10 00:00:00",
+            "purchase_date": "2019-06-10T00:00:00Z",
             "thumbnail_link": "somelocation/thumbnail.jpg",
             "product_format": "FORMAT_CE_CREDITS",
             "can_access": "true",
@@ -156,7 +156,7 @@ curl -X POST /api/userproduct/add \
         "AF02384W": {
             "title": "Longing and Belonging: Audio Download",
             "subtitle": "",
-            "purchase_date": "2019-06-10 00:00:00",
+            "purchase_date": "2019-06-10T00:00:00Z",
             "thumbnail_link": "somelocation/thumbnail.jpg",
             "product_format": "FORMAT_AUDIO",
             "can_access": "true",
@@ -171,7 +171,7 @@ curl -X POST /api/userproduct/add \
         "VID123D": {
             "title": "Some Video (D)",
             "subtitle": "",
-            "purchase_date": "2019-06-10 00:00:00",
+            "purchase_date": "2019-06-10T00:00:00Z",
             "thumbnail_link": "somelocation/thumbnail.jpg",
             "product_format": "FORMAT_VIDEO",
             "can_access": "true",
@@ -186,7 +186,7 @@ curl -X POST /api/userproduct/add \
         "VID123E": {
             "title": "Some Video (E)",
             "subtitle": "",
-            "purchase_date": "2019-06-10 00:00:00",
+            "purchase_date": "2019-06-10T00:00:00Z",
             "thumbnail_link": "somelocation/thumbnail.jpg",
             "product_format": "FORMAT_VIDEO",
             "can_access": "true",
@@ -198,7 +198,7 @@ curl -X POST /api/userproduct/add \
         "VID123F": {
             "title": "Some Video (F)",
             "subtitle": "",
-            "purchase_date": "2019-06-10 00:00:00",
+            "purchase_date": "2019-06-10T00:00:00Z",
             "thumbnail_link": "somelocation/thumbnail.jpg",
             "product_format": "FORMAT_VIDEO",
             "can_access": "true",
@@ -210,7 +210,7 @@ curl -X POST /api/userproduct/add \
         "BK05619W": {
             "title": "Making Magic: eBook",
             "subtitle": "",
-            "purchase_date": "2019-06-10 00:00:00",
+            "purchase_date": "2019-06-10T00:00:00Z",
             "thumbnail_link": "somelocation/thumbnail.jpg",
             "product_format": "FORMAT_EBOOK",
             "can_access": "true",
@@ -294,7 +294,7 @@ curl -X GET /api/userproduct/johndoe@example.com \
                 },
                 "title": "Some Video (D)",
                 "subtitle": "",
-                "purchase_date": "2019-06-10 00:00:00",
+                "purchase_date": "2019-06-10T00:00:00Z",
                 "thumbnail_link": "somelocation/thumbnail.jpg",
                 "product_format": "FORMAT_VIDEO",
                 "can_access": "true",
@@ -308,7 +308,7 @@ curl -X GET /api/userproduct/johndoe@example.com \
                 },
                 "title": "Some Video (E)",
                 "subtitle": "",
-                "purchase_date": "2019-06-10 00:00:00",
+                "purchase_date": "2019-06-10T00:00:00Z",
                 "thumbnail_link": "somelocation/thumbnail.jpg",
                 "product_format": "FORMAT_VIDEO",
                 "can_access": "true",
@@ -322,7 +322,7 @@ curl -X GET /api/userproduct/johndoe@example.com \
                 },
                 "title": "Some Video (F)",
                 "subtitle": "",
-                "purchase_date": "2019-06-10 00:00:00",
+                "purchase_date": "2019-06-10T00:00:00Z",
                 "thumbnail_link": "somelocation/thumbnail.jpg",
                 "product_format": "FORMAT_VIDEO",
                 "can_access": "true",
@@ -338,7 +338,7 @@ curl -X GET /api/userproduct/johndoe@example.com \
                 },
                 "title": "Longing and Belonging: Audio Download",
                 "subtitle": "",
-                "purchase_date": "2019-06-10 00:00:00",
+                "purchase_date": "2019-06-10T00:00:00Z",
                 "thumbnail_link": "somelocation/thumbnail.jpg",
                 "product_format": "FORMAT_AUDIO",
                 "can_access": "true",
@@ -355,7 +355,7 @@ curl -X GET /api/userproduct/johndoe@example.com \
                 },
                 "title": "Making Magic: eBook",
                 "subtitle": "",
-                "purchase_date": "2019-06-10 00:00:00",
+                "purchase_date": "2019-06-10T00:00:00Z",
                 "thumbnail_link": "somelocation/thumbnail.jpg",
                 "product_format": "FORMAT_EBOOK",
                 "can_access": "true",
@@ -369,7 +369,7 @@ curl -X GET /api/userproduct/johndoe@example.com \
                 "media_metadata": {},
                 "title": "The Untethered Soul at Work: CE Credits",
                 "subtitle": "",
-                "purchase_date": "2019-06-10 00:00:00",
+                "purchase_date": "2019-06-10T00:00:00Z",
                 "thumbnail_link": "somelocation/thumbnail.jpg",
                 "product_format": "FORMAT_CE_CREDITS",
                 "can_access": "true",
@@ -379,8 +379,8 @@ curl -X GET /api/userproduct/johndoe@example.com \
         },
         "user_email": "johndoe@example.com",
         "recent_product": "",
-        "created_at": "2019-11-01 21:01:26",
-        "last_modified": "2019-11-01 21:01:29"
+        "created_at": "2019-11-01T21:01:26Z",
+        "last_modified": "2019-11-01T21:01:29Z"
     }
 }
 ```
@@ -443,7 +443,7 @@ curl -X GET /api/userproduct/johndoe@example.com/sku/CE05948 \
             "media_metadata": {},
             "title": "The Untethered Soul at Work: CE Credits",
             "subtitle": "",
-            "purchase_date": "2019-06-10 00:00:00",
+            "purchase_date": "2019-06-10T00:00:00Z",
             "thumbnail_link": "somelocation/thumbnail.jpg",
             "product_format": "FORMAT_CE_CREDITS",
             "can_access": "true",
@@ -525,6 +525,7 @@ _**NOTES:**_
 
 - Be aware that the `authors` attribute will be _overwritten_ if you try to modify it. For instance, if you need to append an author to the list, you must pass **all** authors in the list.
 - You cannot remove **all** others via this gRPC method (i.e. you will only be able to get down to one author in the list).
+- When updating the `media_metadata` field with this method, you'll need to pass any and all data that you want to keep (similar to authors).
 
 ##### REST Endpoint
 - **METHOD:** `PUT`
@@ -885,7 +886,7 @@ curl -X GET /api/userproduct/ \
                     },
                     "title": "Making Magic: eBook",
                     "subtitle": "",
-                    "purchase_date": "2019-06-10 00:00:00",
+                    "purchase_date": "2019-06-10T00:00:00Z",
                     "thumbnail_link": "somelocation/thumbnail.jpg",
                     "product_format": "FORMAT_EBOOK",
                     "can_access": "true",
@@ -899,7 +900,7 @@ curl -X GET /api/userproduct/ \
                     "media_metadata": {},
                     "title": "The Untethered Soul at Work: CE Credits",
                     "subtitle": "",
-                    "purchase_date": "2019-06-10 00:00:00",
+                    "purchase_date": "2019-06-10T00:00:00Z",
                     "thumbnail_link": "somelocation/thumbnail.jpg",
                     "product_format": "FORMAT_CE_CREDITS",
                     "can_access": "true",
@@ -915,7 +916,7 @@ curl -X GET /api/userproduct/ \
                     },
                     "title": "Some Video (D)",
                     "subtitle": "",
-                    "purchase_date": "2019-06-10 00:00:00",
+                    "purchase_date": "2019-06-10T00:00:00Z",
                     "thumbnail_link": "somelocation/thumbnail.jpg",
                     "product_format": "FORMAT_VIDEO",
                     "can_access": "true",
@@ -929,7 +930,7 @@ curl -X GET /api/userproduct/ \
                     },
                     "title": "Some Video (E)",
                     "subtitle": "",
-                    "purchase_date": "2019-06-10 00:00:00",
+                    "purchase_date": "2019-06-10T00:00:00Z",
                     "thumbnail_link": "somelocation/thumbnail.jpg",
                     "product_format": "FORMAT_VIDEO",
                     "can_access": "true",
@@ -943,7 +944,7 @@ curl -X GET /api/userproduct/ \
                     },
                     "title": "Some Video (F)",
                     "subtitle": "",
-                    "purchase_date": "2019-06-10 00:00:00",
+                    "purchase_date": "2019-06-10T00:00:00Z",
                     "thumbnail_link": "somelocation/thumbnail.jpg",
                     "product_format": "FORMAT_VIDEO",
                     "can_access": "true",
@@ -959,7 +960,7 @@ curl -X GET /api/userproduct/ \
                     },
                     "title": "Longing and Belonging: Audio Download",
                     "subtitle": "",
-                    "purchase_date": "2019-06-10 00:00:00",
+                    "purchase_date": "2019-06-10T00:00:00Z",
                     "thumbnail_link": "somelocation/thumbnail.jpg",
                     "product_format": "FORMAT_AUDIO",
                     "can_access": "true",
@@ -969,8 +970,8 @@ curl -X GET /api/userproduct/ \
             },
             "user_email": "johndoe@example.com",
             "recent_product": "",
-            "created_at": "2019-11-01 21:01:26",
-            "last_modified": "2019-11-01 21:01:29"
+            "created_at": "2019-11-01T21:01:26Z",
+            "last_modified": "2019-11-01T21:01:29Z"
         },
         {
             "purchased_products": {
@@ -985,13 +986,13 @@ curl -X GET /api/userproduct/ \
                     },
                     "title": "Video Presentation",
                     "subtitle": "Awesome Sauce",
-                    "purchase_date": "2019-09-06 00:00:00",
+                    "purchase_date": "2019-09-06T00:00:00Z",
                     "thumbnail_link": "",
                     "product_format": "FORMAT_VIDEO",
                     "can_access": "true",
                     "last_accessed": {
                         "track": "2",
-                        "access_time": "2019-10-07 06:30:57"
+                        "access_time": "2019-10-07T06:30:57Z"
                     },
                     "registration_promo_item": "false"
                 },
@@ -1005,21 +1006,21 @@ curl -X GET /api/userproduct/ \
                     },
                     "title": "Audio Presentation",
                     "subtitle": "Cool Deal",
-                    "purchase_date": "2019-09-06 00:00:00",
+                    "purchase_date": "2019-09-06T00:00:00Z",
                     "thumbnail_link": "",
                     "product_format": "FORMAT_AUDIO",
                     "can_access": "true",
                     "last_accessed": {
                         "track": "1",
-                        "access_time": "2019-10-08 15:45:12"
+                        "access_time": "2019-10-08T15:45:12Z"
                     },
                     "registration_promo_item": "false"
                 }
             },
             "user_email": "dynamodb@example.com",
             "recent_product": "ABC123",
-            "created_at": "2019-11-01 20:27:12",
-            "last_modified": "2019-11-01 20:27:12"
+            "created_at": "2019-11-01T20:27:12Z",
+            "last_modified": "2019-11-01T20:27:12Z"
         },
         {
             "purchased_products": {
@@ -1030,7 +1031,7 @@ curl -X GET /api/userproduct/ \
                     },
                     "title": "Some Video (F)",
                     "subtitle": "",
-                    "purchase_date": "2019-06-10 00:00:00",
+                    "purchase_date": "2019-06-10T00:00:00Z",
                     "thumbnail_link": "somelocation/thumbnail.jpg",
                     "product_format": "FORMAT_VIDEO",
                     "can_access": "true",
@@ -1042,7 +1043,7 @@ curl -X GET /api/userproduct/ \
                     "media_metadata": {},
                     "title": "Some Video (D)",
                     "subtitle": "",
-                    "purchase_date": "2019-06-10 00:00:00",
+                    "purchase_date": "2019-06-10T00:00:00Z",
                     "thumbnail_link": "somelocation/thumbnail.jpg",
                     "product_format": "FORMAT_VIDEO",
                     "can_access": "true",
@@ -1056,7 +1057,7 @@ curl -X GET /api/userproduct/ \
                     },
                     "title": "Longing and Belonging: Audio Download",
                     "subtitle": "",
-                    "purchase_date": "2019-06-10 00:00:00",
+                    "purchase_date": "2019-06-10T00:00:00Z",
                     "thumbnail_link": "somelocation/thumbnail.jpg",
                     "product_format": "FORMAT_AUDIO",
                     "can_access": "true",
@@ -1070,7 +1071,7 @@ curl -X GET /api/userproduct/ \
                     },
                     "title": "Making Magic: eBook",
                     "subtitle": "",
-                    "purchase_date": "2019-06-10 00:00:00",
+                    "purchase_date": "2019-06-10T00:00:00Z",
                     "thumbnail_link": "somelocation/thumbnail.jpg",
                     "product_format": "FORMAT_EBOOK",
                     "can_access": "true",
@@ -1082,7 +1083,7 @@ curl -X GET /api/userproduct/ \
                     "media_metadata": {},
                     "title": "Some Video (E)",
                     "subtitle": "",
-                    "purchase_date": "2019-06-10 00:00:00",
+                    "purchase_date": "2019-06-10T00:00:00Z",
                     "thumbnail_link": "somelocation/thumbnail.jpg",
                     "product_format": "FORMAT_VIDEO",
                     "can_access": "true",
@@ -1094,7 +1095,7 @@ curl -X GET /api/userproduct/ \
                     "media_metadata": {},
                     "title": "The Untethered Soul at Work: CE Credits",
                     "subtitle": "",
-                    "purchase_date": "2019-06-10 00:00:00",
+                    "purchase_date": "2019-06-10T00:00:00Z",
                     "thumbnail_link": "somelocation/thumbnail.jpg",
                     "product_format": "FORMAT_CE_CREDITS",
                     "can_access": "true",
@@ -1104,8 +1105,8 @@ curl -X GET /api/userproduct/ \
             },
             "user_email": "johndoe99@example.com",
             "recent_product": "CE05948",
-            "created_at": "2019-10-16 19:48:24",
-            "last_modified": "2019-10-25 17:07:26"
+            "created_at": "2019-10-16T19:48:24Z",
+            "last_modified": "2019-10-25T17:07:26Z"
         }
     ],
     "count": "3"

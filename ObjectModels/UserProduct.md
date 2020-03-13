@@ -2,10 +2,12 @@
 
 ## Overview
 
-**Current version:** 0.0.8
+**Current version:** 0.0.10
 
 **Logs:**
 
+- 2020-02-26: **Removed** defined product types in favor of imported product types from the product service.
+- 2020-02-12: **Updated** the timestamp format to a standard format [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339). **Updated** the `product_format` options. **Added** DB mappings for option names.
 - 2019-12-10: **Changed** changed some types to be correct and updated the example.
 - 2019-11-07: **Changed** `can_access` `bool` type to a string representation.
 - 2019-10-11: **Added** `recent_product` to address the "resume bar" functionality needs.
@@ -28,14 +30,9 @@ The UserProduct Object Model is the representation of the user's purchased, digi
 - `purchased_products` _(map of objects)_: A map of products owned by a user with the `sku` as a key and containing the following within an object:
 	- `title` _(string)_: The name of the product.
 	- `subtitle` _(string)_: The subtitle of the product.
-	- `purchase_date` _(string)_: The datetime of purchase for the product (e.g. `"2019-06-10 00:00:00"`)
+	- `purchase_date` _(string)_: The datetime of purchase for the product (e.g. `"2019-06-1T 00:00:00V"`)
 	- `thumbnail_link` _(string)_: The thumbnail image for the product.
-	- `product_format` _(string)_: The type/format of a product containing the following:
-		- `FORMAT_UNKNOWN` _(default)_
-		- `FORMAT_AUDIO`
-		- `FORMAT_EBOOK`
-		- `FORMAT_VIDEO`
-		- `FORMAT_CE_CREDITS`
+	- `product_format` _(string)_: The type/format of a product containing the following (see [Product.format_type](Product.md)).
 	- `can_access` _(string representation of bool)_: string representation of whether access to this product by this customer is valid. A use case for this is to deny access to a user's product when a payment (recurring payments) is missed.
 	- `media_metadata` _(map)_: The metadata for media containing the following options (if applicable, for _each individual track_):
 		- **[video/audio only]**
@@ -45,12 +42,12 @@ The UserProduct Object Model is the representation of the user's purchased, digi
 			- `current_page` _(string)_:  last known page number _(**NOTE:** we might have to include other info, such as chapter, for the ebook)_.
 	- `last_accessed` _(object)_: The track and datetime last accessed by the user (applies to video/audio types only).
 		- `track` _(string)_: the string representation of an individual track number.
-		- `access_time` _(string)_: string representation of when the track was last accessed UTC datetime (e.g. "2019-06-10 00:00:00").
+		- `access_time` _(string)_: string representation of when the track was last accessed UTC datetime (e.g. "2019-06-10T00:00:00Z").
 	- `registration_promo_item` _(string representation of bool)_: Whether or not this product was given as a free product upon registration.
 	- `authors` _(list of strings)_: Authors for the product.
 - `recent_product` _(string)_: The SKU of the product that was last interacted with by the user.
-- `created_at` _(string)_: string representation of the initial user product entry (creation) UTC datetime (e.g. "2019-06-10 00:00:00").
-- `last_modified` _(string)_: string representation of when the user product entry is updated UTC datetime (e.g. "2019-06-10 00:00:00").
+- `created_at` _(string)_: string representation of the initial user product entry (creation) [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339) datetime (e.g. "2019-06-10T00:00:00Z").
+- `last_modified` _(string)_: string representation of when the user product entry is updated [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339) datetime (e.g. "2019-06-10T00:00:00Z").
 
 ## JSON Representation (with example values) (minus comments)
 
@@ -62,7 +59,7 @@ _**NOTE:** The following is a representation of a **single** UserProduct object.
 		"CE05948": {
             "title": "The Untethered Soul at Work: CE Credits",
             "subtitle": "",
-            "purchase_date": "2019-06-10 00:00:00",
+            "purchase_date": "2019-06-10T00:00:00Z",
             "thumbnail_link": "somelocation/thumbnail.jpg",
             "product_format": "FORMAT_CE_CREDITS",
             "can_access": "true",
@@ -74,7 +71,7 @@ _**NOTE:** The following is a representation of a **single** UserProduct object.
 		"AF02384W": {
             "title": "Longing and Belonging: Audio Download",
             "subtitle": "",
-            "purchase_date": "2019-06-10 00:00:00",
+            "purchase_date": "2019-06-10T00:00:00Z",
             "thumbnail_link": "somelocation/thumbnail.jpg",
             "product_format": "FORMAT_AUDIO",
             "can_access": "true",
@@ -89,7 +86,7 @@ _**NOTE:** The following is a representation of a **single** UserProduct object.
         "VID123D": {
             "title": "Some Video (D)",
             "subtitle": "",
-            "purchase_date": "2019-06-10 00:00:00",
+            "purchase_date": "2019-06-10T00:00:00Z",
             "thumbnail_link": "somelocation/thumbnail.jpg",
             "product_format": "FORMAT_VIDEO",
             "can_access": "true",
@@ -104,7 +101,7 @@ _**NOTE:** The following is a representation of a **single** UserProduct object.
         "VID123E": {
             "title": "Some Video (E)",
             "subtitle": "",
-            "purchase_date": "2019-06-10 00:00:00",
+            "purchase_date": "2019-06-10T00:00:00Z",
             "thumbnail_link": "somelocation/thumbnail.jpg",
             "product_format": "FORMAT_VIDEO",
             "can_access": "true",
@@ -116,7 +113,7 @@ _**NOTE:** The following is a representation of a **single** UserProduct object.
         "VID123F": {
             "title": "Some Video (F)",
             "subtitle": "",
-            "purchase_date": "2019-06-10 00:00:00",
+            "purchase_date": "2019-06-10T00:00:00Z",
             "thumbnail_link": "somelocation/thumbnail.jpg",
             "product_format": "FORMAT_VIDEO",
             "can_access": "true",
@@ -128,7 +125,7 @@ _**NOTE:** The following is a representation of a **single** UserProduct object.
         "BK05619W": {
             "title": "Making Magic: eBook",
             "subtitle": "",
-            "purchase_date": "2019-06-10 00:00:00",
+            "purchase_date": "2019-06-10T00:00:00Z",
             "thumbnail_link": "somelocation/thumbnail.jpg",
             "product_format": "FORMAT_EBOOK",
             "can_access": "true",
@@ -143,7 +140,7 @@ _**NOTE:** The following is a representation of a **single** UserProduct object.
         }
 	},
 	"recent_product": "AF02384W",
-	"created_at": "2019-06-10 00:00:00",
-	"last_modified": "2019-06-10 00:00:00"
+	"created_at": "2019-06-10T00:00:00Z",
+	"last_modified": "2019-06-10T00:00:00Z"
 }
 ```

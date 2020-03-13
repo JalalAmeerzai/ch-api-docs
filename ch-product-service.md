@@ -125,7 +125,7 @@ curl -X POST /api/product \
     	"isbn_10": "",
     	"isbn_13": "",
     	"requires_shipping": "",
-    	"weight": 0,
+    	"weight": "0",
     	"weight_unit": "",
     	"taxable": "",
     	"tax_code": "",
@@ -145,19 +145,23 @@ curl -X POST /api/product \
     	],
     	"sort_order": 10,
     	"platform": {
-        	"name": "PLATFORM_SHOPIFY",
-	       "product_id": "",
-    	    "product_created_at": "2012-02-15T15:12:21-05:00",
-        	"product_updated_at": "2012-08-24T14:01:47-04:00",
-        	"options": {
-            	"option1": {
-                	"name": "Format",
-                	"value": "eBook"
-            	}
-        	}
+        	"PLATFORM_SHOPIFY": {
+                "external_id": "1234567890",
+                "product_created_at": "2012-02-15T15:12:21-05:00",
+                "product_updated_at": "2012-08-24T14:01:47-04:00",
+                "options": {
+                    "option1": {
+                        "name": "Format",
+                        "value": "eBook"
+                    }
+                }
+            },
+            "PLATFORM_SHOPIFY": {
+                "external_id": "1234567890"
+            },
     	},
-    	"created_at": "2019-06-10 00:00:00",
-    	"last_modified": "2019-06-10 00:00:00"
+    	"created_at": "2019-06-10T00:00:00Z",
+    	"last_modified": "2019-06-10T00:00:00Z"
 	}
 }'
 ```
@@ -262,8 +266,8 @@ curl -X GET /api/product/BK05536F \
         "format_type": "FORMAT_BOOKS",
         "published": "true",
         "published_at": "2019-05-28T0:00:00-05:00",
-        "discount_price": 10.770000457763672,
-        "price": 17.950000762939453,
+        "discount_price": "10.77",
+    	"price": "17.95",
         "inventory_qty": "0",
         "handle": "alphabreaths",
         "meta_title": "",
@@ -279,25 +283,29 @@ curl -X GET /api/product/BK05536F \
         "isbn_10": "",
         "isbn_13": "",
         "requires_shipping": "",
-        "weight": 0,
+        "weight": "0",
         "weight_unit": "",
         "taxable": "",
         "tax_code": "",
         "sort_order": "10",
         "platform": {
-            "options": {
-                "option1": {
-                    "name": "Format",
-                    "value": "eBook"
+        	"PLATFORM_SHOPIFY": {
+                "external_id": "1234567890",
+                "product_created_at": "2012-02-15T15:12:21-05:00",
+                "product_updated_at": "2012-08-24T14:01:47-04:00",
+                "options": {
+                    "option1": {
+                        "name": "Format",
+                        "value": "eBook"
+                    }
                 }
             },
-            "name": "PLATFORM_SHOPIFY",
-            "product_id": "",
-            "product_created_at": "2012-02-15T15:12:21-05:00",
-            "product_updated_at": "2012-08-24T14:01:47-04:00"
-        },
-        "created_at": "2019-06-10 00:00:00",
-        "last_modified": "2019-06-10 00:00:00"
+            "PLATFORM_SHOPIFY": {
+                "external_id": "1234567890"
+            },
+    	},
+        "created_at": "2019-06-10T00:00:00Z",
+        "last_modified": "2019-06-10T00:00:00Z"
     }
 }
 ```
@@ -502,8 +510,8 @@ curl -X GET /api/product/ \
             "format_type": "FORMAT_BOOKS",
             "published": "true",
             "published_at": "2019-05-28T0:00:00-05:00",
-            "discount_price": 12.75,
-            "price": 20.25,
+            "discount_price": "12.75",
+            "price": "20.25",
             "inventory_qty": "10",
             "handle": "product-title-005",
             "meta_title": "",
@@ -519,25 +527,29 @@ curl -X GET /api/product/ \
             "isbn_10": "",
             "isbn_13": "978-3-16-148005-0",
             "requires_shipping": "true",
-            "weight": 3.200000047683716,
+            "weight": "3.200000047683716",
             "weight_unit": "pounds",
             "taxable": "true",
             "tax_code": "taxcode",
             "sort_order": "5",
             "platform": {
-                "options": {
-                    "option1": {
-                        "name": "Format",
-                        "value": "Books"
+                "PLATFORM_SHOPIFY": {
+                    "external_id": "1234567890",
+                    "product_created_at": "2012-02-15T15:12:21-05:00",
+                    "product_updated_at": "2012-08-24T14:01:47-04:00",
+                    "options": {
+                        "option1": {
+                            "name": "Format",
+                            "value": "eBook"
+                        }
                     }
                 },
-                "name": "PLATFORM_SHOPIFY",
-                "product_id": "123456789",
-                "product_created_at": "2019-04-28T0:00:00-05:00",
-                "product_updated_at": "2019-05-28T0:00:00-05:00"
+                "PLATFORM_SHOPIFY": {
+                    "external_id": "1234567890"
+                },
             },
-            "created_at": "2019-11-19 20:43:14",
-            "last_modified": "2019-11-19 20:43:14"
+            "created_at": "2019-11-19T20:43:14Z",
+            "last_modified": "2019-11-19T20:43:14Z"
         },
         {
             "images": [
@@ -574,8 +586,8 @@ curl -X GET /api/product/ \
             "format_type": "FORMAT_BOOKS",
             "published": "true",
             "published_at": "2019-05-28T0:00:00-05:00",
-            "discount_price": 12.75,
-            "price": 20.25,
+            "discount_price": "12.75",
+            "price": "20.25",
             "inventory_qty": "10",
             "handle": "product-title-001",
             "meta_title": "",
@@ -591,22 +603,26 @@ curl -X GET /api/product/ \
             "isbn_10": "",
             "isbn_13": "978-3-16-148001-0",
             "requires_shipping": "true",
-            "weight": 3.200000047683716,
+            "weight": "3.200000047683716",
             "weight_unit": "pounds",
             "taxable": "true",
             "tax_code": "taxcode",
             "sort_order": "1",
             "platform": {
-                "options": {
-                    "option1": {
-                        "name": "Format",
-                        "value": "Books"
+                "PLATFORM_SHOPIFY": {
+                    "external_id": "1234567890",
+                    "product_created_at": "2012-02-15T15:12:21-05:00",
+                    "product_updated_at": "2012-08-24T14:01:47-04:00",
+                    "options": {
+                        "option1": {
+                            "name": "Format",
+                            "value": "eBook"
+                        }
                     }
                 },
-                "name": "PLATFORM_SHOPIFY",
-                "product_id": "123456789",
-                "product_created_at": "2019-04-28T0:00:00-05:00",
-                "product_updated_at": "2019-05-28T0:00:00-05:00"
+                "PLATFORM_SHOPIFY": {
+                    "external_id": "1234567890"
+                },
             },
             "created_at": "2019-11-19 20:43:13",
             "last_modified": "2019-11-19 20:43:13"
@@ -646,8 +662,8 @@ curl -X GET /api/product/ \
             "format_type": "FORMAT_BOOKS",
             "published": "true",
             "published_at": "2019-05-28T0:00:00-05:00",
-            "discount_price": 12.75,
-            "price": 20.25,
+            "discount_price": "12.75",
+            "price": "20.25",
             "inventory_qty": "10",
             "handle": "product-title-006",
             "meta_title": "",
@@ -663,25 +679,29 @@ curl -X GET /api/product/ \
             "isbn_10": "",
             "isbn_13": "978-3-16-148006-0",
             "requires_shipping": "true",
-            "weight": 3.200000047683716,
+            "weight": "3.200000047683716",
             "weight_unit": "pounds",
             "taxable": "true",
             "tax_code": "taxcode",
             "sort_order": "6",
             "platform": {
-                "options": {
-                    "option1": {
-                        "name": "Format",
-                        "value": "Books"
+                "PLATFORM_SHOPIFY": {
+                    "external_id": "1234567890",
+                    "product_created_at": "2012-02-15T15:12:21-05:00",
+                    "product_updated_at": "2012-08-24T14:01:47-04:00",
+                    "options": {
+                        "option1": {
+                            "name": "Format",
+                            "value": "eBook"
+                        }
                     }
                 },
-                "name": "PLATFORM_SHOPIFY",
-                "product_id": "123456789",
-                "product_created_at": "2019-04-28T0:00:00-05:00",
-                "product_updated_at": "2019-05-28T0:00:00-05:00"
+                "PLATFORM_SHOPIFY": {
+                    "external_id": "1234567890"
+                },
             },
-            "created_at": "2019-11-19 20:43:14",
-            "last_modified": "2019-11-19 20:43:14"
+            "created_at": "2019-11-19T20:43:14Z",
+            "last_modified": "2019-11-19T20:43:14Z"
         },
         {
             "images": [
@@ -718,8 +738,8 @@ curl -X GET /api/product/ \
             "format_type": "FORMAT_BOOKS",
             "published": "true",
             "published_at": "2019-05-28T0:00:00-05:00",
-            "discount_price": 12.75,
-            "price": 20.25,
+            "discount_price": "12.75",
+            "price": "20.25",
             "inventory_qty": "10",
             "handle": "product-title-007",
             "meta_title": "",
@@ -735,25 +755,29 @@ curl -X GET /api/product/ \
             "isbn_10": "",
             "isbn_13": "978-3-16-148007-0",
             "requires_shipping": "true",
-            "weight": 3.200000047683716,
+            "weight": "3.200000047683716",
             "weight_unit": "pounds",
             "taxable": "true",
             "tax_code": "taxcode",
             "sort_order": "7",
             "platform": {
-                "options": {
-                    "option1": {
-                        "name": "Format",
-                        "value": "Books"
+                "PLATFORM_SHOPIFY": {
+                    "external_id": "1234567890",
+                    "product_created_at": "2012-02-15T15:12:21-05:00",
+                    "product_updated_at": "2012-08-24T14:01:47-04:00",
+                    "options": {
+                        "option1": {
+                            "name": "Format",
+                            "value": "eBook"
+                        }
                     }
                 },
-                "name": "PLATFORM_SHOPIFY",
-                "product_id": "123456789",
-                "product_created_at": "2019-04-28T0:00:00-05:00",
-                "product_updated_at": "2019-05-28T0:00:00-05:00"
+                "PLATFORM_SHOPIFY": {
+                    "external_id": "1234567890"
+                },
             },
-            "created_at": "2019-11-19 20:43:14",
-            "last_modified": "2019-11-19 20:43:14"
+            "created_at": "2019-11-19T20:43:14Z",
+            "last_modified": "2019-11-19T20:43:14Z"
         },
         {
             "images": [
@@ -790,8 +814,8 @@ curl -X GET /api/product/ \
             "format_type": "FORMAT_BOOKS",
             "published": "true",
             "published_at": "2019-05-28T0:00:00-05:00",
-            "discount_price": 12.75,
-            "price": 20.25,
+            "discount_price": "12.75",
+            "price": "20.25",
             "inventory_qty": "10",
             "handle": "product-title-008",
             "meta_title": "",
@@ -807,25 +831,29 @@ curl -X GET /api/product/ \
             "isbn_10": "",
             "isbn_13": "978-3-16-148008-0",
             "requires_shipping": "true",
-            "weight": 3.200000047683716,
+            "weight": "3.200000047683716",
             "weight_unit": "pounds",
             "taxable": "true",
             "tax_code": "taxcode",
             "sort_order": "8",
             "platform": {
-                "options": {
-                    "option1": {
-                        "name": "Format",
-                        "value": "Books"
+                "PLATFORM_SHOPIFY": {
+                    "external_id": "1234567890",
+                    "product_created_at": "2012-02-15T15:12:21-05:00",
+                    "product_updated_at": "2012-08-24T14:01:47-04:00",
+                    "options": {
+                        "option1": {
+                            "name": "Format",
+                            "value": "eBook"
+                        }
                     }
                 },
-                "name": "PLATFORM_SHOPIFY",
-                "product_id": "123456789",
-                "product_created_at": "2019-04-28T0:00:00-05:00",
-                "product_updated_at": "2019-05-28T0:00:00-05:00"
+                "PLATFORM_SHOPIFY": {
+                    "external_id": "1234567890"
+                },
             },
-            "created_at": "2019-11-19 20:43:14",
-            "last_modified": "2019-11-19 20:43:14"
+            "created_at": "2019-11-19T20:43:14Z",
+            "last_modified": "2019-11-19T20:43:14Z"
         },
         {
             "images": [
@@ -862,8 +890,8 @@ curl -X GET /api/product/ \
             "format_type": "FORMAT_BOOKS",
             "published": "true",
             "published_at": "2019-05-28T0:00:00-05:00",
-            "discount_price": 12.75,
-            "price": 20.25,
+            "discount_price": "12.75",
+            "price": "20.25",
             "inventory_qty": "10",
             "handle": "product-title-003",
             "meta_title": "",
@@ -879,7 +907,7 @@ curl -X GET /api/product/ \
             "isbn_10": "",
             "isbn_13": "978-3-16-148003-0",
             "requires_shipping": "true",
-            "weight": 3.200000047683716,
+            "weight": "3.200000047683716",
             "weight_unit": "pounds",
             "taxable": "true",
             "tax_code": "taxcode",
@@ -896,8 +924,8 @@ curl -X GET /api/product/ \
                 "product_created_at": "2019-04-28T0:00:00-05:00",
                 "product_updated_at": "2019-05-28T0:00:00-05:00"
             },
-            "created_at": "2019-11-19 20:43:14",
-            "last_modified": "2019-11-19 20:43:14"
+            "created_at": "2019-11-19T20:43:14Z",
+            "last_modified": "2019-11-19T20:43:14Z"
         },
         {
             "images": [
@@ -934,8 +962,8 @@ curl -X GET /api/product/ \
             "format_type": "FORMAT_BOOKS",
             "published": "true",
             "published_at": "2019-05-28T0:00:00-05:00",
-            "discount_price": 12.75,
-            "price": 20.25,
+            "discount_price": "12.75",
+            "price": "20.25",
             "inventory_qty": "10",
             "handle": "product-title-002",
             "meta_title": "",
@@ -951,7 +979,7 @@ curl -X GET /api/product/ \
             "isbn_10": "",
             "isbn_13": "978-3-16-148002-0",
             "requires_shipping": "true",
-            "weight": 3.200000047683716,
+            "weight": "3.200000047683716",
             "weight_unit": "pounds",
             "taxable": "true",
             "tax_code": "taxcode",
@@ -968,8 +996,8 @@ curl -X GET /api/product/ \
                 "product_created_at": "2019-04-28T0:00:00-05:00",
                 "product_updated_at": "2019-05-28T0:00:00-05:00"
             },
-            "created_at": "2019-11-19 20:43:14",
-            "last_modified": "2019-11-19 20:43:14"
+            "created_at": "2019-11-19T20:43:14Z",
+            "last_modified": "2019-11-19T20:43:14Z"
         },
         {
             "images": [
@@ -1006,8 +1034,8 @@ curl -X GET /api/product/ \
             "format_type": "FORMAT_BOOKS",
             "published": "true",
             "published_at": "2019-05-28T0:00:00-05:00",
-            "discount_price": 12.75,
-            "price": 20.25,
+            "discount_price": "12.75",
+            "price": "20.25",
             "inventory_qty": "10",
             "handle": "product-title-004",
             "meta_title": "",
@@ -1023,7 +1051,7 @@ curl -X GET /api/product/ \
             "isbn_10": "",
             "isbn_13": "978-3-16-148004-0",
             "requires_shipping": "true",
-            "weight": 3.200000047683716,
+            "weight": "3.200000047683716",
             "weight_unit": "pounds",
             "taxable": "true",
             "tax_code": "taxcode",
@@ -1040,8 +1068,8 @@ curl -X GET /api/product/ \
                 "product_created_at": "2019-04-28T0:00:00-05:00",
                 "product_updated_at": "2019-05-28T0:00:00-05:00"
             },
-            "created_at": "2019-11-19 20:43:14",
-            "last_modified": "2019-11-19 20:43:14"
+            "created_at": "2019-11-19T20:43:14Z",
+            "last_modified": "2019-11-19T20:43:14Z"
         },
         {
             "images": [
@@ -1078,8 +1106,8 @@ curl -X GET /api/product/ \
             "format_type": "FORMAT_BOOKS",
             "published": "true",
             "published_at": "2019-05-28T0:00:00-05:00",
-            "discount_price": 12.75,
-            "price": 20.25,
+            "discount_price": "12.75",
+            "price": "20.25",
             "inventory_qty": "10",
             "handle": "product-title-009",
             "meta_title": "",
@@ -1095,25 +1123,29 @@ curl -X GET /api/product/ \
             "isbn_10": "",
             "isbn_13": "978-3-16-148009-0",
             "requires_shipping": "true",
-            "weight": 3.200000047683716,
+            "weight": "3.200000047683716",
             "weight_unit": "pounds",
             "taxable": "true",
             "tax_code": "taxcode",
             "sort_order": "9",
             "platform": {
-                "options": {
-                    "option1": {
-                        "name": "Format",
-                        "value": "Books"
+                "PLATFORM_SHOPIFY": {
+                    "external_id": "1234567890",
+                    "product_created_at": "2012-02-15T15:12:21-05:00",
+                    "product_updated_at": "2012-08-24T14:01:47-04:00",
+                    "options": {
+                        "option1": {
+                            "name": "Format",
+                            "value": "eBook"
+                        }
                     }
                 },
-                "name": "PLATFORM_SHOPIFY",
-                "product_id": "123456789",
-                "product_created_at": "2019-04-28T0:00:00-05:00",
-                "product_updated_at": "2019-05-28T0:00:00-05:00"
+                "PLATFORM_SHOPIFY": {
+                    "external_id": "1234567890"
+                },
             },
-            "created_at": "2019-11-19 20:43:14",
-            "last_modified": "2019-11-19 20:43:14"
+            "created_at": "2019-11-19T20:43:14Z",
+            "last_modified": "2019-11-19T20:43:14Z"
         }
     ],
     "count": "9"
