@@ -54,6 +54,8 @@ The following are available gRPC methods for general user registration endpoint(
 	- _**This must be base64 encoded!**_
 - `userproduct` _(bool)_
 	- see the [UserProduct Object Model](ObjectModels/UserProduct.md) for details of what can be passed in.
+- `multipass_return_to` _(string)_
+	- _[For Shopify Only]_ The location of where a user is redirected to after being logged into Shopify (added to the Multipass token) (e.g. `https://soundstrue.com/checkout`)
 
 ##### Response
 - `registered` _(bool)_
@@ -106,7 +108,7 @@ curl -X POST /api/access \
         "marketing_opt_in_level": "MARKETING_UNKNOWN"
     },
     "password": "VGVzdGluZyMjIzEyMzQhIQ==",
-    "return_to": "https://www.soundstrue.com/example",
+    "multipass_return_to": "https://www.soundstrue.com/example",
     "purchased_products": {
 		"CE05948": {
 			"title": "The Untethered Soul at Work: CE Credits",
@@ -706,23 +708,33 @@ curl -X DELETE /api/access/org_id/7890/sku/S123 \
 
 ##### REST Endpoint
 - **METHOD:** `GET`
-- **Endpoint:** `/api/gift/`
+- **Endpoint:** `/api/organization/gift/filters/:limit/:key?`
+    - `key` (a.k.a. `exclusive_start_key`) - The SKU of the last product retrieved (the result of `last_evaluated_key` in the response) _(optional)_
 
 ##### Accepted Request Arguments
-- _N/A_
+- `limit` _(string)_
+    - the _amount_ of results to show (i.e. the page amount)
+- `exclusive_start_key` _(string)_ (`key` in REST endpoint)
+    - This is the result (SKU) to start the next page set from. This should equal the value of `last_evaluated_key` in the reponse, if applicable.
 
 ##### Response
 - `count` _(int64)_
 - **repeated** `product` _(GiftProduct objects)_
+- `last_evaluated_key` _(string)_ 
+    - This is the last `sku` evaluated by the DB. This should be passed as the `exclusive_start_key` in a subsequential call (i.e. make another of the same call passing the value of `last_evaluated_key` to `exclusive_start_key`).
 
 ##### gRPC Request Example (JS)
 ```js
 // set auth header
+let payload = {
+    limit: req.params.limit,
+    exclusive_start_key: req.params.key
+};
 let metadata = new grpc.Metadata();
 metadata.set("authorization", auth);
 
 // make gRPC call
-client.ListGiftProducts({}, metadata, (err, result) => {
+client.ListGiftProducts(payload, metadata, (err, result) => {
 	if (err) {
 		// handle error
 	} else {
@@ -733,8 +745,10 @@ client.ListGiftProducts({}, metadata, (err, result) => {
 
 ##### cURL Request Example
 
+_**NOTE:** The following example call is with a pagination of 10, starting at the beginning (first call), and there are only 3 results. Therefore the `last_evaluated_key` is empty.
+
 ```bash
-curl -X GET /api/gift/ \
+curl -X GET /api/organization/gift/filters/10 \
   -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
   -H 'Content-Type: application/json'
 ```
@@ -785,7 +799,8 @@ curl -X GET /api/gift/ \
                 "registration_promo_item": "true"
             }
         }
-	],
+    ],
+    "last_evaluated_key": "",
 	"count": "3"
 }
 ```
@@ -797,23 +812,33 @@ curl -X GET /api/gift/ \
 
 ##### REST Endpoint
 - **METHOD:** `GET`
-- **Endpoint:** `/api/org/`
+- **Endpoint:** `/api/organization/org/filters/:limit/:key?`
+    - `key` (a.k.a. `exclusive_start_key`) - The SKU of the last product retrieved (the result of `last_evaluated_key` in the response) _(optional)_
 
 ##### Accepted Request Arguments
-- _N/A_
+- `limit` _(string)_
+    - the _amount_ of results to show (i.e. the page amount)
+- `exclusive_start_key` _(string)_ (`key` in REST endpoint)
+    - This is the result (Organization ID) to start the next page set from. This should equal the value of `last_evaluated_key` in the reponse, if applicable.
 
 ##### Response
 - `count` _(int64)_
 - **repeated** `product` _(OrganizationProduct objects)_
+- `last_evaluated_key` _(string)_ 
+    - This is the last `id` evaluated by the DB. This should be passed as the `exclusive_start_key` in a subsequential call (i.e. make another of the same call passing the value of `last_evaluated_key` to `exclusive_start_key`).
 
 ##### gRPC Request Example (JS)
 ```js
 // set auth header
+let payload = {
+    limit: req.params.limit,
+    exclusive_start_key: req.params.key
+};
 let metadata = new grpc.Metadata();
 metadata.set("authorization", auth);
 
 // make gRPC call
-client.ListOrgProducts({}, metadata, (err, result) => {
+client.ListOrgProducts(payload, metadata, (err, result) => {
 	if (err) {
 		// handle error
 	} else {
@@ -824,8 +849,10 @@ client.ListOrgProducts({}, metadata, (err, result) => {
 
 ##### cURL Request Example
 
+_**NOTE:** The following example call is with a pagination of 10, starting at the beginning (first call), and there are only 1 result. Therefore the `last_evaluated_key` is empty.
+
 ```bash
-curl -X GET /api/org/ \
+curl -X GET /api/organization/org/filters/10 \
   -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
   -H 'Content-Type: application/json'
 ```
@@ -862,7 +889,8 @@ curl -X GET /api/org/ \
             },
             "org_id": "121"
         }
-	],
+    ],
+    "last_evaluated_key": "",
 	"count": "1"
 }
 ```
@@ -874,24 +902,42 @@ curl -X GET /api/org/ \
 
 ##### REST Endpoint
 - **METHOD:** `GET`
-- **Endpoint:** `/api/`
+- **Endpoint:** `/api/organization/filters/:limit/keys/:gift_lek?/:org_lek?`
+    - `gift_lek` (a.k.a. `exclusive_start_key` for **Gift Products**) - The `sku` of the last product retrieved (the result of `last_evaluated_key` in the response) _(optional)_
+    - `org_lek` (a.k.a. `exclusive_start_key` for **Organization Products**) - The `org_id` of the last organization  (with its products) retrieved (the result of `last_evaluated_key` in the response) _(optional)_
 
 ##### Accepted Request Arguments
-- _N/A_
+- `limit` _(string)_
+    - the _amount_ of results to show (i.e. the page amount)
+- `exclusive_start_keys` _(string)_ (`key` in REST endpoint)
+    - This is the result (Organization ID) to start the next page set from. This should equal the value of `last_evaluated_key` in the reponse, if applicable.
 
 ##### Response
 - `org_count` _(int64)_
 - `gift_count` _(int64)_
 - **repeated** `promo_product` _(PromoProduct objects)_
+- `last_evaluated_keys` _(map)_ 
+    - This is the last `id` evaluated by the DB. This should be passed as the `exclusive_start_key` in a subsequential call (i.e. make another of the same call passing the value of `last_evaluated_key` to `exclusive_start_key`).
+    - `gift_lek` _(string)_
+        - The `sku` of the last product retrieved (the result of `last_evaluated_key` in the response) (e.g. `"ABC123"`) _(optional)_
+    - `org_lek` _(string)_
+        - The `org_id` of the last organization (with its products) retrieved (e.g. `"6"`) _(optional)_
 
 ##### gRPC Request Example (JS)
 ```js
 // set auth header
+let payload = {
+    limit: req.params.limit,
+    exclusive_start_keys: {
+        "gift_lek": req.params.gift_lek,
+        "org_lek": req.params.org_lek
+    }
+};
 let metadata = new grpc.Metadata();
 metadata.set("authorization", auth);
 
 // make gRPC call
-client.ListAllProducts({}, metadata, (err, result) => {
+client.ListAllProducts(payload, metadata, (err, result) => {
 	if (err) {
 		// handle error
 	} else {
@@ -902,8 +948,12 @@ client.ListAllProducts({}, metadata, (err, result) => {
 
 ##### cURL Request Example
 
+_**NOTE:** The following example call is with a pagination of 5, starting at the beginning (first call)._ Further calls would be represented as the following examples show:
+- `curl -X GET /api/organization/filters/5/keys/6/ABC123` 
+- `curl -X GET /api/organization/filters/5/keys/12/ABC456` 
+
 ```bash
-curl -X GET /api/ \
+curl -X GET /api/organization/filters/5/keys \
   -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
   -H 'Content-Type: application/json'
 ```
@@ -982,11 +1032,14 @@ curl -X GET /api/ \
             "product_format": "FORMAT_EBOOK",
             "registration_promo_item": ""
         },
-	    ],
+    ],
+    "last_evaluated_keys": {
+        "gift_lek": "",
+        "org_lek": "6"
+    },
     "org_count": "2",
     "gift_count": "3"
 }
 ```
 
----
 ---
