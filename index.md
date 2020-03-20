@@ -8,6 +8,13 @@ The object models for the services can be found [here](ObjectModels/) _(this lin
 
 - **Base URL:** `https://staging-ch-js-service-prototype.staging-soundstruehub.com`
 
+## PRODUCTION
+
+When ready, use the following links:
+
+- Digital Library: `https://digitallibrary.soundstrue.com/`
+- APIs (Base URL): `https://api.digitallibrary.soundstrue.com/`
+
 ## [ch-access-service](ch-access-service.md)
 - [GitHub Link](https://github.com/stdev/ch-access-service)
 
