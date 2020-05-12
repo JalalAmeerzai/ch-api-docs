@@ -54,6 +54,8 @@ The following are available gRPC methods for general user registration endpoint(
 	- _**This must be base64 encoded!**_
 - `userproduct` _(bool)_
 	- see the [UserProduct Object Model](ObjectModels/UserProduct.md) for details of what can be passed in.
+- `g_recaptcha_response` _(string)_
+    - The reCaptcha token that Google returns for client-side implementations.
 - `multipass_return_to` _(string)_
 	- _[For Shopify Only]_ The location of where a user is redirected to after being logged into Shopify (added to the Multipass token) (e.g. `https://soundstrue.com/checkout`)
 
@@ -108,6 +110,7 @@ curl -X POST /api/access \
         "marketing_opt_in_level": "MARKETING_UNKNOWN"
     },
     "password": "VGVzdGluZyMjIzEyMzQhIQ==",
+    "g_recaptcha_response": "03AGdBq25nwKYYFZmiD-NjJkRKs98cdNjsu1OjUyGrLPCwCqiAfoIRJg_Ey9Fm32PKA78NUM-xkyIox6IYk4PkyrmK4xs5D8rNbdDG6zk9XOX3_Suh3YZxvzR2zhcA_7wgmqypS6ylDFD3CQU9CyEf3ymt8c5GHXJURcDe8LQnIMJyuGpy7ncUUZOF6Q5d6mfA3_Ypr3-7UdRnhNSllQDWSHf3wFbH40PaSk_mh6ZM9ee3x69cvVU6JUTdaS3p-qjTudfMCOWrkqcrtOKFQ_QS3iB2uLHN1ZuotVtB6m0mYsoXCEadAUpIz_HHaK4suDDyVhrUPooshs2BtcTkvqAb-6_XsaECiUjcTuza0z9BPzLtOR0Wp8qxMW5CWEsA4Hsfgq4nppsEd_wBkmiR7RcsVARsYT0FT-ToEn0K1zR2cJeHpatopU8lj70t6ybLIvMRgBoru-XQS6inE9zwZhuknEr3tZ5b6FABuA",
     "multipass_return_to": "https://www.soundstrue.com/example",
     "purchased_products": {
 		"CE05948": {
