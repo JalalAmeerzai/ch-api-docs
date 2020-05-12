@@ -40,7 +40,7 @@ The following contains details for the functionality of the Access Service.
 
 The following are available gRPC methods for general user registration endpoint(s).
 
-#### `UserRegistration()`
+#### `RegisterUser()`
 > Registers a new user and associates any purchased and FREE gift products (including Organization gift products) to the user's account
 
 ##### REST Endpoint
