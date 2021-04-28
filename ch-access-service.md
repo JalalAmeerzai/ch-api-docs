@@ -10,7 +10,8 @@ This service handles user registrations. During a user registration, the **Acces
 3. Call the **Multipass Token Service** to generate a MultiPass token (for Shopify).
 4. Call the **Organization Service** to see if the user's email matches one of Sounds True's recognized organizations.
 5. Call the **User Service** to add a create the new user in the Customer Hub.
-6. Call the **UserProduct Service** to associate purchased and FREE gift products (including Organization gift products) to the user's account in the Customer Hub.
+6. Call the **UserProduct Service** to associate purchased and FREE gift products (including Organization gift products) to the user's account in the Customer Hub. It also associates matching items from Guest Checkouts (based on `email`).
+7. If there are any courses, try and register them in Thinkific throught the Thinkific service
 
 Please see [_Architecture Diagrams_](https://drive.google.com/file/d/1cyy6wLrcHLeN8LrffshQYgKdVKkuexhJ/view?usp=sharing), _User Flows_ tab for the _User Registration Process_.
 
