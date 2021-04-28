@@ -13,8 +13,6 @@ This service handles user registrations. During a user registration, the **Acces
 6. Call the **UserProduct Service** to associate purchased and FREE gift products (including Organization gift products) to the user's account in the Customer Hub. It also associates matching items from Guest Checkouts (based on `email`).
 7. If there are any courses, try and register them in Thinkific throught the Thinkific service
 
-Please see [_Architecture Diagrams_](https://drive.google.com/file/d/1cyy6wLrcHLeN8LrffshQYgKdVKkuexhJ/view?usp=sharing), _User Flows_ tab for the _User Registration Process_.
-
 ## Repository
 * [Github](https://github.com/stdev/ch-access-service)
 
