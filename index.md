@@ -22,6 +22,13 @@ When ready, use the following links:
 
 ---
 
+## [ch-auth-service](ch-auth-service.md)
+- [GitHub Link](https://github.com/stdev/ch-auth-service)
+
+→ [**Go to service details**](ch-auth-service.md)
+
+---
+
 ## [ch-multipass-token-service](ch-multipass-token-service.md)
 - [GitHub Link](https://github.com/stdev/ch-multipass-token-service)
 
