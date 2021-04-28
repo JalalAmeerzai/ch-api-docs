@@ -276,6 +276,13 @@ curl -X GET /api/user/johndoe@example.com \
 #### `Update()`
 > Update user information.
 
+**NOTES:**
+
+- If you update maps (i.e. `addresses`, `platforms`, and/or `organizations`), you **must** pass in _**everything**_ that needs to be **kept** (remain) in the map. 
+- This endpoint now updates the following AWS Cognito user attributes automatically
+    - `first_name`, `last_name`, and `email`
+- The `name` attribute was `DEPRECATED` and no longer supported by the APIs (see Object Model for more info)
+
 ##### REST Endpoint
 - **METHOD:** `PUT`
 - **Endpoint:** `/api/user/:user_id`
@@ -283,17 +290,19 @@ curl -X GET /api/user/johndoe@example.com \
 ##### Accepted Request Arguments
 - `user_id` _(string)_
 - `user` _(User object)_
-- **EXCEPTIONS:** This endpoint cannot update the following `User` attributes:
-	- `email`
-	- `addresses`
-	- `platforms`
-	- `organizations`
-	- `created_at`
-    - `previous_emails`
+    - `new_email` - _Allowed in `Update()` only!_ Pass in **only** to change a user's email.
+
+**EXCEPTIONS:** This endpoint cannot update the following `User` attributes:
+
+- `email` - This attribute is used internally. To update an email, use the `new_email` attribute instead
+- `created_at`
+- `previous_emails`
+
 ##### Response
 - `updated` _(bool)_
 - `message` _(string)_
 	- "User (email: `<User.email>`) has been updated"
+        - if `new_email` was passed in and the update was successful, `<User.email>` will be the new email
 	
 ##### gRPC Request Example (JS)
 ```js
@@ -325,11 +334,17 @@ curl -X PUT /api/user/johndoe@example.com \
   -H 'Content-Type: application/json' \
   -d '{
     "first_name": "JohnnyBoy",
-    "name": "JohnnyBoy Doe",
     "accepts_marketing": "false",
     "accepts_marketing_updated_at": "2019-07-26T00:00:00Z",
     "verified_email": true,
-    "multipass_token": "sVSwcIWAz_DKCEKWVqtzUxn5ZO3tj_DsORtNKG56soNs5mk5tIStJqIBwobSd6DQzBBj7Q9pZWDmiVHLBwWbPq8d3bcfrMF8uk_rapZGlMUF4Hhed-Iwq2d5y2i1Vl5VU3lHKmVtZJro52yXEboYxjTCZoBnM5d959k_A4LeWS6G6xHLmMzMNTnuN1v8QSU8z-V7QDY8AL6WYGLT_n8Pyg=="
+    "new_email": "johnnyboydoe@example.com",
+    "multipass_token": "sVSwcIWAz_DKCEKWVqtzUxn5ZO3tj_DsORtNKG56soNs5mk5tIStJqIBwobSd6DQzBBj7Q9pZWDmiVHLBwWbPq8d3bcfrMF8uk_rapZGlMUF4Hhed-Iwq2d5y2i1Vl5VU3lHKmVtZJro52yXEboYxjTCZoBnM5d959k_A4LeWS6G6xHLmMzMNTnuN1v8QSU8z-V7QDY8AL6WYGLT_n8Pyg==",
+    "platforms": {
+        "PLATFORM_SHOPIFY": {
+            "platform_user_id": 123456789,
+            "active": "false"
+        }
+    }
 }'
 ```
 
@@ -338,7 +353,7 @@ curl -X PUT /api/user/johndoe@example.com \
 ```json
 {
     "updated": true,
-    "message": "User (email: johndoe@example.com) has been updated"
+    "message": "User (email: johnnyboydoe@example.com) has been updated"
 }
 ```
 
@@ -468,23 +483,33 @@ curl -X DELETE /api/user/johndoe99@example.com \
 
 ##### REST Endpoint
 - **METHOD:** `GET`
-- **Endpoint:** `/api/user/`
+- **Endpoint:** `/api/user/filters/:limit/:key?`
+    - `key` (a.k.a. `exclusive_start_key`) - The User email of the last product retrieved (the result of `last_evaluated_key` in the response) _(optional)_
 
 ##### Accepted Request Arguments
-- _N/A_
+- `limit` _(string)_
+    - the _amount_ of results to show (i.e. the page amount)
+- `exclusive_start_key` _(string)_ (`key` in REST endpoint)
+    - This is the result (email) to start the next page set from. This should equal the value of `last_evaluated_key` in the reponse, if applicable.
 
 ##### Response
 - `count` _(int64)_
 - **repeated** `users` _(User objects)_
+- `last_evaluated_key` _(string)_ 
+    - This is the last `email` evaluated by the DB. This should be passed as the `exclusive_start_key` in a subsequential call (i.e. make another of the same call passing the value of `last_evaluated_key` to `exclusive_start_key`).
 
 ##### gRPC Request Example (JS)
 ```js
+let payload = {
+    limit: req.params.limit,
+    exclusive_start_key: req.params.key
+};
 // set auth header
 let metadata = new grpc.Metadata();
 metadata.set("authorization", auth);
 
 // make gRPC call
-client.ListUsers({}, metadata, (err, result) => {
+client.ListUsers(payload, metadata, (err, result) => {
 	if (err) {
 		// handle error
 	} else {
@@ -496,8 +521,10 @@ client.ListUsers({}, metadata, (err, result) => {
 
 ##### cURL Request Example
 
+_**NOTE:** The following example call is with a pagination of 10, starting at the beginning (first call), and there are 2 results. Therefore the `last_evaluated_key` is empty.
+
 ```bash
-curl -X GET /api/user \
+curl -X GET /api/user/filters/10 \
   -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
   -H 'Content-Type: application/json'
 ```
@@ -591,6 +618,7 @@ curl -X GET /api/user \
             "multipass_token": "sVSwcIWAz_DKCEKWVqtzUxn5ZO3tj_DsORtNKG56soNs5mk5tIStJqIBwobSd6DQzBBj7Q9pZWDmiVHLBwWbPq8d3bcfrMF8uk_rapZGlMUF4Hhed-Iwq2d5y2i1Vl5VU3lHKmVtZJro52yXEboYxjTCZoBnM5d959k_A4LeWS6G6xHLmMzMNTnuN1v8QSU8z-V7QDY8AL6WYGLT_n8Pyg=="
         }
     ],
+    "last_evaluated_key": "",
     "count": "2"
 }
 ```

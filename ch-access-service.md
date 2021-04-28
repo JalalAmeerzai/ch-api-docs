@@ -4,11 +4,13 @@
 
 This service handles user registrations. During a user registration, the **Access Service** endpoint will be called (as opposed to the **User Service**). The **Access Service** will register a user in the following steps:
 
-1. Call the **Auth Service** and to create the new user in AWS Cognito and retrieve an **Access Token**.
-2. Call the **Multipass Token Service** to generate a MultiPass token (for Shopify).
-3. Call the **Organization Service** to see if the user's email matches one of Sounds True's recognized organizations.
-4. Call the **User Service** to add a create the new user in the Customer Hub.
-5. Call the **UserProduct Service** to associate purchased and FREE gift products (including Organization gift products) to the user's account in the Customer Hub.
+1. Verify recaptcha response from client
+    - bypass if the email from the token matches the value of CtxKey
+2. Call the **Auth Service** and to create the new user in AWS Cognito and retrieve an **Access Token**.
+3. Call the **Multipass Token Service** to generate a MultiPass token (for Shopify).
+4. Call the **Organization Service** to see if the user's email matches one of Sounds True's recognized organizations.
+5. Call the **User Service** to add a create the new user in the Customer Hub.
+6. Call the **UserProduct Service** to associate purchased and FREE gift products (including Organization gift products) to the user's account in the Customer Hub.
 
 Please see [_Architecture Diagrams_](https://drive.google.com/file/d/1cyy6wLrcHLeN8LrffshQYgKdVKkuexhJ/view?usp=sharing), _User Flows_ tab for the _User Registration Process_.
 
@@ -711,7 +713,7 @@ curl -X DELETE /api/access/org_id/7890/sku/S123 \
 
 ##### REST Endpoint
 - **METHOD:** `GET`
-- **Endpoint:** `/api/organization/gift/filters/:limit/:key?`
+- **Endpoint:** `/api/access/gift/filters/:limit/:key?`
     - `key` (a.k.a. `exclusive_start_key`) - The SKU of the last product retrieved (the result of `last_evaluated_key` in the response) _(optional)_
 
 ##### Accepted Request Arguments
@@ -751,7 +753,7 @@ client.ListGiftProducts(payload, metadata, (err, result) => {
 _**NOTE:** The following example call is with a pagination of 10, starting at the beginning (first call), and there are only 3 results. Therefore the `last_evaluated_key` is empty.
 
 ```bash
-curl -X GET /api/organization/gift/filters/10 \
+curl -X GET /api/access/gift/filters/100 \
   -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
   -H 'Content-Type: application/json'
 ```
@@ -774,37 +776,35 @@ curl -X GET /api/organization/gift/filters/10 \
                 "registration_promo_item": "true"
             }
         },
-		{
-            "sku": "N123",
+        {
+            "sku": "BC6116W",
             "product": {
                 "authors": [
-                    "Jane Doe",
-                    "Carrol"
+                    "Various Authors"
                 ],
-                "title": "New Title",
-                "subtitle": "Subtitle",
-                "thumbnail_link": "somewhere/something2.jpg",
-                "product_format": "FORMAT_EBOOK",
+                "title": "Walking the Path: A Collection of Spiritual Teachings - Audio Download",
+                "subtitle": "",
+                "thumbnail_link": "https://cdn.shopify.com/s/files/1/0253/2822/2307/products/pathresize.png?v=1583900205",
+                "product_format": "FORMAT_AUDIO",
                 "registration_promo_item": "true"
             }
         },
-		{
-            "sku": "N23",
+        {
+            "sku": "BC6115W",
             "product": {
                 "authors": [
-                    "Jane Doe",
-                    "Carrol"
+                    "Various Authors"
                 ],
-                "title": "An ebook",
-                "subtitle": "Subtitle",
-                "thumbnail_link": "somewhere/something2.jpg",
-                "product_format": "FORMAT_EBOOK",
+                "title": "An Experience of Mindfulness - Audio Download",
+                "subtitle": "",
+                "thumbnail_link": "https://cdn.shopify.com/s/files/1/0253/2822/2307/products/samplemindfulness_1.png?v=1583874814",
+                "product_format": "FORMAT_AUDIO",
                 "registration_promo_item": "true"
             }
         }
     ],
-    "last_evaluated_key": "",
-	"count": "3"
+    "count": "3",
+    "last_evaluated_key": ""
 }
 ```
 
@@ -815,7 +815,7 @@ curl -X GET /api/organization/gift/filters/10 \
 
 ##### REST Endpoint
 - **METHOD:** `GET`
-- **Endpoint:** `/api/organization/org/filters/:limit/:key?`
+- **Endpoint:** `/api/access/org/filters/:limit/:key?`
     - `key` (a.k.a. `exclusive_start_key`) - The SKU of the last product retrieved (the result of `last_evaluated_key` in the response) _(optional)_
 
 ##### Accepted Request Arguments
@@ -855,7 +855,7 @@ client.ListOrgProducts(payload, metadata, (err, result) => {
 _**NOTE:** The following example call is with a pagination of 10, starting at the beginning (first call), and there are only 1 result. Therefore the `last_evaluated_key` is empty.
 
 ```bash
-curl -X GET /api/organization/org/filters/10 \
+curl -X GET /api/access/org/filters/100 \
   -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
   -H 'Content-Type: application/json'
 ```
@@ -866,35 +866,55 @@ curl -X GET /api/organization/org/filters/10 \
 {
     "product": [
         {
-             "products": {
-                "S123": {
+            "products": {
+                "DD05188W": {
                     "authors": [
-                        "Jane Doe",
-                        "Carrol"
+                        "Jack Kornfield",
+                        "Tara Brach"
+                    ],
+                    "title": "Mindfulness Daily at Work - Online Learning",
+                    "subtitle": "Create a Life-Changing Meditation Practice in Less Than 15 Minutes a Day!",
+                    "thumbnail_link": "https://cdn.shopify.com/s/files/1/0253/2822/2307/products/mindfulness-daily-at-work_1.png?v=1583894278",
+                    "product_format": "FORMAT_COURSE",
+                    "registration_promo_item": ""
+                }
+            },
+            "org_id": "1"
+        },
+        {
+            "products": {
+                "ABC123": {
+                    "authors": [
+                        "Jane Doe"
                     ],
                     "title": "An ebook",
                     "subtitle": "Subtitle",
                     "thumbnail_link": "somewhere/something2.jpg",
-                    "product_format": "FORMAT_EBOOK",
-                    "registration_promo_item": "true"
-                },
-                "S987": {
-                    "authors": [
-                        "Jane Doe",
-                        "Carrol"
-                    ],
-                    "title": "An ebook",
-                    "subtitle": "Subtitle",
-                    "thumbnail_link": "somewhere/something2.jpg",
-                    "product_format": "FORMAT_EBOOK",
+                    "product_format": "FORMAT_VIDEO",
                     "registration_promo_item": "true"
                 }
             },
-            "org_id": "121"
+            "org_id": "111"
+        },
+        {
+            "products": {
+                "DD05188W": {
+                    "authors": [
+                        "Jack Kornfield",
+                        "Tara Brach"
+                    ],
+                    "title": "Mindfulness Daily at Work - Online Learning",
+                    "subtitle": "Create a Life-Changing Meditation Practice in Less Than 15 Minutes a Day!",
+                    "thumbnail_link": "https://cdn.shopify.com/s/files/1/0253/2822/2307/products/mindfulness-daily-at-work_1.png?v=1583894278",
+                    "product_format": "FORMAT_COURSE",
+                    "registration_promo_item": ""
+                }
+            },
+            "org_id": "12"
         }
     ],
-    "last_evaluated_key": "",
-	"count": "1"
+    "count": "3",
+    "last_evaluated_key": ""
 }
 ```
 
@@ -905,7 +925,7 @@ curl -X GET /api/organization/org/filters/10 \
 
 ##### REST Endpoint
 - **METHOD:** `GET`
-- **Endpoint:** `/api/organization/filters/:limit/keys/:gift_lek?/:org_lek?`
+- **Endpoint:** `/api/access/filters/:limit/keys/:gift_lek?/:org_lek?`
     - `gift_lek` (a.k.a. `exclusive_start_key` for **Gift Products**) - The `sku` of the last product retrieved (the result of `last_evaluated_key` in the response) _(optional)_
     - `org_lek` (a.k.a. `exclusive_start_key` for **Organization Products**) - The `org_id` of the last organization  (with its products) retrieved (the result of `last_evaluated_key` in the response) _(optional)_
 
@@ -952,11 +972,11 @@ client.ListAllProducts(payload, metadata, (err, result) => {
 ##### cURL Request Example
 
 _**NOTE:** The following example call is with a pagination of 5, starting at the beginning (first call)._ Further calls would be represented as the following examples show:
-- `curl -X GET /api/organization/filters/5/keys/6/ABC123` 
-- `curl -X GET /api/organization/filters/5/keys/12/ABC456` 
+- `curl -X GET /api/access/filters/5/keys/6/ABC123` 
+- `curl -X GET /api/access/filters/5/keys/12/ABC456` 
 
 ```bash
-curl -X GET /api/organization/filters/5/keys \
+curl -X GET /api/access/filters/100/keys \
   -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8' \
   -H 'Content-Type: application/json'
 ```
@@ -979,68 +999,79 @@ curl -X GET /api/organization/filters/5/keys \
             "product_format": "FORMAT_VIDEO",
             "registration_promo_item": "true"
         },
-		        {
+        {
             "authors": [
-                "Jane Doe",
-                "Carrol"
+                "Various Authors"
             ],
             "promo_type": "Gift",
-            "sku": "N24",
+            "sku": "BC6116W",
             "org_id": "",
-            "title": "An ebook test",
-            "subtitle": "Subtitle",
-            "thumbnail_link": "somewhere/something2.jpg",
-            "product_format": "FORMAT_EBOOK",
+            "title": "Walking the Path: A Collection of Spiritual Teachings - Audio Download",
+            "subtitle": "",
+            "thumbnail_link": "https://cdn.shopify.com/s/files/1/0253/2822/2307/products/pathresize.png?v=1583900205",
+            "product_format": "FORMAT_AUDIO",
             "registration_promo_item": "true"
         },
         {
             "authors": [
-                "Jane Doe",
-                "Carrol"
+                "Various Authors"
             ],
             "promo_type": "Gift",
-            "sku": "N236",
+            "sku": "BC6115W",
             "org_id": "",
-            "title": "An ebook",
-            "subtitle": "Subtitle",
-            "thumbnail_link": "somewhere/something2.jpg",
-            "product_format": "FORMAT_EBOOK",
+            "title": "An Experience of Mindfulness - Audio Download",
+            "subtitle": "",
+            "thumbnail_link": "https://cdn.shopify.com/s/files/1/0253/2822/2307/products/samplemindfulness_1.png?v=1583874814",
+            "product_format": "FORMAT_AUDIO",
             "registration_promo_item": "true"
         },
-		{
+        {
             "authors": [
-                "Jane Doe",
-                "Carrol"
+                "Jack Kornfield",
+                "Tara Brach"
             ],
             "promo_type": "Org",
-            "sku": "S987",
-            "org_id": "121",
-            "title": "An ebook",
-            "subtitle": "Subtitle",
-            "thumbnail_link": "somewhere/something2.jpg",
-            "product_format": "FORMAT_EBOOK",
+            "sku": "DD05188W",
+            "org_id": "1",
+            "title": "Mindfulness Daily at Work - Online Learning",
+            "subtitle": "Create a Life-Changing Meditation Practice in Less Than 15 Minutes a Day!",
+            "thumbnail_link": "https://cdn.shopify.com/s/files/1/0253/2822/2307/products/mindfulness-daily-at-work_1.png?v=1583894278",
+            "product_format": "FORMAT_COURSE",
             "registration_promo_item": ""
         },
         {
             "authors": [
-                "Jane Doe",
-                "Carrol"
+                "Jane Doe"
             ],
             "promo_type": "Org",
-            "sku": "S123",
-            "org_id": "121",
+            "sku": "ABC123",
+            "org_id": "111",
             "title": "An ebook",
             "subtitle": "Subtitle",
             "thumbnail_link": "somewhere/something2.jpg",
-            "product_format": "FORMAT_EBOOK",
+            "product_format": "FORMAT_VIDEO",
             "registration_promo_item": ""
         },
+        {
+            "authors": [
+                "Jack Kornfield",
+                "Tara Brach"
+            ],
+            "promo_type": "Org",
+            "sku": "DD05188W",
+            "org_id": "12",
+            "title": "Mindfulness Daily at Work - Online Learning",
+            "subtitle": "Create a Life-Changing Meditation Practice in Less Than 15 Minutes a Day!",
+            "thumbnail_link": "https://cdn.shopify.com/s/files/1/0253/2822/2307/products/mindfulness-daily-at-work_1.png?v=1583894278",
+            "product_format": "FORMAT_COURSE",
+            "registration_promo_item": ""
+        }
     ],
     "last_evaluated_keys": {
         "gift_lek": "",
-        "org_lek": "6"
+        "org_lek": ""
     },
-    "org_count": "2",
+    "org_count": "3",
     "gift_count": "3"
 }
 ```

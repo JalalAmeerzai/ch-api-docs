@@ -2,10 +2,12 @@
 
 ## Overview
 
-**Current version:** 0.0.12
+**Current version:** 0.0.14
 
 **Logs:**
 
+- 2020-04-09: Added the `shopify_id` and `new_email` attributes.
+- 2020-04-02: The `name` attribute is **deprecated**.
 - 2020-02-12: **Updated** the timestamp format to a standard format [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339). **Added** DB mappings for option names and `REGISTRATION_ADMIN` option.
 - 2019-12-31: **Added** `multipass_token` data point.
 - 2019-12-10: **Replaced** `PLATFORM_OCEP` with `PLATFORM_THINKIFIC` as an option for a user `address` `input_from`. **Updated** `verified_email` to be the correct type.
@@ -30,10 +32,14 @@ The User Object Model is the representation of the user to/from the User Service
 
 ## Definitions
 
+#### **** DEPRECATION NOTICE ****
+
+<p style="border: 1px solid #ffd600; background: #ffffd3; padding: 1rem; color: #ff2600;">The `name` attribute is no longer supported (i.e. it won't be updated automagically). Please see <a href="https://soundstrue.atlassian.net/browse/FLAT-1181">this ticket</a> for more details.</p>
+
 - `email` _(string)_: The email address of the user. **Primary Key**.
 - `first_name` _(string)_: This is the user's first name.
 - `last_name` _(string)_: This is the user's last name.
-- `name` _(string)_: The user's first and last names.
+- <div style="display: inline-block; border: 1px solid #ffb2b2; background: #ffd3d3; padding: .25rem; color: #ff2600; font-size: .5rem;">DEPRECATED</div> `name` _(string)_: The user's first and last names.
 - `verified_email` _(string representation of a bool)_: User has verified their email address.
 - `phone` _(string)_: The phone number (in [E.164 format](https://en.wikipedia.org/wiki/E.164)) for the user.
 - `addresses` _(object of embedded objects|map of maps)_: This is a object of address objects that belong to the user. The key for each map is:
@@ -73,10 +79,8 @@ The User Object Model is the representation of the user to/from the User Service
 - `platforms` _(object of embedded objects|map of maps)_: This is a object of platform objects that the user has connected to (has accounts on). The key for each map is:
     - `name` _(string)_: This is the name of the platform.
         - `name` can be any of the following options:
-            - `PLATFORM_UNKNOWN` (DB: `0`)
-            - `PLATFORM_SHOPIFY` (DB: `1`)
-            - `PLATFORM_DIGITAL_LIBRARY` (DB: `2`)
-            - `PLATFORM_THINKIFIC` (DB: `3`)
+            - `PLATFORM_SHOPIFY`
+            - `PLATFORM_THINKIFIC`
     - Each platform has the following attributes:
         - `platform_user_id` _(string)_: This is the user's identifier for the particular platform (if they require an ID).
         - `api_key` _(string)_: The user's API key for the particular platform.
@@ -91,6 +95,8 @@ The User Object Model is the representation of the user to/from the User Service
     - `MARKETING_SINGLE` 	(DB: `1`)
     - `MARKETING_SINGLE_WITH_NOTIFICATION` 	(DB: `2`)
 	- `MARKETING_CONFIRMED` 	(DB: `3`)
+- `shopify_id` _(string)_: This is a duplicate field for the Shopify User ID. It is used by the Shopify Webhook Processor.
+- `new_email` _(string)_: _For user [UPDATE]s only!_ Pass this in **only** when updating a user's email.
 - `created_at` _(string)_: string representation of user creation [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339) datetime (e.g. "2019-06-10T00:00:00Z").
 - `last_modified` _(string)_: string representation of user updated [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339) datetime (e.g. "2019-06-10T00:00:00Z").
 
@@ -177,6 +183,7 @@ _**NOTE:** The following is a representation of a **single** User object._
         "accepts_marketing": "false",
         "accepts_marketing_updated_at": "2019-06-10T00:00:00Z",
         "marketing_opt_in_level": "MARKETING_UNKNOWN",
+        "shopify_id": "9876543210",
         "created_at": "2019-06-10T00:00:00Z",
         "last_modified": "2019-06-10T00:00:00Z"
     }

@@ -2,9 +2,9 @@
 
 ## Object Models
 
-The object models for the services can be found [here](ObjectModels/) _(this link only works in the actual repo)_. They are also linked within their respective documentation pages.
+The object models for the services can be found within their respective documentation pages.
 
-## Testing Environment
+## STAGING (Testing Environment)
 
 - **Base URL:** `https://staging-ch-js-service-prototype.staging-soundstruehub.com`
 

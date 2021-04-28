@@ -2,10 +2,11 @@
 
 ## Overview
 
-**Current version:** 0.0.8
+**Current version:** 0.1.1
 
 **Logs:**
 
+- 2020-08-03: **Added** course bundle information.
 - 2020-02-26: **Updated** `platform` to be a map and **changed** `product_id` to be `external_id` to cover all possible platform ID options (e.g. Product ID, Course ID, User ID (RCassidy)).
 - 2020-02-12: **Updated** the timestamp format to a standard format [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339). **Updated** the `format_type` options. **Added** DB mappings for option names.
 - 2020-02-11: **Changed** the type for the product price fields and the weight field from `float` to `string`.
@@ -43,6 +44,7 @@ The Product Object Model is the representation of the products within the ecomme
 	- `FORMAT_DVD` (DB: `10`)
 	- `FORMAT_CARD_DECK` (DB: `11`)
 	- `FORMAT_ENHANCED_EBOOK` (DB: `12`)
+	- `FORMAT_COURSE_BUNDLE` (DB: `13`)
 - `published` _(string)_ - String representation of whether this product has been published (e.g. "true")
 - `published_at` _(string)_ -  The date and time ([ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601)) when the product was published. Can be set to null to unpublish the product from the Online Store channel (e.g. "2019-05-28T0:00:00-05:00").
 
@@ -116,6 +118,13 @@ The Product Object Model is the representation of the products within the ecomme
 
 - `created_at` _(string)_ - string representation of the initial product entry (creation) [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339) datetime (e.g. "2019-06-10T00:00:00Z").
 - `last_modified` _(string)_ - string representation of when the product entry is updated [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339) datetime (e.g. "2019-06-10T00:00:00Z").
+
+- `thinkific_bundle_id` _(string)_ - The ID for bundles that this product contains.
+- `thinkific_bundled_courses` _(array of objects)_ - Information for the bundled courses associated to this product.
+	- `id` _(int)_: The course ID (e.g. `12345`).
+	- `title` _(string)_: The course title (e.g. "Bundled Course Introduction").
+	- `slug` _(string)_: The slug (location) of the course (not the full URL) (e.g. "bundled-course-introduction").
+	- `sort_order` _(int)_: The order that this course is supposed to be represented in (e.g. `1`).
 
 ## Mapping of Datapoints (CH --> Shopify)
 
@@ -327,6 +336,65 @@ _**NOTE:** The following is a representation of a **single** Product object._
 
 	// CH datetimes
 	"created_at": "2019-06-10T00:00:00Z",
-	"last_modified": "2019-06-10T00:00:00Z"
+	"last_modified": "2019-06-10T00:00:00Z",
+
+	// Course Bundles
+	"thinkific_bundle_id": "30745",
+	"thinkific_bundled_courses": [
+            {
+                "id": "573677",
+                "name": "00. MMFT Drip Demo - Introduction & Overview",
+                "slug": "mmft-drip-demo",
+                "sort_order": "0"
+            },
+            {
+                "id": "579183",
+                "name": "01. MMFT Drip Demo",
+                "slug": "copy-of-mmft-drip-demo-module-2",
+                "sort_order": "1"
+            },
+            {
+                "id": "573703",
+                "name": "2 MMFT Drip Demo",
+                "slug": "mmft-drip-demo-module-2",
+                "sort_order": "2"
+            },
+            {
+                "id": "573715",
+                "name": "03 MMFT Drip Demo",
+                "slug": "mmft-drip-demo-module-3",
+                "sort_order": "3"
+            },
+            {
+                "id": "573716",
+                "name": "04. MMFT Drip Demo",
+                "slug": "mmft-drip-demo-module-4",
+                "sort_order": "4"
+            },
+            {
+                "id": "573721",
+                "name": "05. MMFT Drip Demo",
+                "slug": "mmft-drip-demo-module-5",
+                "sort_order": "5"
+            },
+            {
+                "id": "573723",
+                "name": "06. MMFT Drip Demo",
+                "slug": "mmft-drip-demo-module-6",
+                "sort_order": "6"
+            },
+            {
+                "id": "573726",
+                "name": "07. MMFT Drip Demo",
+                "slug": "mmft-drip-demo-module-7",
+                "sort_order": "7"
+            },
+            {
+                "id": "573729",
+                "name": "08. MMFT Drip Demo",
+                "slug": "mmft-drip-demo-module-8",
+                "sort_order": "8"
+            }
+        ]
 }
 ```
