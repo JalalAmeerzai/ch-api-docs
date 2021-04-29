@@ -29,11 +29,11 @@ The UserProduct Object Model is the representation of the user's purchased, digi
 
 - `user_email` _(string)_: This is an individual user's email (which is the unique primary key in the `user` table).
 - `purchased_products` _(map of objects)_: A map of products owned by a user with the `sku` as a key and containing the following within an object:
-	- `archived_course_data` _(string)_: a JSON string of legacy course data (notes, etc). 
-	- `title` _(string)_: The name of the product.
-	- `subtitle` _(string)_: The subtitle of the product.
+	- `archived_course_data` _(string)_: a JSON string of legacy course data (notes, etc).
+	- [DEPRECATED] `title` _(string)_: The name of the product.
+	- [DEPRECATED] `subtitle` _(string)_: The subtitle of the product.
 	- `purchase_date` _(string)_: The datetime of purchase for the product (e.g. `"2019-06-1T 00:00:00V"`)
-	- `thumbnail_link` _(string)_: The thumbnail image for the product.
+	- [DEPRECATED] `thumbnail_link` _(string)_: The thumbnail image for the product.
 	- `product_format` _(string)_: The type/format of a product containing the following (see [Product.format_type](Product.md)).
 	- `can_access` _(string representation of bool)_: string representation of whether access to this product by this customer is valid. A use case for this is to deny access to a user's product when a payment (recurring payments) is missed.
 	- `media_metadata` _(map)_: The metadata for media containing the following options (if applicable, for _each individual track_):
@@ -46,10 +46,16 @@ The UserProduct Object Model is the representation of the user's purchased, digi
 		- `track` _(string)_: the string representation of an individual track number.
 		- `access_time` _(string)_: string representation of when the track was last accessed UTC datetime (e.g. "2019-06-10T00:00:00Z").
 	- `registration_promo_item` _(string representation of bool)_: Whether or not this product was given as a free product upon registration.
-	- `authors` _(list of strings)_: Authors for the product.
+	- [DEPRECATED] `authors` _(list of strings)_: Authors for the product.
 - `recent_product` _(string)_: The SKU of the product that was last interacted with by the user.
 - `created_at` _(string)_: string representation of the initial user product entry (creation) [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339) datetime (e.g. "2019-06-10T00:00:00Z").
 - `last_modified` _(string)_: string representation of when the user product entry is updated [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) / [RFC 3339](https://tools.ietf.org/html/rfc3339) datetime (e.g. "2019-06-10T00:00:00Z").
+
+### DEPRECATED FIELDS
+
+The deprecated fields marked above _may_ still be included in the data retrieved. Please note that the data within these fields is **not reliable** nor **guaranteed accurate**! Currently, the fields _may_ or _may not_ exist BUT no _new data_ for these fields is being set.
+
+The examples in these docs, for now, still include these fields. Again, **do not** rely on the data within these deprecated fields!
 
 ## JSON Representation (with example values) (minus comments)
 

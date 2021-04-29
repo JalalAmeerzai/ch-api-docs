@@ -11,6 +11,10 @@
 ## Object Model
 * [UserProduct Service Object Model](ObjectModels/UserProduct.md)
 
+### DEPRECATED FIELDS
+
+Please see the [UserProduct Service Object Model](ObjectModels/UserProduct.md) for important information regarding deprecated fields!
+
 ## Ports Used
 - **port:** `50053`
 - **hport:** `5680`
@@ -34,6 +38,10 @@ Unit tests are included for this service. Current packages that include them are
 ## Functionality
 
 The following contains details for the `Create`, `Read`, `Update`, `Delete`, and `List` functionality of the UserProduct Service.
+
+### DEPRECATED FIELDS
+
+Please see the [UserProduct Service Object Model](ObjectModels/UserProduct.md) for important information regarding deprecated fields!
 
 ### USERPRODUCT
 
