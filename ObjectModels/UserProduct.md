@@ -29,7 +29,7 @@ The UserProduct Object Model is the representation of the user's purchased, digi
 
 - `user_email` _(string)_: This is an individual user's email (which is the unique primary key in the `user` table).
 - `purchased_products` _(map of objects)_: A map of products owned by a user with the `sku` as a key and containing the following within an object:
-	- `archived_course_data` _(string)_: The name of the product.
+	- `archived_course_data` _(string)_: a JSON string of legacy course data (notes, etc). 
 	- `title` _(string)_: The name of the product.
 	- `subtitle` _(string)_: The subtitle of the product.
 	- `purchase_date` _(string)_: The datetime of purchase for the product (e.g. `"2019-06-1T 00:00:00V"`)
