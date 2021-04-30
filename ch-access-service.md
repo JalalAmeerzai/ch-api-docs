@@ -53,7 +53,7 @@ The following are available gRPC methods for general user registration endpoint(
 	- see the [User Object Model](ObjectModels/User.md) for details of what can be passed in.
 - `password` _(string)_
 	- _**This must be base64 encoded!**_
-- `userproduct` _(bool)_
+- `userproduct` _(object)_
 	- see the [UserProduct Object Model](ObjectModels/UserProduct.md) for details of what can be passed in.
 - `g_recaptcha_response` _(string)_
     - The reCaptcha token that Google returns for client-side implementations.
