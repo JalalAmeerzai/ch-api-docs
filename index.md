@@ -22,6 +22,13 @@ When ready, use the following links:
 
 ---
 
+## [ch-adminuser-service](ch-adminuser-service.md)
+- [GitHub Link](https://github.com/stdev/ch-adminuser-service)
+
+→ [**Go to service details**](ch-adminuser-service.md)
+
+---
+
 ## [ch-auth-service](ch-auth-service.md)
 - [GitHub Link](https://github.com/stdev/ch-auth-service)
 
@@ -29,10 +36,24 @@ When ready, use the following links:
 
 ---
 
+## [ch-media-metadata-service](ch-media-metadata-service.md)
+- [GitHub Link](https://github.com/stdev/ch-media-metadata-service)
+
+→ [**Go to service details**](ch-media-metadata-service.md)
+
+---
+
 ## [ch-multipass-token-service](ch-multipass-token-service.md)
 - [GitHub Link](https://github.com/stdev/ch-multipass-token-service)
 
 → [**Go to service details**](ch-media-metadata-service.md)
+
+---
+
+## [ch-organization-service](ch-organization-service.md)
+- [GitHub Link](https://github.com/stdev/ch-organization-service)
+
+→ [**Go to service details**](ch-organization-service.md)
 
 ---
 
@@ -47,6 +68,13 @@ When ready, use the following links:
 - [GitHub Link](https://github.com/stdev/ch-shopify-helper-service)
 
 → [**Go to service details**](ch-shopify-helper-service.md)
+
+---
+
+## [ch-thinkific-service](ch-thinkific-service.md)
+- [GitHub Link](https://github.com/stdev/ch-thinkific-service)
+
+→ [**Go to service details**](ch-thinkific-service.md)
 
 ---
 

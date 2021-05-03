@@ -1,21 +1,16 @@
 # ch-user-service
 
-**Current Version:** 1.0.1
-
 ## Purpose of This Service
 
-- This service is the source of truth for _all_ user data within the Sounds True digital experience. All other services (internal/external) should utilize this service for non-admin user needs.
-- The User Service processes all CRUDL functionality for non-admin Users within the Customer Hub ecosystem.
+This service is the source of truth for _all_ user data within the Sounds True digital experience. All other services (internal/external) should utilize this service for non-admin user needs.
+
+The User Service processes all CRUDL functionality for non-admin Users within the Customer Hub ecosystem.
 
 ## Repository
 * [Github](https://github.com/stdev/ch-user-service)
 
 ## Object Model
 * [User Service Object Model](ObjectModels/User.md)
-
-## Ports Used
-- **port:** `50051`
-- **hport:** `5678`
 
 ## Access Tokens (JWT)
 
@@ -24,14 +19,6 @@ _ALL_ API endpoints **require** an [AWS Cognito Access Token](https://docs.aws.a
 ```
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tL3VzLWVhc3QtMV9sTGkwNHFPMDIiLCJpYXQiOjE1NjQ2OTg0MTcsImV4cCI6MTU5NjIzNDQxNywiYXVkIjoiMThsNGNhcjJzMGRwdThuYzFidXNjYnA2c2giLCJzdWIiOiJhYWFhYWFhYS1iYmJiLWNjY2MtZGRkZC1lZWVlZWVlZWVlZWUiLCJhdXRoX3RpbWUiOiIxNTY0Njk5OTMzIiwidG9rZW5fdXNlIjoiYWNjZXNzIiwidXNlcm5hbWUiOiJqb2huZG9lQGV4YW1wbGUuY29tIn0.ZafS5KN-pz30q12yb8AZ3Oy0-JcznKFSn7lWraJuOi8
 ```
-
-## Testing
-
-### Unit Tests
-
-Unit tests are included for this service. Current packages that include them are:
-
-- `db` (All CRUDL functionality)
 
 ## Functionality
 

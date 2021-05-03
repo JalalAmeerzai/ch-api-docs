@@ -2,7 +2,7 @@
 
 ## Purpose of This Service
 
-This is the intermediary for internal services, as well as external requests, to our AWS Cognito setup and will handle all calls to/from AWS Cognito.
+This is the intermediary for internal services, as well as external requests, to our AWS Cognito setup and handles all calls to/from AWS Cognito.
 
 ## Repository
 * [Github](https://github.com/stdev/ch-auth-service)
@@ -10,10 +10,6 @@ This is the intermediary for internal services, as well as external requests, to
 ## Object Model
 
 * [Auth Service Object Model](ObjectModels/Auth.md)
-
-## Ports Used
-- **port:** `50058`
-- **hport:** `5685`
 
 ## Access Tokens (JWT)
 
@@ -28,10 +24,6 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL
 - `CreateUser()`
 - `InitiateResetPassword()`
 - `ConfirmResetPassword()`
-
-## Testing
-
-TBD
 
 ## Functionality
 

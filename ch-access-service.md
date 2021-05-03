@@ -2,26 +2,21 @@
 
 ## Purpose of This Service
 
-This service handles user registrations. During a user registration, the **Access Service** endpoint will be called (as opposed to the **User Service**). The **Access Service** will register a user in the following steps:
+This service handles user registrations and gift (products) management. During a user registration, the single **Access Service** endpoint will be used (instead of multiple services). The **Access Service** will register a user in the following steps:
 
 1. Verify recaptcha response from client
-    - bypass if the email from the token matches the value of CtxKey
-2. Call the **Auth Service** and to create the new user in AWS Cognito and retrieve an **Access Token**.
+2. Call the **Auth Service** to create the new user in AWS Cognito and retrieve an **AWS Cognito JWT Access Token**.
 3. Call the **Multipass Token Service** to generate a MultiPass token (for Shopify).
 4. Call the **Organization Service** to see if the user's email matches one of Sounds True's recognized organizations.
-5. Call the **User Service** to add a create the new user in the Customer Hub.
+5. Call the **User Service** to create an entry in the Customer Hub `user` table.
 6. Call the **UserProduct Service** to associate purchased and FREE gift products (including Organization gift products) to the user's account in the Customer Hub. It also associates matching items from Guest Checkouts (based on `email`).
-7. If there are any courses, try and register them in Thinkific throught the Thinkific service
+7. If there are any courses, try and register them in Thinkific throught the **Thinkific service**.
 
 ## Repository
 * [Github](https://github.com/stdev/ch-access-service)
 
 ## Object Model
 * [Access Service Object Model](ObjectModels/Access.md)
-
-## Ports Used
-- **port:** `50054`
-- **hport:** `5681`
 
 ## Access Tokens (JWT)
 
@@ -49,12 +44,13 @@ The following are available gRPC methods for general user registration endpoint(
 - **Endpoint:** `/api/access/`
 
 ##### Accepted Request Arguments
-- `user` _(string)_ 
+- `user` _(object)_ 
 	- see the [User Object Model](ObjectModels/User.md) for details of what can be passed in.
 - `password` _(string)_
 	- _**This must be base64 encoded!**_
-- `userproduct` _(object)_
-	- see the [UserProduct Object Model](ObjectModels/UserProduct.md) for details of what can be passed in.
+- `purchased_products` _(map`<string, userproduct.Product>`)_
+    - The map **key** is the product `SKU`.
+	- The map **value** is the UserProduct object. See the [UserProduct Object Model](ObjectModels/UserProduct.md) for details of what can be passed in.
 - `g_recaptcha_response` _(string)_
     - The reCaptcha token that Google returns for client-side implementations.
 - `multipass_return_to` _(string)_
@@ -115,11 +111,9 @@ curl -X POST /api/access \
     "multipass_return_to": "https://www.soundstrue.com/example",
     "purchased_products": {
 		"CE05948": {
-			"title": "The Untethered Soul at Work: CE Credits",
-			"subtitle": "",
 			"purchase_date": "2019-06-10T00:00:00Z",
-			"thumbnail_link": "somelocation/thumbnail.jpg",
-			"product_format": "CE Credits"
+			"product_format": "FORMAT_CE_CREDITS",
+            "can_access": "true"
 		}
     }
 }'

@@ -11,17 +11,7 @@ The Multipass Token Service generates MultiPass tokens for use with signing into
 
 TBD
 
-## Ports Used
-- **port:** `50059`
-- **hport:** `5686`
-
 ## Access Tokens (JWT)
-
-TBD
-
-## Testing
-
-### Unit Tests
 
 TBD
 

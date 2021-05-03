@@ -1,4 +1,4 @@
-# AdminUser Object Model
+# Auth Object Model
 
 ## Overview
 
@@ -31,10 +31,6 @@ The AWS Cognito Token Set represents token data that will be returned from AWS C
 - `aws_jwt_refresh_token` _(string)_: The Refresh Token needed to retrieve a new Access Token to extend the session length.
 - `token_type` _(string)_: Type of token (e.g. `Bearer`)
 - `token_expires` _(int)_: Length of time the Access Token is good for (e.g. `3600`)
-
-## Notes / TODOs
-
-Please see notes on the main documentation page.
 
 ## JSON Representation (with example values) (minus comments)
 

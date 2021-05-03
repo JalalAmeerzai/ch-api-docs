@@ -11,19 +11,9 @@ The Shopify Helper Service is for Shopify to utilize the Customer Hub user login
 
 TBD
 
-## Ports Used
-- **port:** `50060`
-- **hport:** `5687`
-
 ## Access Tokens (JWT)
 
 Access and Refresh Tokens are returned with the `ShopifyLogin` method. It requires one for the `ShopifyLogout` method.
-
-## Testing
-
-### Unit Tests
-
-TBD
 
 ## Functionality
 

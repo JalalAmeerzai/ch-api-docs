@@ -175,46 +175,6 @@ Mapping of CH datapoints to [Trellis' Shopify doc](https://docs.google.com/sprea
 | `created_at` | | N/A <br>* _internal_ |
 | `last_modified` | | N/A <br>* _internal_ |
 
-#### Unassigned from Sheet
-
-| Name (Column) | Notes |
-|:---------|:--------|
-| Type (F) ||
-| Tags (G) | _Grayed out in Sheets_ |
-| Template Suffix (H) | _Grayed out in Sheets_ |
-| Published Scope (I) ||
-| Option 2 Name (N) | _Grayed out in Sheets_ |
-| Option 2 Value (O) | _Grayed out in Sheets_ |
-| Option 3 Name (P) | _Grayed out in Sheets_ |
-| Option 3 Value (Q) | _Grayed out in Sheets_ |
-| Variant Grams (U) | _Grayed out in Sheets_ |
-| Variant Inventory Tracker (V) | _Grayed out in Sheets_ |
-| Variant Inventory Policy (X) ||
-| Variant Inventory Cost (Y) ||
-| Variant Fulfillment Service (Z) ||
-| Image Attachment (AF) | _Grayed out in Sheets_ |
-| Image Alt Text (AI) | _Grayed out in Sheets_ |
-| Variant Image (AJ) | _Grayed out in Sheets_ |
-| Metafield (AO) | _Need description of field_ |
-| Metafield (AP) | _Need description of field_ |
-| Metafield (AQ) | _Need description of field_ |
-| Metafield (AS) | _Need description of field_ |
-| Metafield (AT) | _Seems to be "Short Description"_ |
-| Metafield (AU) | _Seems to be "Primary Author"_ |
-| Metafield (AV) | _Need description of field_ |
-| Metafield (AW) | _Need description of field_ |
-| Metafield (AX) | _Need description of field_ |
-| Metafield (AY) | _Need description of field_ |
-| Metafield (BA) | _Need description of field_ |
-| Metafield (BB) | _Need description of field_ |
-| Metafield (BC) | _Need description of field_ |
-| Metafield (BD) | _Need description of field_ |
-| Metafield (BE) | _Need description of field_ |
-| Metafield (BF) | _Need description of field_ |
-| Metafield (BG) | _Need description of field_ |
-| Metafield (BH) | _Need description of field_ |
-| Metafield (BI) | _Need description of field_ |
-
 ## Notes / TODOs
 
 - Change the mapping to actual data fields (not Google Sheets).

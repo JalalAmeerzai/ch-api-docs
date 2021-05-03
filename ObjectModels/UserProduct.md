@@ -53,9 +53,9 @@ The UserProduct Object Model is the representation of the user's purchased, digi
 
 ### DEPRECATED FIELDS
 
-The deprecated fields marked above _may_ still be included in the data retrieved. Please note that the data within these fields is **not reliable** nor **guaranteed accurate**! Currently, the fields _may_ or _may not_ exist BUT no _new data_ for these fields is being set.
+The deprecated fields marked above _may_ still be included in the data retrieved. Please note that the data within these fields is **not reliable** nor **guaranteed accurate**! **Currently, the fields _may_ or _may not_ exist BUT no _new data_ for these fields is being set.**
 
-The examples in these docs, for now, still include these fields. Again, **do not** rely on the data within these deprecated fields!
+The examples in these docs, for now, still include these fields because they _might_ be present in the responses. Again, **do not** rely on the data within these deprecated fields!
 
 ## JSON Representation (with example values) (minus comments)
 

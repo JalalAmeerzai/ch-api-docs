@@ -1,4 +1,4 @@
-# AdminUser Object Model
+# Multipass Object Model
 
 ## Overview
 
@@ -22,10 +22,6 @@ The AWS Cognito User represents user data that will be stored in AWS Cognito.
 - `first_name` _(string)_: This is the user's first name.
 - `last_name` _(string)_: This is the user's last name.
 - `return_to` _(string)_: Redirect users to a specific page of the Shopify store.
-
-## Notes / TODOs
-
-Please see notes on the main documentation page.
 
 ## JSON Representation (with example values) (minus comments)
 

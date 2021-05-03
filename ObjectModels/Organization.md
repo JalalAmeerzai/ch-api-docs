@@ -17,7 +17,7 @@ The Organization Object Model is the representation of an organization. It holds
 
 ## Definitions
 
-- `id` _(int)_: This is a unique, global identifier for an individual organization. **Primary Key**.
+- `id` _(int)_: This is a unique, global identifier for an individual organization.
 - `organization_name` _(string)_: The name of the organization.
 - `domain_name` _(string): The fully qualified domain name ([FQDN](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)) of the organization (e.g. `senate.gov`)
 - `contact_email` _(string): The email address of the contact person for the organization.
