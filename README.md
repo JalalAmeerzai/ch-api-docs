@@ -55,7 +55,7 @@
 │   ├── Product.md
 │   ├── User.md
 │   └── UserProduct.md
-└── ObjectModels
+└── PostmanCollection
     └── customer_hub_api_suite.postman_collection.json
 ```
 
