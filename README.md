@@ -65,16 +65,15 @@ The object models for the services can be found within their respective document
 
 ## STAGING (Testing Environment)
 
-- **Base URL:** (https://staging-ch-js-service-prototype.staging-soundstruehub.com)[https://staging-ch-js-service-prototype.digitallibrary.staging-soundstrue.com/]
+- **Base URL:** [https://staging-ch-js-service-prototype.staging-soundstruehub.com](https://staging-ch-js-service-prototype.digitallibrary.staging-soundstrue.com)
 
-]
 
 ## PRODUCTION
 
 When ready, use the following links:
 
-- Digital Library: (https://digitallibrary.soundstrue.com/)[https://digitallibrary.soundstrue.com/]
-- APIs (Base URL): (https://api.digitallibrary.soundstrue.com/)[https://api.digitallibrary.soundstrue.com/]
+- Digital Library: [https://digitallibrary.soundstrue.com/](https://digitallibrary.soundstrue.com/)
+- APIs (Base URL): [https://api.digitallibrary.soundstrue.com/](https://api.digitallibrary.soundstrue.com/)
 
 ## [ch-access-service](ch-access-service.md)
 - [GitHub Link](https://github.com/stdev/ch-access-service)
