@@ -28,7 +28,7 @@
 * [ch-userproduct-service](ch-userproduct-service.md)
 
 ## PostmanCollection
-* [Customer Hub API Suite](customer_hub_api_suite.postman_collection.json)
+* [Customer Hub API Suite](PostmanCollection/customer_hub_api_suite.postman_collection.json)
 
 ## Directory Structure:
 ```
