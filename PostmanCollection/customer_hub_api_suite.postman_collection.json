@@ -1,0 +1,4337 @@
+{
+	"info": {
+		"_postman_id": "856fd508-73f9-40e0-8b97-a7d9247e5a94",
+		"name": "Customer Hub API Suite",
+		"description": "This API suite uses the REST-to-gRPC convertor service (`ch-js-prototype-service`) to connect directly to the services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Access Service",
+			"item": [
+				{
+					"name": "InsertGiftProduct",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"sku\": \"BC6116W\",\r\n\t\"product\": {\r\n\t\t\"title\": \"Walking the Path: A Collection of Spiritual Teachings - Audio Download\",\r\n\t\t\"thumbnail_link\": \"https://cdn.shopify.com/s/files/1/0253/2822/2307/products/pathresize.png?v=1583900205\",\r\n\t\t\"product_format\": \"FORMAT_AUDIO\",\r\n\t\t\"registration_promo_item\": \"true\"\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/access/gift/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"access",
+								"gift",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InsertOrgProduct",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"org_id\": 1,\r\n\t\"products\": {\r\n\t\t\"DD05188W\": {\r\n\t\t\t\"title\": \"Mindfulness Daily at Work - Online Learning\",\r\n\t\t\t\"subtitle\": \"Create a Life-Changing Meditation Practice in Less Than 15 Minutes a Day!\",\r\n\t\t\t\"thumbnail_link\": \"https://cdn.shopify.com/s/files/1/0253/2822/2307/products/mindfulness-daily-at-work_1.png?v=1583894278\",\r\n\t\t\t\"product_format\": \"FORMAT_COURSE\",\r\n\t\t\t\"authors\": [\"Jack Kornfield\", \"Tara Brach\"]\r\n\t\t}\r\n\t}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/access/org",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"access",
+								"org"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListGiftProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/access/gift/filters/100",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"access",
+								"gift",
+								"filters",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListOrgProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/access/org/filters/100",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"access",
+								"org",
+								"filters",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListAllProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/access/filters/100/keys/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"access",
+								"filters",
+								"100",
+								"keys",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateGiftProduct",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"sku\": \"N112\",\r\n\t\"product\": {\r\n\t\"title\": \"An ebook\",\r\n\t\"subtitle\": \"Subtitle\",\r\n\t\"thumbnail_link\": \"somewhere/something2.jpg\",\r\n\t\"product_format\": \"FORMAT_EBOOK\",\r\n\t\"registration_promo_item\": \"false\",\r\n\t\"authors\": [\"Jane Doe\",\"Alex R\"]\r\n\t}\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/access/gift/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"access",
+								"gift",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateOrgProduct",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"org_id\":122,\r\n\t\"sku\": \"S987\",\r\n\t\"product\":{\r\n\t\t\"title\": \"Test title\",\r\n\t\t\"subtitle\": \"Subtitle\",\r\n\t\t\"thumbnail_link\": \"somewhere/something2.jpg\",\r\n\t\t\"product_format\": \"FORMAT_EBOOK\",\r\n\t\t\"registration_promo_item\": \"true\",\r\n\t\t\"authors\": [\"Alex\", \"Carrol\"]\r\n\t}\r\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/access/org/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"access",
+								"org",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteGiftEntity",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/access/sku/N1234",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"access",
+								"sku",
+								"N1234"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteOrganizationEntity",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/access/org_id/122/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"access",
+								"org_id",
+								"122",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/access/org_id/121/sku/S123",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"access",
+								"org_id",
+								"121",
+								"sku",
+								"S123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RegisterUser with product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"email\": \"geoffs+AdminUpdate@soundstrue.com\",\n        \"first_name\": \"SECURITY\",\n        \"last_name\": \"TESTING\",\n        \"phone\": \"111-111-1111\",\n        \"registered_from\": \"REGISTRATION_SHOPIFY\",\n        \"platforms\": {\n        \t\"PLATFORM_SHOPIFY\": {\n                \"platform_user_id\": \"9876543213\",\n                \"active\": \"true\"\n            }\n        },\n        \"accepts_marketing\": \"true\",\n        \"accepts_marketing_updated_at\": \"2019-06-10 00:00:00\",\n        \"marketing_opt_in_level\": \"MARKETING_UNKNOWN\"\n    },\n    \"password\": \"VGVzdGluZzEyMzQh\",\n    \"g_recaptcha_response\": \"03AGdBq25nwKYYFZmiD-NjJkRKs98cdNjsu1OjUyGrLPCwCqiAfoIRJg_Ey9Fm32PKA78NUM-xkyIox6IYk4PkyrmK4xs5D8rNbdDG6zk9XOX3_Suh3YZxvzR2zhcA_7wgmqypS6ylDFD3CQU9CyEf3ymt8c5GHXJURcDe8LQnIMJyuGpy7ncUUZOF6Q5d6mfA3_Ypr3-7UdRnhNSllQDWSHf3wFbH40PaSk_mh6ZM9ee3x69cvVU6JUTdaS3p-qjTudfMCOWrkqcrtOKFQ_QS3iB2uLHN1ZuotVtB6m0mYsoXCEadAUpIz_HHaK4suDDyVhrUPooshs2BtcTkvqAb-6_XsaECiUjcTuza0z9BPzLtOR0Wp8qxMW5CWEsA4Hsfgq4nppsEd_wBkmiR7RcsVARsYT0FT-ToEn0K1zR2cJeHpatopU8lj70t6ybLIvMRgBoru-XQS6inE9zwZhuknEr3tZ5b6FABuA\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/access/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"access",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetGiftProduct",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/access/gift/sku/N111",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"access",
+								"gift",
+								"sku",
+								"N111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetOrgProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/access/org/id/111",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"access",
+								"org",
+								"id",
+								"111"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AdminUser Service",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"administrator\": {\n\t\t\"email\": \"geoffs+admin@soundstrue.com\",\n\t\t\"first_name\": \"ST\",\n\t\t\"last_name\": \"Administrator\",\n\t\t\"password\": \"VGVzdGluZzEyMzQh\",\n\t\t\"state\": \"ADMIN_ENABLED\",\n\t\t\"permissions\": [\n\t\t\t\"ADMIN_VIEW\", \"ADMIN_ADD\", \"ADMIN_MODIFY\", \"ADMIN_DELETE\",\n\t\t\t\"USERS_VIEW\", \"USERS_ADD\", \"USERS_MODIFY\", \"USERS_DELETE\",\n\t\t\t\"USER_ITEMS_ADD\", \"USER_ITEMS_DELETE\",\n\t\t\t\"GIFTS_VIEW\", \"GIFTS_ADD\", \"GIFTS_DELETE\",\n\t\t\t\"ORGANIZATIONS_VIEW\", \"ORGANIZATIONS_ADD\", \"ORGANIZATIONS_DELETE\",\n\t\t\t\"BULK_ITEMS_ADD\", \"BULK_ITEMS_DELETE\"\n\t\t]\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/administrator/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"administrator",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/api/administrator/geoffs@soundstrue.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"administrator",
+								"geoffs@soundstrue.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"last_name\": \"TESTER\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/administrator/geoffs@soundstrue.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"administrator",
+								"geoffs@soundstrue.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateEmail",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"new_email\": \"other.admin@adminexample.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/administrator/st.admin@adminexample.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"administrator",
+								"st.admin@adminexample.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/api/administrator/st.admin@adminexample.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"administrator",
+								"st.admin@adminexample.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/api/administrator/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"administrator",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth Service",
+			"item": [
+				{
+					"name": "DEPRECATED",
+					"item": [
+						{
+							"name": "UpdateUser",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"aws_jwt_access_token\": \"eyJraWQiOiJpNWFmZyszSHpoVlFQakVrVmx2K3BGVGZNM2orQnRMU3g5VjYxT0YwRXVrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJjNTczNWY2Mi0zZTU1LTQ1MzEtYjg1Ny02MDhiYTg0NmE3M2MiLCJldmVudF9pZCI6IjY5NmI3OTJiLTU0MjYtNDE4Yy05NTYyLTk3ZjMwNjk2NGFlOSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE1ODE2MjUzNDAsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2xMaTA0cU8wMiIsImV4cCI6MTU4MTYyODk0MCwiaWF0IjoxNTgxNjI1MzQwLCJqdGkiOiJmNDJjYTM2My0zZjcyLTRiMTEtYmJlZC1mZmJkZjA0ZTk0MzYiLCJjbGllbnRfaWQiOiIxOGw0Y2FyMnMwZHB1OG5jMWJ1c2NicDZzaCIsInVzZXJuYW1lIjoiYzU3MzVmNjItM2U1NS00NTMxLWI4NTctNjA4YmE4NDZhNzNjIn0.SiynJORJknfdQm3G89XY6gY8tf591R-OtV-BEZaP7aumQzYw8BrTz8ydKRQVaXE4Ms7TwqNHu34D-N6W3FAUp2wSUEVZfzl7ZfWxn2u9pqrEPmnhZcYW8y32YnYmiZOsmuKc5xdMKW40tp6H4_Pv48eATa_EhZJlNsKz4zQ2hRapStC9O3XdavmsvFtP6pBoz2E0hENZzUcvEf8rmQsdDNdWm9POI5f78UgSmGEvbj-f64ErgF1kPUYyt4h6nLJMSccfeI2fJX24SXDicXqwSSFw0-I9c4WGcmgjj43OIrTVQJ3zUbxaSfcBKHI7hWyRhs-KhI_T0RQoFcEoOWL-Rw\",\n\t\"user\": {\n\t\t\"email\": \"geoffs+3@soundstrue.com\",\n\t\t\"first_name\": \"SECURITY\",\n\t\t\"last_name\": \"TESTER\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/authenticate/update",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"authenticate",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUser",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"aws_jwt_access_token\": \"eyJraWQiOiJpNWFmZyszSHpoVlFQakVrVmx2K3BGVGZNM2orQnRMU3g5VjYxT0YwRXVrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlNTcwNmZiOC1hNWU5LTQyYTYtYjJjZS04M2FjOGRlNWY1YzUiLCJldmVudF9pZCI6ImEzZWNkYmFmLTdlZjktNDRiZi05OTY3LTg4NmY2ZmM3NGU1YSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE1Nzc0MDE3NDgsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2xMaTA0cU8wMiIsImV4cCI6MTU3NzQwNTM0OCwiaWF0IjoxNTc3NDAxNzQ4LCJqdGkiOiIxY2RhZWQ2ZC1jYjhlLTQwNzAtYWJlYy02YTU5YWE1ODU4NGQiLCJjbGllbnRfaWQiOiIxOGw0Y2FyMnMwZHB1OG5jMWJ1c2NicDZzaCIsInVzZXJuYW1lIjoiZTU3MDZmYjgtYTVlOS00MmE2LWIyY2UtODNhYzhkZTVmNWM1In0.bVIveXj170xAQuYJJNyX_-MkvTniJ695PYB2MKVAm0AseylBHrabU6kVRpI_uOCFcDCsj5wO8ZwFvHbhizewDKaEJrqJhPmPe7OPiAn-vjJTi06a-LZ_MLIxmCwrJhMMzSEd-arA31QVI3CVMORu9xGN4dqT88Hi1kWITL9Coy7rVD7FEo8wHyP1rVBO1kmXP9-t2vLCd3quzfmdSJZzqnc5_wMjwdm6iFEWHHz_jfBKdAnNVnEOeIBBGtabzFZI5x-T0ebhR93jyXnfGHWO9knpL85mDRtzcKUKCfNo53BYpXF5wza0A-stW3CKmUv9FpEl9FRA6rFuajHDXSCfvA\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/authenticate/delete",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"authenticate",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AdminUpdateUser",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"user\": {\n\t\t\"email\": \"geoffs@soundstrue.com\",\n\t\t\"first_name\": \"TEST 1\",\n\t\t\"last_name\": \"TESTER 1\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/authenticate/admin/update",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"authenticate",
+										"admin",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AdminDeleteUser",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/authenticate/admin/delete",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"authenticate",
+										"admin",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AdminEnableUser",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/authenticate/admin/enable",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"authenticate",
+										"admin",
+										"enable"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AdminDisableUser",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/authenticate/admin/disable",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"authenticate",
+										"admin",
+										"disable"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "AdminLogout (ADMIN)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "x-request-from-service",
+										"value": "ch-adminuser-service",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/authenticate/admin/logout",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"authenticate",
+										"admin",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AdminSetUserPassword (ADMIN)",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Request-From-Service",
+										"type": "text",
+										"value": "ch-adminuser-service"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\",\n\t\"new_password\": \"QWJjMTIzNDU2IQ==\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/authenticate/admin/setuserpwd",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"authenticate",
+										"admin",
+										"setuserpwd"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Authenticate (Original)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\",\n\t\"password\": \"VGVzdGluZzEyMzQh\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authenticate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate (frontendtest@soundstrue.com)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"frontendtest@soundstrue.com\",\n\t\"password\": \"RnJvbnRFbmRUZXN0MSE=\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authenticate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate (After Reset)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"auth_string\": \"Z2VvZmZzQHNvdW5kc3RydWUuY29tOlRlc3RpbmcjIyMxMjM0ISE=\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authenticate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate (REFRESH)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\",\n\t\"refresh_flow\": true,\n\t\"refresh_token\": \"eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.Fx3um7icHLe3-jwoTmLb0pcwIDVM-6yGQSjN9o-hqtUgN49_DSpwtEf-lst6zjpNmwTn7NKhNTs8tAuzOFvqvbfZ1NxXg68qB-efi4O-SlXuf_keT1bHCKu1DZKgWKHo_m8cXqCTLW_3qSPQQGY4cVfG8LbVPBqlmZEsAXhL34iWMpmkYQmh0al8m1TDw4xBTVYkEwVwaC008OFAN8JNUtTRYr-818HW2uE1B496PDa62QJ1uO-Umsqpm1WtaPLtv8mvPMClPdPqFt2VE2GkD-PzxEFHp2hpin6ER9rrhm-zO9WtwmaL6z8g8uaU6drZSlEkp06asqNJGT8SYAOsxg.iMMfx6NLsAKvc7qy.ZqohHX9nFrKxX2271bHf8SA0s6y1oqo4tCnqbTU3drWr4IXG6X3ZphrOowSj7JQ6ij9osPWPecT1SgtZiKAskTVr_mcw0lL37bqcKT19KCOUcvsb36m2KVWhBhG6vvC2FtD2KomFOLVQwh9FBsXKFTlmhcDr_lFBosBEqv6apCZJbvYkkMKq0xTpsoORaSyP0-YmE_xgnEFxybsyR2qXEloDqj7m1bn62S50KNtTEbUVnpvUTfTs-QHpNOMICJS3w9I0_PFNQ6ZBEsLd7dMvuskmbmY0GoYjgVYCCR_KwjzkKZEjpaVswbALdDtXgyMnZqi9Pv1q6e0z9_vlFqeGkDF-QBfOkv6rDAQsAnZ9T_d6FN4MyyjgtJxpVNYgRMh3aRJAjR1Wiq4DUwp2y0CQe5fsrIl4dWDgk7Iq1kucMZtflg07ZKmdJbgrNG8N5elEMPeoN8VAxCS-jhzSfNNpfjFc2h4qlmNWWP2xon18ZBJ0ApHm2AB-AQVCZo0SwjaJbjzPRhSQG_ep4VU-h--oJEv34s6o8EvL77amYO1Qzp-3E0n-foybmzXy9BqEfIma0DUmergS8xtG-Lyir3pGQgTNWVWDQnR6T01gYycs9jIRO9O_u9OCE7-goSJKKyjv8buklAxkVwkgPRvYg9yJaUa-vesW3TjZVFMu5RRplBoD64vZuKKHi6s3pQUXxV-jM8DHCCvm69Kb4xaLOnzltcWYrxqrhBPnYg3A2wGYZKQc7fUABjdlznb-bDjD8gzxD534jG-QSKo8vwdRdKlnoQtY9h5Pu6qDWpCNld_kKXqQeWu50CG0Wu7nHuBE3sUmZVH-Z2odf4cU29eOpbv6EHNykBtpvFmb59evtZfur6GPPvX9kt_gdL_cUTFiBW34T1clWyZ0KUgGJuEi-gMUIGQAgJkX9DxWZAO7_aNkcaknJXapz42dH0VDo8ptQFRVadabsNnxee_MvACpx1PjUB2GebKL1zhsJ2EW8t-CZFLCYyGmYQDIhO9vewb26Lx6QTBJwuVD7R2-Yq5eqLLIvWBV6L78ZlHP1VO6xrjlEi9IyRPwVLJhQmki28FqQXb6CkI1i6HYizn9nUTGiYmRU0YvzehDrWeCUsF3seVvoSWck4O21BuiUFlUOHm6aBeXjclE8v1X39e4CyjaOJhYKgFPBNPk_hpSCXMMWOkS-tjbz2x-XNl_CNsEG1e3k4POkc1HxjR-ugdheCLiwEl0n-fnPuWE96rtYnOEiTrSrRVA57ODapCEZs1-XrSBa5lo1NKfeR0eGwhsqZs4FQOPC8-tEukTwxnWm5MGSTeN9kAsgbMjqMYPkZ8pf5V4OTjb.0o-Ht_1eFjnTddX_8GmuPw\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authenticate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate (ADMIN)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Request-From-Service",
+								"value": "ch-adminuser-service",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"geoffs+admin@soundstrue.com\",\n\t\"password\": \"VGVzdGluZzEyMzQh\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authenticate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate (ADMIN) Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Request-From-Service",
+								"value": "ch-adminuser-service",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"geoffs+admin@soundstrue.com\",\n\t\"password\": \"VGVzdGluZzEyMzQh\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authenticate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate (ADMIN) PROD",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Request-From-Service",
+								"type": "text",
+								"value": "ch-adminuser-service"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\",\n\t\"password\": \"Zm05a1dYem1YZE1KNDlKbSE=\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authenticate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate (ADMIN) PROD (CUSTOMER TESTING)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Request-From-Service",
+								"type": "text",
+								"value": "ch-adminuser-service"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\",\n\t\"password\": \"Zm05a1dYem1YZE1KNDlKbSE=\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authenticate",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"aws_jwt_access_token\": \"eyJraWQiOiJpNWFmZyszSHpoVlFQakVrVmx2K3BGVGZNM2orQnRMU3g5VjYxT0YwRXVrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJlNTcwNmZiOC1hNWU5LTQyYTYtYjJjZS04M2FjOGRlNWY1YzUiLCJldmVudF9pZCI6IjRhNmU5ZjMwLWY0NjAtNGRjOS05ZTk1LTRkY2FjZGE4M2E4OCIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE1NzcxNDMwNzAsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2xMaTA0cU8wMiIsImV4cCI6MTU3NzE0NjY3MCwiaWF0IjoxNTc3MTQzMDcxLCJqdGkiOiI1ZjkyZjlmNi0zOGY5LTRlZDktOWZlMC00OGIyMmFmYzEzOTEiLCJjbGllbnRfaWQiOiIxOGw0Y2FyMnMwZHB1OG5jMWJ1c2NicDZzaCIsInVzZXJuYW1lIjoiZTU3MDZmYjgtYTVlOS00MmE2LWIyY2UtODNhYzhkZTVmNWM1In0.QPkPxZXD3k7ohSuZRusIv1iDoiWoje3wa_ZL7FbmrmpI7DSgQ-Svxx_Gm9rVzLTlklPKnVAZaPQps4GwR7COwxY2uv4NKQwVS6KgQlRVdX7cQ6QDgiBxVDmIgdoDU1wMT_arrMz6fBMS57czqt8k1KWpLhh2nf-zXFMYAJLEx5-dQM0-aT93oSsnl583M2dX54lQ8gCfAncA51MZ8Din1rkcD7YZWCdERYA9ee638aTi0GItQalDnogU_HM3ugXnh2h97X4_HVYbalzhmjPnxtp0OHgidPyDR_bKsQiE8wDrVp3D7G6LLnB1ezSiZEwK2j_gNYPwDXbj0N0HoUcDEA\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authenticate/logout/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate",
+								"logout",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": {\n\t\t\"email\": \"geoffs@soundstrue.com\",\n\t\t\"first_name\": \"TEST\",\n\t\t\"last_name\": \"TESTER\",\n\t\t\"password\": \"VGVzdGluZzEyMzQh\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authenticate/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser (Webhook User)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": {\n\t\t\"email\": \"shopify.webook.user@dev.soundstrue.com\",\n\t\t\"first_name\": \"Shopify\",\n\t\t\"last_name\": \"Webhooks\",\n\t\t\"password\": \"WWEjajNza2g1ITdKWDc5bQ==\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authenticate/create",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InitiateResetPassword",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/authenticate/forgotpassword/geoffs@soundstrue.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate",
+								"forgotpassword",
+								"geoffs@soundstrue.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InitiateResetPassword (ADMIN)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Request-From-Service",
+								"value": "ch-adminuser-service",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/authenticate/forgotpassword/geoffs@soundstrue.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate",
+								"forgotpassword",
+								"geoffs@soundstrue.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ConfirmResetPassword",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\",\n\t\"new_password\": \"VGVzdGluZyMjIzEyMzQhIQ==\",\n\t\"confirmation_code\": \"122660\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authenticate/forgotpassword/confirm",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate",
+								"forgotpassword",
+								"confirm"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ConfirmResetPassword (ADMIN)",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Request-From-Service",
+								"value": "ch-adminuser-service",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\",\n\t\"new_password\": \"VGVzdGluZyMjIzEyMzQhIQ==\",\n\t\"confirmation_code\": \"122660\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/authenticate/forgotpassword/confirm?x-request-from-service=ch-adminuser-service",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"authenticate",
+								"forgotpassword",
+								"confirm"
+							],
+							"query": [
+								{
+									"key": "x-request-from-service",
+									"value": "ch-adminuser-service"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Bulk Helper",
+			"item": [
+				{
+					"name": "BullkAdd",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/geoffrey.safcik/Downloads/TestBulkAdd2.csv"
+								},
+								{
+									"key": "send_email",
+									"value": "false",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{bulk_url}}/api/bulk/add",
+							"host": [
+								"{{bulk_url}}"
+							],
+							"path": [
+								"api",
+								"bulk",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Media Metadata Service",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"media_metadata\": {\n\t\t\"created_at\": \"2020-02-04 23:41:41\",\n\t\t\"file_data\": [\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/m4a/01-Tina_Malia-Hare_Krishna.m4a\",\n\t\t\t\t\"dl_downloadable\": \"true\",\n\t\t\t\t\"dl_playable\": \"true\",\n\t\t\t\t\"duration\": 464,\n\t\t\t\t\"file_size\": \"14.75 MB\",\n\t\t\t\t\"guid\": \"395a0346-6629-40bc-bdba-7ea604bd0480\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/m4a/01-Tina_Malia-Hare_Krishna.m4a\",\n\t\t\t\t\"media_type\": 2,\n\t\t\t\t\"sort_order\": 1,\n\t\t\t\t\"title\": \"Hare Krishna\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/m4a/02-Tina_Malia-Moola_Mantra.m4a\",\n\t\t\t\t\"dl_downloadable\": \"true\",\n\t\t\t\t\"dl_playable\": \"true\",\n\t\t\t\t\"duration\": 323,\n\t\t\t\t\"file_size\": \"10.32 MB\",\n\t\t\t\t\"guid\": \"aece09f8-76ed-4d9b-8589-2c5c51107c5f\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/m4a/02-Tina_Malia-Moola_Mantra.m4a\",\n\t\t\t\t\"media_type\": 2,\n\t\t\t\t\"sort_order\": 2,\n\t\t\t\t\"title\": \"Moola Mantra\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/m4a/03-Tina_Malia-Hey_Ma_Durga.m4a\",\n\t\t\t\t\"dl_downloadable\": \"true\",\n\t\t\t\t\"dl_playable\": \"true\",\n\t\t\t\t\"duration\": 382,\n\t\t\t\t\"file_size\": \"12.47 MB\",\n\t\t\t\t\"guid\": \"4b5da19c-3964-498e-abef-55102b82fdc8\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/m4a/03-Tina_Malia-Hey_Ma_Durga.m4a\",\n\t\t\t\t\"media_type\": 2,\n\t\t\t\t\"sort_order\": 3,\n\t\t\t\t\"title\": \"Hey Ma Durga\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/m4a/04-Tina_Malia-Radhikas_Rickshaw.m4a\",\n\t\t\t\t\"dl_downloadable\": \"true\",\n\t\t\t\t\"dl_playable\": \"true\",\n\t\t\t\t\"duration\": 135,\n\t\t\t\t\"file_size\": \"4.43 MB\",\n\t\t\t\t\"guid\": \"13cff055-fc1b-434d-bf7a-d39d949cb459\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/m4a/04-Tina_Malia-Radhikas_Rickshaw.m4a\",\n\t\t\t\t\"media_type\": 2,\n\t\t\t\t\"sort_order\": 4,\n\t\t\t\t\"title\": \"Radhika\\\\\\\\\\\\'s Rickshaw\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/m4a/05-Tina_Malia-Rudra_Mantra.m4a\",\n\t\t\t\t\"dl_downloadable\": \"true\",\n\t\t\t\t\"dl_playable\": \"true\",\n\t\t\t\t\"duration\": 448,\n\t\t\t\t\"file_size\": \"14.37 MB\",\n\t\t\t\t\"guid\": \"a497ee20-30d2-4713-8ca1-2ca50677b323\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/m4a/05-Tina_Malia-Rudra_Mantra.m4a\",\n\t\t\t\t\"media_type\": 2,\n\t\t\t\t\"sort_order\": 5,\n\t\t\t\t\"title\": \"Rudra Mantra\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/m4a/06-Tina_Malia-Wahe_Guru.m4a\",\n\t\t\t\t\"dl_downloadable\": \"true\",\n\t\t\t\t\"dl_playable\": \"true\",\n\t\t\t\t\"duration\": 164,\n\t\t\t\t\"file_size\": \"5.29 MB\",\n\t\t\t\t\"guid\": \"a3908401-b6e2-4ce0-b4bb-beba4c4dfeb6\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/m4a/06-Tina_Malia-Wahe_Guru.m4a\",\n\t\t\t\t\"media_type\": 2,\n\t\t\t\t\"sort_order\": 6,\n\t\t\t\t\"title\": \"Wahe Guru\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/m4a/07-Tina_Malia-Radhe.m4a\",\n\t\t\t\t\"dl_downloadable\": \"true\",\n\t\t\t\t\"dl_playable\": \"true\",\n\t\t\t\t\"duration\": 334,\n\t\t\t\t\"file_size\": \"10.86 MB\",\n\t\t\t\t\"guid\": \"a9534c9d-1524-4a1f-a6a1-a1aa8999d65a\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/m4a/07-Tina_Malia-Radhe.m4a\",\n\t\t\t\t\"media_type\": 2,\n\t\t\t\t\"sort_order\": 7,\n\t\t\t\t\"title\": \"Radhe\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/m4a/08-Tina_Malia-Tumi_Bhaja_Re.m4a\",\n\t\t\t\t\"dl_downloadable\": \"true\",\n\t\t\t\t\"dl_playable\": \"true\",\n\t\t\t\t\"duration\": 322,\n\t\t\t\t\"file_size\": \"10.47 MB\",\n\t\t\t\t\"guid\": \"d60db551-1a3e-49db-a224-ee51ae169e23\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/m4a/08-Tina_Malia-Tumi_Bhaja_Re.m4a\",\n\t\t\t\t\"media_type\": 2,\n\t\t\t\t\"sort_order\": 8,\n\t\t\t\t\"title\": \"Tumi Bhaja Re\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/m4a/09-Tina_Malia-Anandamayi.m4a\",\n\t\t\t\t\"dl_downloadable\": \"true\",\n\t\t\t\t\"dl_playable\": \"true\",\n\t\t\t\t\"duration\": 468,\n\t\t\t\t\"file_size\": \"15.04 MB\",\n\t\t\t\t\"guid\": \"d23fd3d8-2644-4532-8a44-b8208262c30e\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/m4a/09-Tina_Malia-Anandamayi.m4a\",\n\t\t\t\t\"media_type\": 2,\n\t\t\t\t\"sort_order\": 9,\n\t\t\t\t\"title\": \"Anandamayi\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/mp3/01-Tina_Malia-Hare_Krishna.mp3\",\n\t\t\t\t\"dl_downloadable\": \"false\",\n\t\t\t\t\"dl_playable\": \"false\",\n\t\t\t\t\"duration\": 463,\n\t\t\t\t\"file_size\": \"18.81 MB\",\n\t\t\t\t\"guid\": \"a1cd9055-8ada-4a9b-9db6-5ea64de668b7\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/mp3/01-Tina_Malia-Hare_Krishna.mp3\",\n\t\t\t\t\"media_type\": 1,\n\t\t\t\t\"sort_order\": 10,\n\t\t\t\t\"title\": \"Hare Krishna\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/mp3/02-Tina_Malia-Moola_Mantra.mp3\",\n\t\t\t\t\"dl_downloadable\": \"false\",\n\t\t\t\t\"dl_playable\": \"false\",\n\t\t\t\t\"duration\": 322,\n\t\t\t\t\"file_size\": \"13.17 MB\",\n\t\t\t\t\"guid\": \"188f144a-11e3-46e3-b4a1-65c7f82869b5\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/mp3/02-Tina_Malia-Moola_Mantra.mp3\",\n\t\t\t\t\"media_type\": 1,\n\t\t\t\t\"sort_order\": 11,\n\t\t\t\t\"title\": \"Moola Mantra\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/mp3/03-Tina_Malia-Hey_Ma_Durga.mp3\",\n\t\t\t\t\"dl_downloadable\": \"false\",\n\t\t\t\t\"dl_playable\": \"false\",\n\t\t\t\t\"duration\": 382,\n\t\t\t\t\"file_size\": \"15.56 MB\",\n\t\t\t\t\"guid\": \"4f02bea4-ded6-4194-be81-0dd6d088bf19\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/mp3/03-Tina_Malia-Hey_Ma_Durga.mp3\",\n\t\t\t\t\"media_type\": 1,\n\t\t\t\t\"sort_order\": 12,\n\t\t\t\t\"title\": \"Hey Ma Durga\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/mp3/04-Tina_Malia-Radhikas_Rickshaw.mp3\",\n\t\t\t\t\"dl_downloadable\": \"false\",\n\t\t\t\t\"dl_playable\": \"false\",\n\t\t\t\t\"duration\": 135,\n\t\t\t\t\"file_size\": \"5.68 MB\",\n\t\t\t\t\"guid\": \"f42df03a-8238-4d27-9bc8-ec1ef6d27217\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/mp3/04-Tina_Malia-Radhikas_Rickshaw.mp3\",\n\t\t\t\t\"media_type\": 1,\n\t\t\t\t\"sort_order\": 13,\n\t\t\t\t\"title\": \"Radhika\\\\\\\\\\\\'s Rickshaw\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/mp3/05-Tina_Malia-Rudra_Mantra.mp3\",\n\t\t\t\t\"dl_downloadable\": \"false\",\n\t\t\t\t\"dl_playable\": \"false\",\n\t\t\t\t\"duration\": 448,\n\t\t\t\t\"file_size\": \"18.17 MB\",\n\t\t\t\t\"guid\": \"1bee9d8f-e449-4001-841c-38ec24358813\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/mp3/05-Tina_Malia-Rudra_Mantra.mp3\",\n\t\t\t\t\"media_type\": 1,\n\t\t\t\t\"sort_order\": 14,\n\t\t\t\t\"title\": \"Rudra Mantra\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/mp3/06-Tina_Malia-Wahe_Guru.mp3\",\n\t\t\t\t\"dl_downloadable\": \"false\",\n\t\t\t\t\"dl_playable\": \"false\",\n\t\t\t\t\"duration\": 164,\n\t\t\t\t\"file_size\": \"6.82 MB\",\n\t\t\t\t\"guid\": \"9d6969b8-e2b0-48e2-ae76-3be7ed6a9d25\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/mp3/06-Tina_Malia-Wahe_Guru.mp3\",\n\t\t\t\t\"media_type\": 1,\n\t\t\t\t\"sort_order\": 15,\n\t\t\t\t\"title\": \"Wahe Guru\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/mp3/07-Tina_Malia-Radhe.mp3\",\n\t\t\t\t\"dl_downloadable\": \"false\",\n\t\t\t\t\"dl_playable\": \"false\",\n\t\t\t\t\"duration\": 334,\n\t\t\t\t\"file_size\": \"13.62 MB\",\n\t\t\t\t\"guid\": \"8411bd63-17d2-4df8-a009-762668a68fb5\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/mp3/07-Tina_Malia-Radhe.mp3\",\n\t\t\t\t\"media_type\": 1,\n\t\t\t\t\"sort_order\": 16,\n\t\t\t\t\"title\": \"Radhe\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/mp3/08-Tina_Malia-Tumi_Bhaja_Re.mp3\",\n\t\t\t\t\"dl_downloadable\": \"false\",\n\t\t\t\t\"dl_playable\": \"false\",\n\t\t\t\t\"duration\": 322,\n\t\t\t\t\"file_size\": \"13.15 MB\",\n\t\t\t\t\"guid\": \"0a99aa1f-3eed-4bd8-b17c-e6c9621b26d2\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/mp3/08-Tina_Malia-Tumi_Bhaja_Re.mp3\",\n\t\t\t\t\"media_type\": 1,\n\t\t\t\t\"sort_order\": 17,\n\t\t\t\t\"title\": \"Tumi Bhaja Re\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/mp3/09-Tina_Malia-Anandamayi.mp3\",\n\t\t\t\t\"dl_downloadable\": \"false\",\n\t\t\t\t\"dl_playable\": \"false\",\n\t\t\t\t\"duration\": 468,\n\t\t\t\t\"file_size\": \"18.99 MB\",\n\t\t\t\t\"guid\": \"066f34e6-b2f1-4d6d-8eb4-5bbe47c0eb08\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/mp3/09-Tina_Malia-Anandamayi.mp3\",\n\t\t\t\t\"media_type\": 1,\n\t\t\t\t\"sort_order\": 18,\n\t\t\t\t\"title\": \"Anandamayi\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/Malia-Liner-Notes-MM04898W.pdf\",\n\t\t\t\t\"dl_downloadable\": \"true\",\n\t\t\t\t\"dl_playable\": \"false\",\n\t\t\t\t\"file_size\": \"20.93 MB\",\n\t\t\t\t\"guid\": \"2089e15d-1941-40f3-a121-874fcfee46d8\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/Malia-Liner-Notes-MM04898W.pdf\",\n\t\t\t\t\"media_type\": 8,\n\t\t\t\t\"sort_order\": 19,\n\t\t\t\t\"title\": \"Malia Liner Notes MM04898W\"\n\t\t\t},\n\t\t\t{\n\t\t\t\t\"cloud_front_url\": \"https://media.soundstrue.com/audio/MM04898W_Anahata/Anahata.zip\",\n\t\t\t\t\"dl_downloadable\": \"true\",\n\t\t\t\t\"dl_playable\": \"false\",\n\t\t\t\t\"file_size\": \"123.29 MB\",\n\t\t\t\t\"guid\": \"c606ae8a-0e65-42b8-b938-182325e4d354\",\n\t\t\t\t\"media_s3_bucket\": \"soundstrue-com-product-uploads\",\n\t\t\t\t\"media_s3_key\": \"audio/MM04898W_Anahata/Anahata.zip\",\n\t\t\t\t\"media_type\": 9,\n\t\t\t\t\"sort_order\": 20,\n\t\t\t\t\"title\": \"Anahata\"\n\t\t\t}\n\t\t],\n\t\t\"last_modified\": \"2020-02-04 23:43:42\",\n\t\t\"product_sku\": \"MM04898W\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/mediametadata",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mediametadata"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddFiles",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"files\": [\n\t\t{\n\t\t\t\"title\": \"Some Title 4\",\n\t\t\t\"media_type\": \"MEDIA_TYPE_MP3\",\n\t\t\t\"media_s3_bucket\": \"soundstrue-downloads\",\n\t\t\t\"media_s3_key\": \"products/some_dir_ABC123/Title-0104.mp3\",\n\t\t\t\"duration\": 14400,\n\t\t\t\"file_size\": \"27.23 MB\",\n\t\t\t\"sort_order\": 40\n\t\t},\n\t\t{\n\t\t\t\"title\": \"Some Title 5\",\n\t\t\t\"media_type\": \"MEDIA_TYPE_MP3\",\n\t\t\t\"media_s3_bucket\": \"soundstrue-downloads\",\n\t\t\t\"media_s3_key\": \"products/some_dir_ABC123/Title-0105.mp3\",\n\t\t\t\"duration\": 14400,\n\t\t\t\"file_size\": \"28.35 MB\",\n\t\t\t\"sort_order\": 50\n\t\t},\n\t\t{\n\t\t\t\"title\": \"Some Title 6\",\n\t\t\t\"media_type\": \"MEDIA_TYPE_MP3\",\n\t\t\t\"media_s3_bucket\": \"soundstrue-downloads\",\n\t\t\t\"media_s3_key\": \"products/some_dir_ABC123/Title-0106.mp3\",\n\t\t\t\"duration\": 14400,\n\t\t\t\"file_size\": \"23.7 MB\",\n\t\t\t\"sort_order\": 60\n\t\t}\n\t]\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/mediametadata/ABC123",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mediametadata",
+								"ABC123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/mediametadata/VT00854W",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mediametadata",
+								"VT00854W"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateFileData",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"file_data\": {\n\t\t\"media_s3_bucket\": \"soundstrue-downloads\",\n\t\t\"media_s3_key\": \"products/some_dir_ABC123/Title-0102.wav\",\n\t\t\"title\": \"A Different Title\",\n\t\t\"sort_order\": \"700\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/mediametadata/ABC123/file",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mediametadata",
+								"ABC123",
+								"file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/mediametadata/ABC123",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mediametadata",
+								"ABC123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteFileData",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"media_s3_bucket\": \"soundstrue-downloads\",\n\t\"media_s3_key\": \"products/some_dir_ABC123/Title-0102.wav\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/mediametadata/ABC123/file",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mediametadata",
+								"ABC123",
+								"file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/mediametadata/filters/100",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"mediametadata",
+								"filters",
+								"100"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "MultiPass Token Service",
+			"item": [
+				{
+					"name": "GenerateToken",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user\": {\n\t\t\"email\": \"kathyk+364@test.soundstrue.com\",\n\t\t\"first_name\": \"Kathy\",\n\t\t\"last_name\": \"K\",\n\t\t\"return_to\": \"https://stage1-soundstrue.com/some_specific_location\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/multipass",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"multipass"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Organization Service",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"organization\": {\n\t\t\"organization_name\": \"ST Org\",\n\t\t\"domain_name\": \"soundstrue.com\"\n\t}\n}\n"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/organization",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"organization"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/organization/6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"organization",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByDomain",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/organization/domain/something.teSt.SeNatE.GOV",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"organization",
+								"domain",
+								"something.teSt.SeNatE.GOV"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"organization\": {\n\t\t\"id\": 3,\n\t\t\"contact_email\": \"johndoe@example.com\",\n    \t\"contact_first_name\": \"John\",\n    \t\"contact_last_name\": \"Doe\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/organization",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"organization"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/organization/4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"organization",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListOrganizations",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/organization/filters/5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"organization",
+								"filters",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Service",
+			"item": [
+				{
+					"name": "Create (new product only)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"product\": {\n    \t\"sku\": \"CDE987\",\n    \t\"group_id\": \"56789098765\",\n    \t\"title\": \"Thinkific Bundled Course Example\",\n    \t\"subtitle\": \"An example product of a Thinkific Bundled Course\",\n    \t\"body_html\": \"<p>A Thinkific Course Bundle is something that contains a Thinkific Bundle ID and a list of bundled course titles</p>\",\n    \t\"format_type\": \"FORMAT_COURSE_BUNDLE\",\n    \t\"published\": \"true\",\n    \t\"published_at\": \"2020-07-27T0:00:00-05:00\",\n    \t\"discount_price\": \"50\",\n    \t\"price\": \"100\",\n    \t\"inventory_qty\": 0,\n    \t\"images\": [\n        \t{\n            \t\"src\": \"http://example.com/image1.jpg\",\n            \t\"sort_order\": 10\n        \t},\n        \t{\n            \t\"src\": \"http://example.com/image2.jpg\",\n            \t\"sort_order\": 20\n        \t}\n    \t],\n    \t\"handle\": \"thinkific-bundled-course-example\",\n    \t\"parent_category\": \"Meditation\",\n    \t\"sub_category\": \"Mindfulness Meditation\",\n    \t\"level\": \"LEVEL_BEGINNER\",\n    \t\"audience\": \"AUDIENCE_NON_PROFESSIONAL\",\n    \t\"duration\": \"DURATION_HOURS\",\n    \t\"authors\": [\n        \t{\n            \t\"name\": \"Christopher Willard\",\n            \t\"url\": \"https://www.soundstrue.com/store/christopher-willard-pysd.html\"\n        \t},\n        \t{\n            \t\"name\": \"Daniel Rechtschaffen\",\n            \t\"url\": \"https://www.soundstrue.com/store/daniel-rechtschaffen.html\"\n        \t}\n    \t],\n    \t\"vendor\": \"Sounds True\",\n    \t\"sort_order\": 10,\n    \t\"platform\": {\n        \t\"PLATFORM_SHOPIFY\": {\n\t    \t\t\"external_id\": \"\",\n    \t    \t\"product_created_at\": \"2012-02-15T15:12:21-05:00\",\n        \t\t\"product_updated_at\": \"2012-08-24T14:01:47-04:00\",\n        \t\t\"options\": {\n        \t \t\t\"option1\": {\n            \t\t\t\"name\": \"Format\",\n            \t\t\t\"value\": \"Course Bundle\"\n        \t \t\t}\n        \t\t}\n        \t}\n    \t},\n    \t\"thinkific_bundle_id\": \"1234567890\",\n\t\t\"thinkific_bundled_courses\": [\n\t\t\t\"Bundled Course Title 001\",\n\t\t\t\"Bundled Course Title 002\",\n\t\t\t\"Bundled Course Title 003\"\n\t\t]\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/product",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get (entity/row)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/product/OS04219W",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"OS04219W"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"thinkific_bundle_id\": \"1234567890\",\n\t\"thinkific_bundled_courses\": [\n\t\t\"Some Course Title 001\",\n\t\t\"Another Course Title 002\",\n\t\t\"Last Course Title 003\"\n\t]\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/product/CDE987",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"CDE987"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteEntity (entity/row)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/product/BK05536F",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"BK05536F"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/product/filters/400",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"filters",
+								"400"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shopify Helper Service",
+			"item": [
+				{
+					"name": "ShopifyLogin",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"password\": \"VGVzdGluZzEyMzQh\",\n\t\"user\": {\n\t\t\"email\": \"geoffs@soundstrue.com\",\n\t\t\"return_to\": \"www.ecommerce-store.com/somewhere\"\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/shopify/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"shopify",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ShopifyLogout",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\",\n\t\"aws_jwt_access_token\": \"eyJraWQiOiJpNWFmZyszSHpoVlFQakVrVmx2K3BGVGZNM2orQnRMU3g5VjYxT0YwRXVrPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJmOGY4ZmY4NS0xZjE3LTQ0ZjktOTc1ZC00NzI0MWM5ODc1OGUiLCJldmVudF9pZCI6IjI3YzVmMzk5LWEzY2MtNDQ2MC1hMDBlLTZhYjc1OTBlOGQ3NiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE1NzkxMzE1OTUsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX2xMaTA0cU8wMiIsImV4cCI6MTU3OTEzNTE5NSwiaWF0IjoxNTc5MTMxNTk1LCJqdGkiOiJiMThjZDVmOC1lMmQwLTQzNmEtYmUxYy04ZTU4OTlkMTZmNTMiLCJjbGllbnRfaWQiOiIxOGw0Y2FyMnMwZHB1OG5jMWJ1c2NicDZzaCIsInVzZXJuYW1lIjoiZjhmOGZmODUtMWYxNy00NGY5LTk3NWQtNDcyNDFjOTg3NThlIn0.Wh41xz0vkhTGW2CRvRzapuBojhket-uL7EZE00I7zslWzDIoxBm6wesMid7b-g0P34SfTjimv0FVDhpWHfn8epc2JfXIKIxuqWP64iXQ_obbjIYxvTpuY_CJZIfyE3RBnCzpznlJpXl6oPkvl_zAkQgcrgajxxAbltg2gnoxKM1Ym1BD1rk1nVabtNA_Sx2nLXQsKKDnHG77Wux_a06vgnWM661WnI8pC_YQRMT4YuD-oKscWb-niOK0uiGH3x9Ge_o9HMb-yprRd9CPtFiN4l6p8e2z4sB09YbcYOxqePxYYok4J1oweejLtzqn5wABa5BJVXjtgHB1IgUl8Z5Npg\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/shopify/logout",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"shopify",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Shopify Webhooks",
+			"item": [
+				{
+					"name": "customers/create (rejected)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Shopify-Topic",
+								"type": "text",
+								"value": "customers/create"
+							},
+							{
+								"key": "X-Shopify-Hmac-Sha256",
+								"type": "text",
+								"value": "9M2EGMpg3PCZBc3epNiuoIHyFl7Is2Pjq4i/0ZvF76Q="
+							},
+							{
+								"key": "X-Shopify-Shop-Domain",
+								"type": "text",
+								"value": "soundstrue.com"
+							},
+							{
+								"key": "X-Shopify-API-Version",
+								"type": "text",
+								"value": "2020-01"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 706405506930370000,\n    \"email\": \"geoffs@soundstrue.com\",\n    \"accepts_marketing\": true,\n    \"created_at\": null,\n    \"updated_at\": null,\n    \"first_name\": \"Geoff\",\n    \"last_name\": \"Tester 99\",\n    \"orders_count\": 0,\n    \"state\": \"disabled\",\n    \"total_spent\": \"0.00\",\n    \"last_order_id\": null,\n    \"note\": \"This customer loves ice cream\",\n    \"verified_email\": true,\n    \"multipass_identifier\": null,\n    \"tax_exempt\": false,\n    \"phone\": null,\n    \"tags\": \"\",\n    \"last_order_name\": null,\n    \"currency\": \"USD\",\n    \"addresses\": [\n\t\t{\n    \t\t\"id\": 207119551,\n    \t\t\"customer_id\": 6940095564,\n    \t\t\"first_name\": \"Geoff\",\n    \t\t\"last_name\": \"Tester 99\",\n    \t\t\"company\": null,\n    \t\t\"address1\": \"Chestnut Street 92\",\n    \t\t\"address2\": \"Apartment 2\",\n    \t\t\"city\": \"Louisville\",\n    \t\t\"province\": \"Kentucky\",\n    \t\t\"country\": \"United States\",\n    \t\t\"zip\": \"40202\",\n    \t\t\"phone\": \"555-625-1199\",\n    \t\t\"province_code\": \"KY\",\n    \t\t\"country_code\": \"US\",\n    \t\t\"country_name\": \"United States\",\n    \t\t\"default\": true\n\t\t}\n\t],\n    \"accepts_marketing_updated_at\": null,\n    \"marketing_opt_in_level\": null\n}"
+						},
+						"url": {
+							"raw": "{{webhook_base}}:50061/api/shopify/webhooks",
+							"host": [
+								"{{webhook_base}}"
+							],
+							"port": "50061",
+							"path": [
+								"api",
+								"shopify",
+								"webhooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customers/update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Shopify-Topic",
+								"value": "customers/update",
+								"type": "text"
+							},
+							{
+								"key": "X-Shopify-Hmac-Sha256",
+								"value": "9M2EGMpg3PCZBc3epNiuoIHyFl7Is2Pjq4i/0ZvF76Q=",
+								"type": "text"
+							},
+							{
+								"key": "X-Shopify-Shop-Domain",
+								"value": "soundstrue.com",
+								"type": "text"
+							},
+							{
+								"key": "X-Shopify-API-Version",
+								"value": "2020-01",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 706405506930370000,\n    \"email\": \"geoffs@soundstrue.com\",\n    \"accepts_marketing\": true,\n    \"created_at\": null,\n    \"updated_at\": null,\n    \"first_name\": \"Geoff\",\n    \"last_name\": \"Tester 99\",\n    \"orders_count\": 0,\n    \"state\": \"disabled\",\n    \"total_spent\": \"0.00\",\n    \"last_order_id\": null,\n    \"note\": \"This customer loves ice cream\",\n    \"verified_email\": true,\n    \"multipass_identifier\": null,\n    \"tax_exempt\": false,\n    \"phone\": null,\n    \"tags\": \"\",\n    \"last_order_name\": null,\n    \"currency\": \"USD\",\n    \"addresses\": [\n\t\t{\n    \t\t\"id\": 207119551,\n    \t\t\"customer_id\": 6940095564,\n    \t\t\"first_name\": \"Geoff\",\n    \t\t\"last_name\": \"Tester 99\",\n    \t\t\"company\": null,\n    \t\t\"address1\": \"Chestnut Street 92\",\n    \t\t\"address2\": \"Apartment 2\",\n    \t\t\"city\": \"Louisville\",\n    \t\t\"province\": \"Kentucky\",\n    \t\t\"country\": \"United States\",\n    \t\t\"zip\": \"40202\",\n    \t\t\"phone\": \"555-625-1199\",\n    \t\t\"province_code\": \"KY\",\n    \t\t\"country_code\": \"US\",\n    \t\t\"country_name\": \"United States\",\n    \t\t\"default\": true\n\t\t}\n\t],\n    \"accepts_marketing_updated_at\": null,\n    \"marketing_opt_in_level\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{webhook_base}}:50061/api/shopify/webhooks",
+							"host": [
+								"{{webhook_base}}"
+							],
+							"port": "50061",
+							"path": [
+								"api",
+								"shopify",
+								"webhooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customers/enable",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Shopify-Topic",
+								"type": "text",
+								"value": "customers/enable"
+							},
+							{
+								"key": "X-Shopify-Hmac-Sha256",
+								"type": "text",
+								"value": "9M2EGMpg3PCZBc3epNiuoIHyFl7Is2Pjq4i/0ZvF76Q="
+							},
+							{
+								"key": "X-Shopify-Shop-Domain",
+								"type": "text",
+								"value": "soundstrue.com"
+							},
+							{
+								"key": "X-Shopify-API-Version",
+								"type": "text",
+								"value": "2020-01"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 706405506930370000,\n    \"email\": \"geoffs@soundstrue.com\",\n    \"accepts_marketing\": true,\n    \"created_at\": null,\n    \"updated_at\": null,\n    \"first_name\": \"Geoff\",\n    \"last_name\": \"Tester 99\",\n    \"orders_count\": 0,\n    \"state\": \"disabled\",\n    \"total_spent\": \"0.00\",\n    \"last_order_id\": null,\n    \"note\": \"This customer loves ice cream\",\n    \"verified_email\": true,\n    \"multipass_identifier\": null,\n    \"tax_exempt\": false,\n    \"phone\": null,\n    \"tags\": \"\",\n    \"last_order_name\": null,\n    \"currency\": \"USD\",\n    \"addresses\": [\n\t\t{\n    \t\t\"id\": 207119551,\n    \t\t\"customer_id\": 6940095564,\n    \t\t\"first_name\": \"Geoff\",\n    \t\t\"last_name\": \"Tester 99\",\n    \t\t\"company\": null,\n    \t\t\"address1\": \"Chestnut Street 92\",\n    \t\t\"address2\": \"Apartment 2\",\n    \t\t\"city\": \"Louisville\",\n    \t\t\"province\": \"Kentucky\",\n    \t\t\"country\": \"United States\",\n    \t\t\"zip\": \"40202\",\n    \t\t\"phone\": \"555-625-1199\",\n    \t\t\"province_code\": \"KY\",\n    \t\t\"country_code\": \"US\",\n    \t\t\"country_name\": \"United States\",\n    \t\t\"default\": true\n\t\t}\n\t],\n    \"accepts_marketing_updated_at\": null,\n    \"marketing_opt_in_level\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{webhook_base}}:50061/api/shopify/webhooks",
+							"host": [
+								"{{webhook_base}}"
+							],
+							"port": "50061",
+							"path": [
+								"api",
+								"shopify",
+								"webhooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customers/disable",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Shopify-Topic",
+								"type": "text",
+								"value": "customers/disable"
+							},
+							{
+								"key": "X-Shopify-Hmac-Sha256",
+								"type": "text",
+								"value": "9M2EGMpg3PCZBc3epNiuoIHyFl7Is2Pjq4i/0ZvF76Q="
+							},
+							{
+								"key": "X-Shopify-Shop-Domain",
+								"type": "text",
+								"value": "soundstrue.com"
+							},
+							{
+								"key": "X-Shopify-API-Version",
+								"type": "text",
+								"value": "2020-01"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 706405506930370000,\n    \"email\": \"geoffs@soundstrue.com\",\n    \"accepts_marketing\": true,\n    \"created_at\": null,\n    \"updated_at\": null,\n    \"first_name\": \"Geoff\",\n    \"last_name\": \"Tester 99\",\n    \"orders_count\": 0,\n    \"state\": \"disabled\",\n    \"total_spent\": \"0.00\",\n    \"last_order_id\": null,\n    \"note\": \"This customer loves ice cream\",\n    \"verified_email\": true,\n    \"multipass_identifier\": null,\n    \"tax_exempt\": false,\n    \"phone\": null,\n    \"tags\": \"\",\n    \"last_order_name\": null,\n    \"currency\": \"USD\",\n    \"addresses\": [\n\t\t{\n    \t\t\"id\": 207119551,\n    \t\t\"customer_id\": 6940095564,\n    \t\t\"first_name\": \"Geoff\",\n    \t\t\"last_name\": \"Tester 99\",\n    \t\t\"company\": null,\n    \t\t\"address1\": \"Chestnut Street 92\",\n    \t\t\"address2\": \"Apartment 2\",\n    \t\t\"city\": \"Louisville\",\n    \t\t\"province\": \"Kentucky\",\n    \t\t\"country\": \"United States\",\n    \t\t\"zip\": \"40202\",\n    \t\t\"phone\": \"555-625-1199\",\n    \t\t\"province_code\": \"KY\",\n    \t\t\"country_code\": \"US\",\n    \t\t\"country_name\": \"United States\",\n    \t\t\"default\": true\n\t\t}\n\t],\n    \"accepts_marketing_updated_at\": null,\n    \"marketing_opt_in_level\": null\n}"
+						},
+						"url": {
+							"raw": "{{webhook_base}}:50061/api/shopify/webhooks",
+							"host": [
+								"{{webhook_base}}"
+							],
+							"port": "50061",
+							"path": [
+								"api",
+								"shopify",
+								"webhooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "customers/delete (rejected)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Shopify-Topic",
+								"type": "text",
+								"value": "customers/delete"
+							},
+							{
+								"key": "X-Shopify-Hmac-Sha256",
+								"type": "text",
+								"value": "9M2EGMpg3PCZBc3epNiuoIHyFl7Is2Pjq4i/0ZvF76Q="
+							},
+							{
+								"key": "X-Shopify-Shop-Domain",
+								"type": "text",
+								"value": "soundstrue.com"
+							},
+							{
+								"key": "X-Shopify-API-Version",
+								"type": "text",
+								"value": "2020-01"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 706405506930370000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{webhook_base}}:50061/api/shopify/webhooks",
+							"host": [
+								"{{webhook_base}}"
+							],
+							"port": "50061",
+							"path": [
+								"api",
+								"shopify",
+								"webhooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products/create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Shopify-Topic",
+								"type": "text",
+								"value": "products/create"
+							},
+							{
+								"key": "X-Shopify-Hmac-Sha256",
+								"type": "text",
+								"value": "Bx13WXd/jlD9qXo4i9v8x1QyPgdHt7APuyIb6Q8H5Ug="
+							},
+							{
+								"key": "X-Shopify-Shop-Domain",
+								"type": "text",
+								"value": "soundstrue.com"
+							},
+							{
+								"key": "X-Shopify-API-Version",
+								"type": "text",
+								"value": "2020-01"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 788032119674292900,\n    \"title\": \"Example T-Shirt Payment Plan\",\n    \"body_html\": null,\n    \"vendor\": \"Acme\",\n    \"product_type\": \"Shirts\",\n    \"created_at\": null,\n    \"handle\": \"example-t-shirt\",\n    \"updated_at\": null,\n    \"published_at\": \"2020-01-14T10:37:17-05:00\",\n    \"template_suffix\": null,\n    \"published_scope\": \"web\",\n    \"tags\": \"example, mens, t-shirt\",\n    \"variants\": [\n        {\n            \"id\": 642667041472714000,\n            \"product_id\": 788032119674292900,\n            \"title\": \"\",\n            \"price\": \"19.99\",\n            \"sku\": \"example-shirt-s\",\n            \"position\": 0,\n            \"inventory_policy\": \"deny\",\n            \"compare_at_price\": \"24.99\",\n            \"fulfillment_service\": \"manual\",\n            \"inventory_management\": \"shopify\",\n            \"option1\": \"Small\",\n            \"option2\": null,\n            \"option3\": null,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"taxable\": true,\n            \"barcode\": null,\n            \"grams\": 200,\n            \"image_id\": null,\n            \"weight\": 200,\n            \"weight_unit\": \"g\",\n            \"inventory_item_id\": null,\n            \"inventory_quantity\": 75,\n            \"old_inventory_quantity\": 75,\n            \"requires_shipping\": true\n        },\n        {\n            \"id\": 757650484644203900,\n            \"product_id\": 788032119674292900,\n            \"title\": \"\",\n            \"price\": \"19.99\",\n            \"sku\": \"example-shirt-m\",\n            \"position\": 0,\n            \"inventory_policy\": \"deny\",\n            \"compare_at_price\": \"24.99\",\n            \"fulfillment_service\": \"manual\",\n            \"inventory_management\": \"shopify\",\n            \"option1\": \"Medium\",\n            \"option2\": null,\n            \"option3\": null,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"taxable\": true,\n            \"barcode\": null,\n            \"grams\": 200,\n            \"image_id\": null,\n            \"weight\": 200,\n            \"weight_unit\": \"g\",\n            \"inventory_item_id\": null,\n            \"inventory_quantity\": 50,\n            \"old_inventory_quantity\": 50,\n            \"requires_shipping\": true\n        }\n    ],\n    \"options\": [\n        {\n            \"id\": 527050010214937800,\n            \"product_id\": 788032119674292900,\n            \"name\": \"Title\",\n            \"position\": 1,\n            \"values\": [\n                \"Small\",\n                \"Medium\"\n            ]\n        }\n    ],\n    \"images\": [\n        {\n            \"id\": 539438707724640960,\n            \"product_id\": 788032119674292900,\n            \"position\": 0,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"alt\": null,\n            \"width\": 323,\n            \"height\": 434,\n            \"src\": \"//cdn.shopify.com/s/assets/shopify_shirt-39bb555874ecaeed0a1170417d58bbcf792f7ceb56acfe758384f788710ba635.png\",\n            \"variant_ids\": []\n        }\n    ],\n    \"image\": null\n}"
+						},
+						"url": {
+							"raw": "{{webhook_base}}:50061/api/shopify/webhooks",
+							"host": [
+								"{{webhook_base}}"
+							],
+							"port": "50061",
+							"path": [
+								"api",
+								"shopify",
+								"webhooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products/update",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Shopify-Topic",
+								"type": "text",
+								"value": "products/update"
+							},
+							{
+								"key": "X-Shopify-Hmac-Sha256",
+								"type": "text",
+								"value": "BPwKELNHU9NBOs3EZuOMzEHTB9/NmOyY7FR7bmLYe2U="
+							},
+							{
+								"key": "X-Shopify-Shop-Domain",
+								"type": "text",
+								"value": "soundstrue.com"
+							},
+							{
+								"key": "X-Shopify-API-Version",
+								"type": "text",
+								"value": "2020-01"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 788032119674292900,\n    \"title\": \"Example T-Shirt\",\n    \"body_html\": null,\n    \"vendor\": \"Acme\",\n    \"product_type\": \"Shirts\",\n    \"created_at\": null,\n    \"handle\": \"example-t-shirt\",\n    \"updated_at\": null,\n    \"published_at\": \"2020-01-14T10:37:17-05:00\",\n    \"template_suffix\": null,\n    \"published_scope\": \"web\",\n    \"tags\": \"example, mens, t-shirt\",\n    \"variants\": [\n        {\n            \"id\": 642667041472714000,\n            \"product_id\": 788032119674292900,\n            \"title\": \"\",\n            \"price\": \"19.99\",\n            \"sku\": \"example-shirt-s\",\n            \"position\": 0,\n            \"inventory_policy\": \"deny\",\n            \"compare_at_price\": \"24.99\",\n            \"fulfillment_service\": \"manual\",\n            \"inventory_management\": \"shopify\",\n            \"option1\": \"Small\",\n            \"option2\": null,\n            \"option3\": null,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"taxable\": true,\n            \"barcode\": null,\n            \"grams\": 200,\n            \"image_id\": null,\n            \"weight\": 200,\n            \"weight_unit\": \"g\",\n            \"inventory_item_id\": null,\n            \"inventory_quantity\": 75,\n            \"old_inventory_quantity\": 75,\n            \"requires_shipping\": true\n        },\n        {\n            \"id\": 757650484644203900,\n            \"product_id\": 788032119674292900,\n            \"title\": \"\",\n            \"price\": \"19.99\",\n            \"sku\": \"example-shirt-m\",\n            \"position\": 0,\n            \"inventory_policy\": \"deny\",\n            \"compare_at_price\": \"24.99\",\n            \"fulfillment_service\": \"manual\",\n            \"inventory_management\": \"shopify\",\n            \"option1\": \"Medium\",\n            \"option2\": null,\n            \"option3\": null,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"taxable\": true,\n            \"barcode\": null,\n            \"grams\": 200,\n            \"image_id\": null,\n            \"weight\": 200,\n            \"weight_unit\": \"g\",\n            \"inventory_item_id\": null,\n            \"inventory_quantity\": 50,\n            \"old_inventory_quantity\": 50,\n            \"requires_shipping\": true\n        }\n    ],\n    \"options\": [\n        {\n            \"id\": 527050010214937800,\n            \"product_id\": 788032119674292900,\n            \"name\": \"Title\",\n            \"position\": 1,\n            \"values\": [\n                \"Small\",\n                \"Medium\"\n            ]\n        }\n    ],\n    \"images\": [\n        {\n            \"id\": 539438707724640960,\n            \"product_id\": 788032119674292900,\n            \"position\": 0,\n            \"created_at\": null,\n            \"updated_at\": null,\n            \"alt\": null,\n            \"width\": 323,\n            \"height\": 434,\n            \"src\": \"//cdn.shopify.com/s/assets/shopify_shirt-39bb555874ecaeed0a1170417d58bbcf792f7ceb56acfe758384f788710ba635.png\",\n            \"variant_ids\": []\n        }\n    ],\n    \"image\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{webhook_base}}:50061/api/shopify/webhooks",
+							"host": [
+								"{{webhook_base}}"
+							],
+							"port": "50061",
+							"path": [
+								"api",
+								"shopify",
+								"webhooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products/delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Shopify-Topic",
+								"type": "text",
+								"value": "products/delete"
+							},
+							{
+								"key": "X-Shopify-Hmac-Sha256",
+								"type": "text",
+								"value": "yhZKapUCoskiCSOywFNKcVNnCYPT0NvtbB9zseH0E+M="
+							},
+							{
+								"key": "X-Shopify-Shop-Domain",
+								"type": "text",
+								"value": "soundstrue.com"
+							},
+							{
+								"key": "X-Shopify-API-Version",
+								"type": "text",
+								"value": "2020-01"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 706405506930370000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{webhook_base}}:50061/api/shopify/webhooks",
+							"host": [
+								"{{webhook_base}}"
+							],
+							"port": "50061",
+							"path": [
+								"api",
+								"shopify",
+								"webhooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "orders/paid",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Shopify-Topic",
+								"type": "text",
+								"value": "orders/paid"
+							},
+							{
+								"key": "X-Shopify-Hmac-Sha256",
+								"type": "text",
+								"value": "6LOCzW6RoozAWJ7Gb9QJd3XK9JCnUC2v4gvZXXKSTFc="
+							},
+							{
+								"key": "X-Shopify-Shop-Domain",
+								"type": "text",
+								"value": "soundstrue.com"
+							},
+							{
+								"key": "X-Shopify-API-Version",
+								"type": "text",
+								"value": "2020-01"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 820982911946154508,\n\t\"email\": \"geoffs@soundstrue.com\",\n\t\"closed_at\": null,\n\t\"created_at\": \"2020-01-14T10:37:17-05:00\",\n\t\"updated_at\": \"2020-01-14T10:37:17-05:00\",\n\t\"number\": 234,\n\t\"note\": null,\n\t\"token\": \"123456abcd\",\n\t\"gateway\": null,\n\t\"test\": true,\n\t\"total_price\": \"403.00\",\n\t\"subtotal_price\": \"393.00\",\n\t\"total_weight\": 0,\n\t\"total_tax\": \"0.00\",\n\t\"taxes_included\": false,\n\t\"currency\": \"USD\",\n\t\"financial_status\": \"voided\",\n\t\"confirmed\": false,\n\t\"total_discounts\": \"5.00\",\n\t\"total_line_items_price\": \"398.00\",\n\t\"cart_token\": null,\n\t\"buyer_accepts_marketing\": true,\n\t\"name\": \"#9999\",\n\t\"referring_site\": null,\n\t\"landing_site\": null,\n\t\"cancelled_at\": \"2020-01-14T10:37:17-05:00\",\n\t\"cancel_reason\": \"customer\",\n\t\"total_price_usd\": null,\n\t\"checkout_token\": null,\n\t\"reference\": null,\n\t\"user_id\": null,\n\t\"location_id\": null,\n\t\"source_identifier\": null,\n\t\"source_url\": null,\n\t\"processed_at\": null,\n\t\"device_id\": null,\n\t\"phone\": null,\n\t\"customer_locale\": \"en\",\n\t\"app_id\": null,\n\t\"browser_ip\": null,\n\t\"landing_site_ref\": null,\n\t\"order_number\": 1234,\n\t\"discount_applications\": [\n\t\t{\n\t\t\t\"type\": \"manual\",\n\t\t\t\"value\": \"5.0\",\n\t\t\t\"value_type\": \"fixed_amount\",\n\t\t\t\"allocation_method\": \"one\",\n\t\t\t\"target_selection\": \"explicit\",\n\t\t\t\"target_type\": \"line_item\",\n\t\t\t\"description\": \"Discount\",\n\t\t\t\"title\": \"Discount\"\n\t\t}\n\t],\n\t\"discount_codes\": [],\n\t\"note_attributes\": [],\n\t\"payment_gateway_names\": [\n\t\t\"visa\",\n\t\t\"bogus\"\n\t],\n\t\"processing_method\": \"\",\n\t\"checkout_id\": null,\n\t\"source_name\": \"web\",\n\t\"fulfillment_status\": \"pending\",\n\t\"tax_lines\": [],\n\t\"tags\": \"\",\n\t\"contact_email\": \"geoffs@soundstrue.com\",\n\t\"order_status_url\": \"https:\\/\\/apple.myshopify.com\\/690933842\\/orders\\/123456abcd\\/authenticate?key=abcdefg\",\n\t\"presentment_currency\": \"USD\",\n\t\"total_line_items_price_set\": {\n\t\t\"shop_money\": {\n\t\t\t\"amount\": \"398.00\",\n\t\t\t\"currency_code\": \"USD\"\n\t\t},\n\t\t\"presentment_money\": {\n\t\t\t\"amount\": \"398.00\",\n\t\t\t\"currency_code\": \"USD\"\n\t\t}\n\t},\n\t\"total_discounts_set\": {\n\t\t\"shop_money\": {\n\t\t\t\"amount\": \"5.00\",\n\t\t\t\"currency_code\": \"USD\"\n\t\t},\n\t\t\"presentment_money\": {\n\t\t\t\"amount\": \"5.00\",\n\t\t\t\"currency_code\": \"USD\"\n\t\t}\n\t},\n\t\"total_shipping_price_set\": {\n\t\t\"shop_money\": {\n\t\t\t\"amount\": \"10.00\",\n\t\t\t\"currency_code\": \"USD\"\n\t\t},\n\t\t\"presentment_money\": {\n\t\t\t\"amount\": \"10.00\",\n\t\t\t\"currency_code\": \"USD\"\n\t\t}\n\t},\n\t\"subtotal_price_set\": {\n\t\t\"shop_money\": {\n\t\t\t\"amount\": \"393.00\",\n\t\t\t\"currency_code\": \"USD\"\n\t\t},\n\t\t\"presentment_money\": {\n\t\t\t\"amount\": \"393.00\",\n\t\t\t\"currency_code\": \"USD\"\n\t\t}\n\t},\n\t\"total_price_set\": {\n\t\t\"shop_money\": {\n\t\t\t\"amount\": \"403.00\",\n\t\t\t\"currency_code\": \"USD\"\n\t\t},\n\t\t\"presentment_money\": {\n\t\t\t\"amount\": \"403.00\",\n\t\t\t\"currency_code\": \"USD\"\n\t\t}\n\t},\n\t\"total_tax_set\": {\n\t\t\"shop_money\": {\n\t\t\t\"amount\": \"0.00\",\n\t\t\t\"currency_code\": \"USD\"\n\t\t},\n\t\t\"presentment_money\": {\n\t\t\t\"amount\": \"0.00\",\n\t\t\t\"currency_code\": \"USD\"\n\t\t}\n\t},\n\t\"shipping_lines\": [\n\t\t{\n\t\t\t\"id\": 271878346596884015,\n\t\t\t\"title\": \"Generic Shipping\",\n\t\t\t\"price\": \"10.00\",\n\t\t\t\"code\": null,\n\t\t\t\"source\": \"shopify\",\n\t\t\t\"phone\": null,\n\t\t\t\"requested_fulfillment_service_id\": null,\n\t\t\t\"delivery_category\": null,\n\t\t\t\"carrier_identifier\": null,\n\t\t\t\"discounted_price\": \"10.00\",\n\t\t\t\"price_set\": {\n\t\t\t\t\"shop_money\": {\n\t\t\t\t\t\"amount\": \"10.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t},\n\t\t\t\t\"presentment_money\": {\n\t\t\t\t\t\"amount\": \"10.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"discounted_price_set\": {\n\t\t\t\t\"shop_money\": {\n\t\t\t\t\t\"amount\": \"10.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t},\n\t\t\t\t\"presentment_money\": {\n\t\t\t\t\t\"amount\": \"10.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"discount_allocations\": [],\n\t\t\t\"tax_lines\": []\n\t\t}\n\t],\n\t\"billing_address\": {\n\t\t\"first_name\": \"Bob\",\n\t\t\"address1\": \"123 Billing Street\",\n\t\t\"phone\": \"555-555-BILL\",\n\t\t\"city\": \"Billtown\",\n\t\t\"zip\": \"K2P0B0\",\n\t\t\"province\": \"Kentucky\",\n\t\t\"country\": \"United States\",\n\t\t\"last_name\": \"Biller\",\n\t\t\"address2\": null,\n\t\t\"company\": \"My Company\",\n\t\t\"latitude\": null,\n\t\t\"longitude\": null,\n\t\t\"name\": \"Bob Biller\",\n\t\t\"country_code\": \"US\",\n\t\t\"province_code\": \"KY\"\n\t},\n\t\"shipping_address\": {\n\t\t\"first_name\": \"Steve\",\n\t\t\"address1\": \"123 Shipping Street\",\n\t\t\"phone\": \"555-555-SHIP\",\n\t\t\"city\": \"Shippington\",\n\t\t\"zip\": \"40003\",\n\t\t\"province\": \"Kentucky\",\n\t\t\"country\": \"United States\",\n\t\t\"last_name\": \"Shipper\",\n\t\t\"address2\": null,\n\t\t\"company\": \"Shipping Company\",\n\t\t\"latitude\": null,\n\t\t\"longitude\": null,\n\t\t\"name\": \"Steve Shipper\",\n\t\t\"country_code\": \"US\",\n\t\t\"province_code\": \"KY\"\n\t},\n\t\"customer\": {\n\t\t\"id\": 2757111382115,\n\t\t\"email\": \"geoffs@soundstrue.com\",\n\t\t\"accepts_marketing\": false,\n\t\t\"created_at\": null,\n\t\t\"updated_at\": null,\n\t\t\"first_name\": \"John\",\n\t\t\"last_name\": \"Smith\",\n\t\t\"orders_count\": 0,\n\t\t\"state\": \"disabled\",\n\t\t\"total_spent\": \"0.00\",\n\t\t\"last_order_id\": null,\n\t\t\"note\": null,\n\t\t\"verified_email\": true,\n\t\t\"multipass_identifier\": null,\n\t\t\"tax_exempt\": false,\n\t\t\"phone\": null,\n\t\t\"tags\": \"\",\n\t\t\"last_order_name\": null,\n\t\t\"currency\": \"USD\",\n\t\t\"accepts_marketing_updated_at\": null,\n\t\t\"marketing_opt_in_level\": null,\n\t\t\"default_address\": {\n\t\t\t\"id\": 715243470612851245,\n\t\t\t\"customer_id\": 2757111382115,\n\t\t\t\"first_name\": null,\n\t\t\t\"last_name\": null,\n\t\t\t\"company\": null,\n\t\t\t\"address1\": \"123 Elm St.\",\n\t\t\t\"address2\": null,\n\t\t\t\"city\": \"Ottawa\",\n\t\t\t\"province\": \"Ontario\",\n\t\t\t\"country\": \"Canada\",\n\t\t\t\"zip\": \"K2H7A8\",\n\t\t\t\"phone\": \"123-123-1234\",\n\t\t\t\"name\": \"\",\n\t\t\t\"province_code\": \"ON\",\n\t\t\t\"country_code\": \"CA\",\n\t\t\t\"country_name\": \"Canada\",\n\t\t\t\"default\": true\n\t\t}\n\t},\n\t\"line_items\": [\n\t\t{\n\t\t\t\"id\": 866550311766439020,\n\t\t\t\"variant_id\": 808950810,\n\t\t\t\"title\": \"IPod Nano - 8GB\",\n\t\t\t\"quantity\": 1,\n\t\t\t\"sku\": \"IPOD2008PINK\",\n\t\t\t\"variant_title\": null,\n\t\t\t\"vendor\": null,\n\t\t\t\"fulfillment_service\": \"manual\",\n\t\t\t\"product_id\": 632910392,\n\t\t\t\"requires_shipping\": true,\n\t\t\t\"taxable\": true,\n\t\t\t\"gift_card\": false,\n\t\t\t\"name\": \"IPod Nano - 8GB\",\n\t\t\t\"variant_inventory_management\": \"shopify\",\n\t\t\t\"properties\": [],\n\t\t\t\"product_exists\": true,\n\t\t\t\"fulfillable_quantity\": 1,\n\t\t\t\"grams\": 567,\n\t\t\t\"price\": \"199.00\",\n\t\t\t\"total_discount\": \"0.00\",\n\t\t\t\"fulfillment_status\": null,\n\t\t\t\"price_set\": {\n\t\t\t\t\"shop_money\": {\n\t\t\t\t\t\"amount\": \"199.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t},\n\t\t\t\t\"presentment_money\": {\n\t\t\t\t\t\"amount\": \"199.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"total_discount_set\": {\n\t\t\t\t\"shop_money\": {\n\t\t\t\t\t\"amount\": \"0.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t},\n\t\t\t\t\"presentment_money\": {\n\t\t\t\t\t\"amount\": \"0.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"discount_allocations\": [],\n\t\t\t\"tax_lines\": []\n\t\t},\n\t\t{\n\t\t\t\"id\": 141249953214522974,\n\t\t\t\"variant_id\": 808950810,\n\t\t\t\"title\": \"IPod Nano - 8GB\",\n\t\t\t\"quantity\": 1,\n\t\t\t\"sku\": \"IPOD2008PINK\",\n\t\t\t\"variant_title\": null,\n\t\t\t\"vendor\": null,\n\t\t\t\"fulfillment_service\": \"manual\",\n\t\t\t\"product_id\": 632910392,\n\t\t\t\"requires_shipping\": true,\n\t\t\t\"taxable\": true,\n\t\t\t\"gift_card\": false,\n\t\t\t\"name\": \"IPod Nano - 8GB\",\n\t\t\t\"variant_inventory_management\": \"shopify\",\n\t\t\t\"properties\": [],\n\t\t\t\"product_exists\": true,\n\t\t\t\"fulfillable_quantity\": 1,\n\t\t\t\"grams\": 567,\n\t\t\t\"price\": \"199.00\",\n\t\t\t\"total_discount\": \"5.00\",\n\t\t\t\"fulfillment_status\": null,\n\t\t\t\"price_set\": {\n\t\t\t\t\"shop_money\": {\n\t\t\t\t\t\"amount\": \"199.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t},\n\t\t\t\t\"presentment_money\": {\n\t\t\t\t\t\"amount\": \"199.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"total_discount_set\": {\n\t\t\t\t\"shop_money\": {\n\t\t\t\t\t\"amount\": \"5.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t},\n\t\t\t\t\"presentment_money\": {\n\t\t\t\t\t\"amount\": \"5.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"discount_allocations\": [\n\t\t\t\t{\n\t\t\t\t\t\"amount\": \"5.00\",\n\t\t\t\t\t\"discount_application_index\": 0,\n\t\t\t\t\t\"amount_set\": {\n\t\t\t\t\t\t\"shop_money\": {\n\t\t\t\t\t\t\t\"amount\": \"5.00\",\n\t\t\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"presentment_money\": {\n\t\t\t\t\t\t\t\"amount\": \"5.00\",\n\t\t\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"tax_lines\": []\n\t\t}\n\t],\n\t\"fulfillments\": [],\n\t\"refunds\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{webhook_base}}:50061/api/shopify/webhooks",
+							"host": [
+								"{{webhook_base}}"
+							],
+							"port": "50061",
+							"path": [
+								"api",
+								"shopify",
+								"webhooks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refunds/create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Shopify-Topic",
+								"type": "text",
+								"value": "refunds/create"
+							},
+							{
+								"key": "X-Shopify-Hmac-Sha256",
+								"type": "text",
+								"value": "wGdEPvzCTkSoJb6Xx8oZ4QHXZMDs7poJQyIEHdggXP8="
+							},
+							{
+								"key": "X-Shopify-Shop-Domain",
+								"type": "text",
+								"value": "soundstrue.com"
+							},
+							{
+								"key": "X-Shopify-API-Version",
+								"type": "text",
+								"value": "2020-01"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\": 890088186047892319,\n\t\"order_id\": 820982911946154508,\n\t\"created_at\": null,\n\t\"note\": \"Things were damaged\",\n\t\"user_id\": 2757111382115,\n\t\"processed_at\": null,\n\t\"restock\": false,\n\t\"refund_line_items\": [\n\t\t{\n\t\t\t\"id\": 866550311766439093,\n\t\t\t\"quantity\": 1,\n\t\t\t\"line_item_id\": 866550311766439020,\n\t\t\t\"location_id\": null,\n\t\t\t\"restock_type\": \"no_restock\",\n\t\t\t\"subtotal\": 199.0,\n\t\t\t\"total_tax\": 0.0,\n\t\t\t\"subtotal_set\": {\n\t\t\t\t\"shop_money\": {\n\t\t\t\t\t\"amount\": \"199.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t},\n\t\t\t\t\"presentment_money\": {\n\t\t\t\t\t\"amount\": \"199.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"total_tax_set\": {\n\t\t\t\t\"shop_money\": {\n\t\t\t\t\t\"amount\": \"0.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t},\n\t\t\t\t\"presentment_money\": {\n\t\t\t\t\t\"amount\": \"0.00\",\n\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"line_item\": {\n\t\t\t\t\"id\": 866550311766439020,\n\t\t\t\t\"variant_id\": 32449622507619,\n\t\t\t\t\"title\": \"The Power of Self-Compassion - Online Learning\",\n\t\t\t\t\"quantity\": 1,\n\t\t\t\t\"sku\": \"WC05064Y\",\n\t\t\t\t\"variant_title\": null,\n\t\t\t\t\"vendor\": null,\n\t\t\t\t\"fulfillment_service\": \"manual\",\n\t\t\t\t\"product_id\": 4504709726307,\n\t\t\t\t\"requires_shipping\": false,\n\t\t\t\t\"taxable\": true,\n\t\t\t\t\"gift_card\": false,\n\t\t\t\t\"name\": \"The Power of Self-Compassion - Online Learning\",\n\t\t\t\t\"variant_inventory_management\": \"shopify\",\n\t\t\t\t\"properties\": [],\n\t\t\t\t\"product_exists\": true,\n\t\t\t\t\"fulfillable_quantity\": 1,\n\t\t\t\t\"grams\": 1,\n\t\t\t\t\"price\": \"199.00\",\n\t\t\t\t\"total_discount\": \"0.00\",\n\t\t\t\t\"fulfillment_status\": null,\n\t\t\t\t\"price_set\": {\n\t\t\t\t\t\"shop_money\": {\n\t\t\t\t\t\t\"amount\": \"199.00\",\n\t\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t\t},\n\t\t\t\t\t\"presentment_money\": {\n\t\t\t\t\t\t\"amount\": \"199.00\",\n\t\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"total_discount_set\": {\n\t\t\t\t\t\"shop_money\": {\n\t\t\t\t\t\t\"amount\": \"0.00\",\n\t\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t\t},\n\t\t\t\t\t\"presentment_money\": {\n\t\t\t\t\t\t\"amount\": \"0.00\",\n\t\t\t\t\t\t\"currency_code\": \"USD\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"discount_allocations\": [],\n\t\t\t\t\"tax_lines\": []\n\t\t\t}\n\t\t}\n\t],\n\t\"transactions\": [],\n\t\"order_adjustments\": []\n}"
+						},
+						"url": {
+							"raw": "{{webhook_base}}:50061/api/shopify/webhooks",
+							"host": [
+								"{{webhook_base}}"
+							],
+							"port": "50061",
+							"path": [
+								"api",
+								"shopify",
+								"webhooks"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			}
+		},
+		{
+			"name": "Status Service",
+			"item": [
+				{
+					"name": "GetStatus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/userstatus/geoffs@soundstrue.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userstatus",
+								"geoffs@soundstrue.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FixShopifyUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"geoffs@soundstrue.com\",\n    \"error_code\": \"SHOPIFY_USER_NOT_FOUNDZZZ\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/userstatus/fix/shopify",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userstatus",
+								"fix",
+								"shopify"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FixCognitoUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"geoffs+99@soundstrue.com\",\n    \"error_code\": \"COGNITO_USER_NOT_FOUND\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/userstatus/fix/cognito",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userstatus",
+								"fix",
+								"cognito"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FixCHUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"geoffs+99@soundstrue.com\",\n    \"error_code\": \"CH_USER_SHOPIFY_ID_MISMATCH\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/userstatus/fix/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userstatus",
+								"fix",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FixCHProdAssociations",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"geoffs+99@soundstrue.com\",\n    \"error_code\": \"CH_USERPROD_ASSOC_MISSING\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/userstatus/fix/userproduct",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userstatus",
+								"fix",
+								"userproduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FixCHCacheTable",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"geoffs+99@soundstrue.com\",\n    \"error_code\": \"AWS_UUID_MAP_USER_INFO_MISMATCH\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/userstatus/fix/cache",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userstatus",
+								"fix",
+								"cache"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Thinkific Service",
+			"item": [
+				{
+					"name": "Enroll",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\",\n\t\"sku\": \"WC04518Y\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/thinkific/enroll",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"thinkific",
+								"enroll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Unenroll",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\",\n\t\"sku\": \"AP05046\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/thinkific/unenroll",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"thinkific",
+								"unenroll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GenerateSSOURL",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\",\n\t\"first_name\": \"Geoff\",\n\t\"last_name\": \"Tester\",\n\t\"sku\": \"SEV1BUND1\",\n\t\"course_id\": \"573677\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/thinkific/sso",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"thinkific",
+								"sso"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateThinkificEmail",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"new_email\": \"geoffs+adminui15@soundstrue.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/thinkific/email/geoffs@soundtrue.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"thinkific",
+								"email",
+								"geoffs@soundtrue.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBundleInfo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/thinkific/bundle/30745",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"thinkific",
+								"bundle",
+								"30745"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BundleEnroll",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"thinkific_user_id\": \"20164455\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/thinkific/bundle/30745/enroll",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"thinkific",
+								"bundle",
+								"30745",
+								"enroll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BundleUnenroll",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"geoffs@soundstrue.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/thinkific/bundle/30745/unenroll",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"thinkific",
+								"bundle",
+								"30745",
+								"unenroll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thinkific Cipher Test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://tlstest.thinkific.com",
+							"protocol": "https",
+							"host": [
+								"tlstest",
+								"thinkific",
+								"com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Thinkific Webhooks (UNFINISHED)",
+			"item": [
+				{
+					"name": "enrollment.completed",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Thinkific-Topic",
+								"type": "text",
+								"value": "enrollment.completed"
+							},
+							{
+								"key": "X-Thinkific-Hmac-Sha256",
+								"type": "text",
+								"value": "qApqUZqXsxl+ndPyWGBRr0oQ/HF+QtJ6/alWD+WCD0k="
+							},
+							{
+								"key": "X-Shopify-Subdomain",
+								"type": "text",
+								"value": "soundstrue"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"20180126171947527620204\",\n  \"resource\": \"enrollment\",\n  \"action\": \"completed\",\n  \"tenant_id\": \"3\",\n  \"tenant_global_id\": \"09b66093-fc51-409d-af42-4c40d5a0f529\",\n  \"created_at\": \"2018-01-26T22:19:47.432Z\",\n  \"payload\": {\n    \"activated_at\": \"2018-01-26T22:19:26.972Z\",\n    \"completed_at\": \"2018-01-26T22:19:47.308Z\",\n    \"course\": {\n      \"id\": 3891,\n      \"name\": \"Introduction to Webhooks\"\n    },\n    \"course_id\": 3891,\n    \"created_at\": \"2018-01-26T22:19:26.995Z\",\n    \"expiry_date\": null,\n    \"free_trial\": false,\n    \"id\": 97473,\n    \"percentage_completed\": \"1.0\",\n    \"started_at\": \"2018-01-26T22:19:29.025Z\",\n    \"updated_at\": \"2018-01-26T22:19:47.432Z\",\n    \"user\": {\n      \"email\": \"ninjas@thinkific.com\",\n      \"first_name\": \"Robert\",\n      \"id\": 123456,\n      \"last_name\": \"Smith\"\n    }\n  }\n}"
+						},
+						"url": {
+							"raw": "{{webhook_base}}:50065/api/thinkific/webhooks",
+							"host": [
+								"{{webhook_base}}"
+							],
+							"port": "50065",
+							"path": [
+								"api",
+								"thinkific",
+								"webhooks"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "User Service",
+			"item": [
+				{
+					"name": "UserAddresses",
+					"item": [
+						{
+							"name": "AddAddress",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"address_id\": \"1234567890\",\n\t\"address\": {\n        \"input_from\": \"PLATFORM_DIGITAL_LIBRARY\",\n        \"company\": \"\",\n        \"address1\": \"1000 PDL Ave\",\n        \"city\": \"New York\",\n        \"country\": \"United States\",\n        \"country_iso_2\": \"US\",\n        \"postal_code\": \"10003\",\n        \"region\": \"New York\",\n        \"region_code\": \"NY\",\n        \"default\": \"false\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/johndoe@example.com/address",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"johndoe@example.com",
+										"address"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetDefaultAddress",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/user/johndoe@example.com/address/default",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"johndoe@example.com",
+										"address",
+										"default"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateAddress",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"address\": {\n        \"company\": \"S1T\",\n        \"address2\": \"Apt. 4A\"\n    }\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/johndoe@example.com/address/1234567890",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"johndoe@example.com",
+										"address",
+										"1234567890"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteAddress",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/user/johndoe@example.com/address/1234567890",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"johndoe@example.com",
+										"address",
+										"1234567890"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ListAddresses",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/user/johndoe@example.com/address",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"johndoe@example.com",
+										"address"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UserOrganization",
+					"item": [
+						{
+							"name": "AddOrganization",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"organization\": {\n\t\t\"101\": \"Another Org\"\t\n\t}\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/johndoe@example.com/organization",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"johndoe@example.com",
+										"organization"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteOrganization",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/user/johndoe@example.com/organization/101",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"johndoe@example.com",
+										"organization",
+										"101"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ListOrganizations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/user/johndoe@example.com/organization",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"johndoe@example.com",
+										"organization"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UserPlatform",
+					"item": [
+						{
+							"name": "AddPlatform",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"platform_name\": \"PLATFORM_OCEP\",\n\t\"platform\": {\n                \"platform_user_id\": 56789123540,\n                \"active\": \"true\",\n                \"api_key\": \"2CA7DFA6-74EB-4096-B68A-7C398E827AC6\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/johndoe@example.com/platform",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"johndoe@example.com",
+										"platform"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetPlatform",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/user/johndoe@example.com/platform/PLATFORM_OCEP",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"johndoe@example.com",
+										"platform",
+										"PLATFORM_OCEP"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdatePlatform",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"platform\": {\n        \"active\": \"false\"\n\t}\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/user/johndoe@example.com/platform/PLATFORM_OCEP",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"johndoe@example.com",
+										"platform",
+										"PLATFORM_OCEP"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeletePlatform",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/user/johndoe@example.com/platform/PLATFORM_OCEP",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"johndoe@example.com",
+										"platform",
+										"PLATFORM_OCEP"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ListPlatforms",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/user/johndoe@example.com/platform",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"johndoe@example.com",
+										"platform"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"email\": \"geoffs@soundstrue.com\",\n        \"first_name\": \"Geoff\",\n        \"last_name\": \"Tester\",\n        \"name\": \"Geoff Tester\",\n        \"verified_email\": true,\n        \"phone\": \"111-111-1111\",\n        \"addresses\": {\n            \"207119551\": {\n                \"input_from\": \"PLATFORM_SHOPIFY\",\n                \"company\": \"Sounds True\",\n                \"address1\": \"413 S Arthur Ave\",\n                \"city\": \"Louisville\",\n                \"postal_code\": \"80027\",\n                \"region\": \"Colorado\",\n                \"region_code\": \"CO\",\n                \"country\": \"United States\",\n                \"country_iso_2\": \"US\",\n                \"default\": false\n            },\n            \"207119552\": {\n                \"input_from\": \"PLATFORM_SHOPIFY\",\n                \"company\": \"\",\n                \"address1\": \"123 Main St\",\n                \"address2\": \"Apt. 4\",\n                \"city\": \"New York\",\n                \"postal_code\": \"10002\",\n                \"region\": \"New York\",\n                \"region_code\": \"NY\",\n                \"country\": \"United States\",\n                \"country_iso_2\": \"US\",\n                \"default\": true\n            }\n        },\n        \"state\": \"USER_ENABLED\",\n        \"note\": \"This customer is loyal\",\n        \"registered_from\": \"REGISTRATION_SHOPIFY\",\n        \"platforms\": {\n        \t\"PLATFORM_SHOPIFY\": {\n                \"platform_user_id\": 9876543210,\n                \"active\": \"true\"\n            },\n            \"PLATFORM_DIGITAL_LIBRARY\": {\n                \"platform_user_id\": 123456789,\n                \"active\": \"true\",\n                \"api_key\": \"D437B971-178B-4E37-974F-FA0C6808900A\",\n                \"preferences\": {\n                    \"download_wifi_only\": false,\n                    \"ui_theme\": \"sometheme\",\n                    \"video_quality\": \"high\",\n                    \"audio_quality\": \"medium\"\n                }\n            }\n        },\n        \"organizations\": {\n        \t\"1\": \"US Senate\",\n        \t\"2\": \"S1T Test\"\n        },\n        \"multipass_token\": \"sVSwcIWAz_DKCEKWVqtzUxn5ZO3tj_DsORtNKG56soNs5mk5tIStJqIBwobSd6DQzBBj7Q9pZWDmiVHLBwWbPq8d3bcfrMF8uk_rapZGlMUF4Hhed-Iwq2d5y2i1Vl5VU3lHKmVtZJro52yXEboYxjTCZoBnM5d959k_A4LeWS6G6xHLmMzMNTnuN1v8QSU8z-V7QDY8AL6WYGLT_n8Pyg==\",\n        \"accepts_marketing\": \"true\",\n        \"accepts_marketing_updated_at\": \"2019-06-10 00:00:00\",\n        \"marketing_opt_in_level\": \"MARKETING_UNKNOWN\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create CS",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": {\n        \"email\": \"geoffs@soundstrue.com\",\n        \"first_name\": \"Geoff\",\n        \"last_name\": \"Tester\",\n        \"name\": \"Geoff Tester\",\n        \"verified_email\": true,\n        \"phone\": \"111-111-1111\",\n        \"addresses\": {\n            \"207119551\": {\n                \"input_from\": \"PLATFORM_SHOPIFY\",\n                \"company\": \"Sounds True\",\n                \"address1\": \"413 S Arthur Ave\",\n                \"city\": \"Louisville\",\n                \"postal_code\": \"80027\",\n                \"region\": \"Colorado\",\n                \"region_code\": \"CO\",\n                \"country\": \"United States\",\n                \"country_iso_2\": \"US\",\n                \"default\": false\n            },\n            \"207119552\": {\n                \"input_from\": \"PLATFORM_SHOPIFY\",\n                \"company\": \"\",\n                \"address1\": \"123 Main St\",\n                \"address2\": \"Apt. 4\",\n                \"city\": \"New York\",\n                \"postal_code\": \"10002\",\n                \"region\": \"New York\",\n                \"region_code\": \"NY\",\n                \"country\": \"United States\",\n                \"country_iso_2\": \"US\",\n                \"default\": true\n            }\n        },\n        \"state\": \"USER_ENABLED\",\n        \"note\": \"This customer is loyal\",\n        \"registered_from\": \"REGISTRATION_SHOPIFY\",\n        \"platforms\": {\n        \t\"PLATFORM_SHOPIFY\": {\n                \"platform_user_id\": 9876543210,\n                \"active\": \"true\"\n            },\n            \"PLATFORM_DIGITAL_LIBRARY\": {\n                \"platform_user_id\": 123456789,\n                \"active\": \"true\",\n                \"api_key\": \"D437B971-178B-4E37-974F-FA0C6808900A\",\n                \"preferences\": {\n                    \"download_wifi_only\": false,\n                    \"ui_theme\": \"sometheme\",\n                    \"video_quality\": \"high\",\n                    \"audio_quality\": \"medium\"\n                }\n            }\n        },\n        \"organizations\": {\n        \t\"1\": \"US Senate\",\n        \t\"2\": \"S1T Test\"\n        },\n        \"multipass_token\": \"sVSwcIWAz_DKCEKWVqtzUxn5ZO3tj_DsORtNKG56soNs5mk5tIStJqIBwobSd6DQzBBj7Q9pZWDmiVHLBwWbPq8d3bcfrMF8uk_rapZGlMUF4Hhed-Iwq2d5y2i1Vl5VU3lHKmVtZJro52yXEboYxjTCZoBnM5d959k_A4LeWS6G6xHLmMzMNTnuN1v8QSU8z-V7QDY8AL6WYGLT_n8Pyg==\",\n        \"accepts_marketing\": \"true\",\n        \"accepts_marketing_updated_at\": \"2019-06-10 00:00:00\",\n        \"marketing_opt_in_level\": \"MARKETING_UNKNOWN\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/user/geoffs@soundstrue.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"geoffs@soundstrue.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetByID (ADMIN)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Request-From-Service",
+								"value": "ch-adminuser-service",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/user/geoffs+subscription05@soundstrue.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"geoffs+subscription05@soundstrue.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"new_email\": \"geoffs@soundstrue.com\",\n    \"first_name\": \"Geoff\",\n    \"last_name\": \"TESTER2\",\n    \"platforms\": {\n        \"PLATFORM_SHOPIFY\": {\n            \"platform_user_id\": 2757111382115,\n            \"active\": \"false\"\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/geoffs+update@soundstrue.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"geoffs+update@soundstrue.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update (Admin)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Request-From-Service",
+								"value": "ch-adminuser-service",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"new_email\": \"geoffs@soundstrue.com\",\n    \"first_name\": \"Geoff\",\n    \"last_name\": \"TESTER2\",\n    \"platforms\": {\n        \"PLATFORM_SHOPIFY\": {\n            \"platform_user_id\": 2757111382115,\n            \"active\": \"false\"\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/geoffs+update@soundstrue.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"geoffs+update@soundstrue.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateEmail",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"new_email\": \"geoffs+update@soundstrue.com\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/user/email/geoffs@soundstrue.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"email",
+								"geoffs@soundstrue.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/user/johndoe@example.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"johndoe@example.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListUsers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/user/filters/5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"filters",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserProduct Service",
+			"item": [
+				{
+					"name": "Create (new user only)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_email\": \"johndoe@example.com\",\n    \"purchased_products\": {\n        \"CE05948\": {\n            \"title\": \"The Untethered Soul at Work: CE Credits\",\n            \"subtitle\": \"\",\n            \"purchase_date\": \"2019-06-10 00:00:00\",\n            \"thumbnail_link\": \"somelocation/thumbnail.jpg\",\n            \"product_format\": \"FORMAT_CE_CREDITS\",\n            \"can_access\": \"true\",\n            \"registration_promo_item\": \"true\",\n            \"authors\": [\n            \t\"John O'Donohue\"\n            ]\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/userproduct",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userproduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddProducts (existing user only)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_email\": \"geoffs@soundstrue.com\",\n    \"purchased_products\": {\n        \"BUND001\": {\n            \"title\": \"MMFT Drip Demo (Course Bundle)\",\n    \t\t\"subtitle\": \"An example product of a Thinkific Bundled Course\",\n            \"purchase_date\": \"2020-08-06T00:00:00Z\",\n            \"thumbnail_link\": \"https://images.pexels.com/photos/40784/drops-of-water-water-nature-liquid-40784.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260\",\n            \"product_format\": \"FORMAT_COURSE_BUNDLE\",\n            \"can_access\": \"true\",\n            \"registration_promo_item\": \"false\"\n        }\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/userproduct/add",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userproduct",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get (entity/row)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/userproduct/geoffs+66@soundstrue.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userproduct",
+								"geoffs+66@soundstrue.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProduct",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/userproduct/johndoe@example.com/sku/CE05948",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userproduct",
+								"johndoe@example.com",
+								"sku",
+								"CE05948"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_product\": {\n\t\t\"recent_product\": \"CE05948\"\t\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/userproduct/johndoe@example.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userproduct",
+								"johndoe@example.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProduct",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"sku\": \"WC05263Y-PREVIEW\",\n    \"product\": {\n    \t\"product_format\": \"FORMAT_EBOOK\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/userproduct/geoffs@soundstrue.com/product",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userproduct",
+								"geoffs@soundstrue.com",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateEmail",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"new_email\": \"johndoe99@example.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/userproduct/johndoe99@example.com/email",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userproduct",
+								"johndoe99@example.com",
+								"email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteEntity (entity/row)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/userproduct/johndoe@example.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userproduct",
+								"johndoe@example.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteMediaMetadata",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/userproduct/johndoe@example.com/media/VID123D",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userproduct",
+								"johndoe@example.com",
+								"media",
+								"VID123D"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete (sku)",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/userproduct/johndoe3@example.com/sku/VID123D",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userproduct",
+								"johndoe3@example.com",
+								"sku",
+								"VID123D"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ListUserProducts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/api/userproduct/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"userproduct",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJraWQiOiJqZFpuNkZ0NmVScmo1bXp4S2NWRHByTGpvWnhTaTZnSXR3c0wzZVZ3a3JnPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJkOGIxMTg1ZS00ZjZhLTQ0YTEtOWY4OS1mMDNjZDMzNTRmOWUiLCJldmVudF9pZCI6IjVmZDljYzhhLWNiYzEtNDJhNC04NTJmLTU2MjMxM2Q3MmVlZSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE2MjA0MjExOTIsImlzcyI6Imh0dHBzOlwvXC9jb2duaXRvLWlkcC51cy1lYXN0LTEuYW1hem9uYXdzLmNvbVwvdXMtZWFzdC0xX1dpZlNXVkxFdSIsImV4cCI6MTYyMDQyNDc5MiwiaWF0IjoxNjIwNDIxMTkyLCJqdGkiOiIzM2YxNGVmYy0wNGQ2LTQ0YzktOGZiZi1iZjM2M2RmNjhlYWUiLCJjbGllbnRfaWQiOiJiaW81NzBuaG80ZmNib3M5YXVybWluajdzIiwidXNlcm5hbWUiOiJkOGIxMTg1ZS00ZjZhLTQ0YTEtOWY4OS1mMDNjZDMzNTRmOWUifQ.bTo58St6F-TnvHqXI_0-RXEU22XCwhfpB6hfDOeUq_w_D2rElcpYM534C_nGUt5t7kjsRIaHe8dFUn4aNCQjDrOf1tYE1s9GHIBDqVP_rdf1L7BwSiL2iNATHo05ywJWPs0vPlzDypVJXhE7c5Vkp7M0uBUgL1PzE_Nsj0KTVf17sYpwRXZBcGKzDtncAFjW07-c2ObvFBu_CDDa-sQjn0qCZMaIyGzjJYPUUR_0Vtb2gruZj6XCBQJmRkKKeQS-1j2R-n8ptbsRJbkCRyEIsvwkSwXbvrTU1h78j__sBmVwgWtkksE8nu-UIt991YlfJ3wNPNMd-dunBI05IWHfEw",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
