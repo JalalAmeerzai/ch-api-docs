@@ -65,7 +65,7 @@ The object models for the services can be found within their respective document
 
 ## STAGING (Testing Environment)
 
-- **Base URL:** [https://staging-ch-js-service-prototype.staging-soundstruehub.com](https://staging-ch-js-service-prototype.digitallibrary.staging-soundstrue.com)
+- **Base URL:** [https://staging-ch-js-service-prototype.digitallibrary.staging-soundstrue.com/](https://staging-ch-js-service-prototype.digitallibrary.staging-soundstrue.com)
 
 
 ## PRODUCTION
